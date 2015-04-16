@@ -1,0 +1,17 @@
+{
+  "name": "Font Upload",
+  "version": "0.1",
+  "dependencies": {
+    "express": "^4.0.0",
+    "body-parser": "^1.8.1",
+    "rand-token": "*",
+    "fs": "*"
+  },
+  "subdomain": "fontupload",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
