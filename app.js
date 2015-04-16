@@ -30,7 +30,7 @@ var server = app.listen(app.get('port'), function () {
     console.log(__dirname);
 
 });
-app.use(express.static('./uploads/'));
+app.use('/uploads/', express.static('./uploads/'));
 
 app.use(multer({ dest: './uploads/',
     rename: function (fieldname, filename) {
