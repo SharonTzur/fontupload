@@ -1,5 +1,5 @@
 {
-  "name": "Font Upload",
+  "name": "fontupload",
   "version": "0.1",
   "dependencies": {
     "express": "^4.0.0",
