@@ -16,6 +16,8 @@ app.all('*', function (req, res, next) {
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
+
+app.use(app.use('/uploads', express.static('public')));
 app.set('port', process.env.PORT || 3010);
 
 var server = app.listen(app.get('port'), function () {
