@@ -16,8 +16,9 @@ app.all('*', function (req, res, next) {
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
+app.set('port', process.env.PORT || 3010);
 
-var server = app.listen(3000 ||  process.env.PORT, function () {
+var server = app.listen(app.get('port'), function () {
 
     var host = server.address().address;
     var port = server.address().port;
