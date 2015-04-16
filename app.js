@@ -17,7 +17,6 @@ app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
-app.use(app.use('/uploads', express.static('public')));
 app.set('port', process.env.PORT || 3010);
 
 var server = app.listen(app.get('port'), function () {
@@ -28,6 +27,7 @@ var server = app.listen(app.get('port'), function () {
     console.log('Example app listening at http://%s:%s', host, port);
 
 });
+app.use(express.static('uploads'));
 
 app.use(multer({ dest: './uploads/',
     rename: function (fieldname, filename) {
