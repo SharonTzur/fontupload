@@ -20,6 +20,10 @@ app.get('/', function (req, res) {
 
 app.set('port', process.env.PORT || 3010);
 
+var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+var S3_BUCKET = process.env.S3_BUCKET;
+
 var server = app.listen(app.get('port'), function () {
 
     var host = server.address().address;
@@ -27,9 +31,12 @@ var server = app.listen(app.get('port'), function () {
 
     console.log('Example app listening at http://%s:%s', host, port);
 
-    console.log(__dirname);
+    console.log(AWS_ACCESS_KEY);
+    console.log(AWS_SECRET_KEY);
+    console.log(S3_BUCKET);
 
 });
+
 app.use('/uploads', express.static('./uploads/'));
 
 app.use(multer({ dest: './uploads/',
