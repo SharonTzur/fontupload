@@ -70,7 +70,8 @@ app.post('/upload', function (req, res) {
     var s3obj = new aws.S3({
         params: {
             Bucket: S3_BUCKET,
-            Key: req.files.upl.name
+            Key: req.files.upl.name,
+            ACL: 'public-read'
         }
     });
     s3obj.upload({Body: body}).
