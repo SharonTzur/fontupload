@@ -58,3 +58,8 @@ app.post('/upload', function (req, res) {
     console.log(__dirname);
     res.end();
 });
+
+app.get('/test', function (req,res) {
+    console.log(S3_BUCKET);
+
+});
