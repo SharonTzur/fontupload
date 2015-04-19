@@ -63,6 +63,7 @@ app.use(bodyParser.json());
 app.post('/upload', function (req, res) {
     console.log('a');
     console.log(JSON.stringify(req.body));
+    console.log(AWS_ACCESS_KEY +' ' +  AWS_SECRET_KEY + ' ' + S3_BUCKET );
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
     var body = fs.createReadStream(req.files.upl.path).pipe(zlib.createGzip());
