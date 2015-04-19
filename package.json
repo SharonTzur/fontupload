@@ -3,7 +3,8 @@
     "express": "^4.0.0",
     "body-parser": "^1.8.1",
     "rand-token": "*",
-    "fs": "*"
+    "fs": "*",
+    "aws-sdk": "*"
   },
   "subdomain": "fontupload",
   "scripts": {
