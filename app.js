@@ -17,16 +17,18 @@ app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
-var AWS_SECRET_KEY = null,
-    AWS_ACCESS_KEY = null,
-    S3_BUCKET;
+var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY,
+    AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY,
+    S3_BUCKET = process.env.S3_BUCKET;
 
 fs.readFile(__dirname + '/credentials.json', function (err, data) {
     if (data)
+    {
         var credentials = JSON.parse(data.toString());
-    AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY || credentials.access_key;
-    AWS_SECRET_KEY = process.env.AWS_SECRET_KEY || credentials.secret_key;
-    S3_BUCKET = process.env.S3_BUCKET || credentials.bucket;
+        AWS_ACCESS_KEY = credentials.access_key;
+        AWS_SECRET_KEY =  credentials.secret_key;
+        S3_BUCKET = credentials.bucket;
+    }
 });
 
 app.set('port', process.env.PORT || 3020);
