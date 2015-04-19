@@ -74,6 +74,7 @@ app.post('/upload', function (req, res) {
             ACL: 'public-read'
         }
     });
+    console.log(body);
     s3obj.upload({Body: body}).
         on('httpUploadProgress', function (evt) {
             console.log(evt);
