@@ -90,7 +90,7 @@ app.get('/sign_s3', function(req, res){
             };
             //console.log
             res.write(JSON.stringify(return_data));
-            res.end();
+            res.end( );
         }
     });
 });
