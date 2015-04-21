@@ -85,7 +85,11 @@ app.post('/upload', function (req, res) {
         });
 });
 
-app.get('/test', function (req, res) {
+app.post('/test', function (req, res) {
+    //console.log(req);
+    console.log(JSON.stringify(req.query));
+    console.log(req.body);
     console.log(S3_BUCKET);
+    res.send('success');
 });
 
