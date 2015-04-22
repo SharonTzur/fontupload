@@ -3,8 +3,8 @@ var bodyParser = require('body-parser');
 var app = express();
 var multer = require('multer');
 var fs = require('fs');
-//var aws = require('aws-sdk');
-//var zlib = require('zlib');
+var aws = require('aws-sdk');
+var zlib = require('zlib');
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
