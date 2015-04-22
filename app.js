@@ -64,9 +64,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.post('/upload', function (req, res) {
     console.log(JSON.stringify(req.body));
-    res.end('temp down');
+    //res.end('temp down');
     console.log('"' + AWS_ACCESS_KEY +'"  "' +  AWS_SECRET_KEY + '" "' + S3_BUCKET +'"' );
-/*
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
     var body = fs.createReadStream(req.files.upl.path).pipe(zlib.createGzip());
@@ -84,9 +83,8 @@ app.post('/upload', function (req, res) {
         }).
         send(function (err, data) {
             console.log(err, data);
-            res.send({error:err,data:data});
+            res.send({error:err,data:data, name:req.files.upl.name});
         });
-*/
 });
 
 app.post('/test', function (req, res) {
