@@ -3,8 +3,8 @@ var bodyParser = require('body-parser');
 var app = express();
 var multer = require('multer');
 var fs = require('fs');
-var aws = require('aws-sdk');
-var zlib = require('zlib');
+//var aws = require('aws-sdk');
+//var zlib = require('zlib');
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -58,12 +58,15 @@ app.use(multer({
         //done=true;
     }
 }));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
 
 app.post('/upload', function (req, res) {
-    console.log('a');
     console.log(JSON.stringify(req.body));
+    res.end('temp down');
     console.log('"' + AWS_ACCESS_KEY +'"  "' +  AWS_SECRET_KEY + '" "' + S3_BUCKET +'"' );
+/*
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
     var body = fs.createReadStream(req.files.upl.path).pipe(zlib.createGzip());
@@ -83,12 +86,13 @@ app.post('/upload', function (req, res) {
             console.log(err, data);
             res.send({error:err,data:data});
         });
+*/
 });
 
 app.post('/test', function (req, res) {
     //console.log(req);
-    console.log(JSON.stringify(req.query));
-    console.log(req.body);
+    console.log('BODY > ' +  JSON.stringify( req.body));
+    console.log('QUERY > ' + JSON.stringify(req.query));
     console.log(S3_BUCKET);
     res.send('success');
 });
