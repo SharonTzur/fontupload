@@ -84,7 +84,7 @@ app.post('/upload', function (req, res) {
                     console.log(evt)
                 }, function (err,data) {
                     res.send({error:err,data:data, name:cssFile});
-                })
+                }, true)
             }
 
         });
@@ -92,7 +92,7 @@ app.post('/upload', function (req, res) {
     });
 });
 
-function upload (file, name, progress, done) {
+function upload (file, name, progress, done, css) {
 
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
@@ -104,6 +104,8 @@ function upload (file, name, progress, done) {
             ACL: 'public-read'
         }
     });
+    if (css)
+        params.contentType = 'text/css';
     //console.log(body);
     s3obj.upload({Body: body})
         .on('httpUploadProgress',progress)
