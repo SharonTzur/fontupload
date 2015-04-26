@@ -21,7 +21,7 @@ router.post('/', function (req, res) {
                             compId    : params.compId,
                             instanceId: params.instanceId
                         });
-                        p.save(function (newP) {
+                        p.save(function (e, newP) {
                             callback(null, newP);
                         })
                     }
