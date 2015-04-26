@@ -1,7 +1,9 @@
 //region General
 
 //var SERVER_URL = 'http://anyfontoren.parseapp.com';
-var SERVER_URL = 'http://localhost:3020';
+//var SERVER_URL = 'http://localhost:3020';
+var SERVER_URL = 'http://84.109.234.163:3020';
+
 
 //endregion General
 

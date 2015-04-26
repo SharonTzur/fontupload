@@ -25,9 +25,7 @@ router.post('/', function (req, res) {
                             callback(null, newP);
                         })
                     }
-
                 });
-
         },
         findUploaded: function (callback) {
             db.uploadedFontsModel.find({compId:params.compId})
