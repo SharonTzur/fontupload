@@ -95,17 +95,16 @@ app.post('/upload', function (req, res) {
 function upload (file, name, progress, done, css) {
 
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
-
+    var ct = (css) ? 'text/css' : 'application/octet-stream';
     var body = fs.createReadStream(file);//.pipe(zlib.createGzip());
     var s3obj = new aws.S3({
         params: {
             Bucket: S3_BUCKET,
             Key: name,
-            ACL: 'public-read'
-        }
+            ACL: 'public-read',
+            contentType : ct
+    }
     });
-    if (css)
-        params.contentType = 'text/css';
     //console.log(body);
     s3obj.upload({Body: body})
         .on('httpUploadProgress',progress)
