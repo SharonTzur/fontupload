@@ -9,7 +9,7 @@ module.exports = {
     AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
     S3_BUCKET     : process.env.S3_BUCKET,
     uristring     : process.env.MONGOLAB_URI,
-    WIX_APP_SECRET : require("./WixKey"),
+    //WIX_APP_SECRET : require("./WixKey"),
 
 
 
