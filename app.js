@@ -102,7 +102,7 @@ function upload (file, name, progress, done, css) {
             Bucket: S3_BUCKET,
             Key: name,
             ACL: 'public-read',
-            contentType : ct
+            ContentType : ct
     }
     });
     //console.log(body);
