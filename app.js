@@ -76,7 +76,8 @@ app.post('/upload', function (req, res) {
         console.log(evt);
     }, function (err, data) {
         console.log(err, data);
-        fs.writeFile(cssFile, '@font-face {font-family:' + name.replace('.' + ext, '') + '; src:url("' + data.Location + '") format ("' + format + '") ; }', function (err) {
+        fs.writeFile(cssFile, '@font-face {font-family:"' + name.replace('.' + ext, '') + '";' +
+            ' src:url("' + data.Location + '") format("' + format + '") ; }', function (err) {
             if (!err)
             {
                 upload(cssFile, cssFile, function (evt) {
