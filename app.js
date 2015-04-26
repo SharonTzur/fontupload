@@ -106,6 +106,7 @@ function upload (file, name, progress, done, css) {
     }
     });
     //console.log(body);
+    console.log(ct);
     s3obj.upload({Body: body})
         .on('httpUploadProgress',progress)
         .send(done)
