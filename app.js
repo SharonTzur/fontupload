@@ -83,7 +83,7 @@ app.post('/upload', function (req, res) {
                 upload(cssFile, cssFile, function (evt) {
                     console.log(evt)
                 }, function (err,data) {
-                    res.send({error:err,data:data, name:cssFile});
+                    res.send({error:err,data:data, name:cssFile, origfile:name});
                 }, true)
             }
 
