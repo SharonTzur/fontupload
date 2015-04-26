@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		//Load WebFont Loader
+		(function ()
+		{
+			var wf = document.createElement('script');
+			wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+			'://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
+			wf.type = 'text/javascript';
+			wf.async = 'true';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(wf, s);
+
+		})();
+
+	</script>
+	<!--Wix SDK-->
+	<script type="text/javascript" src="//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
+	<script src="toolbar.js"></script>
+
+
+	<script src="utils.js"></script>
+	<script>
+//										var completeFontCatJSON = JSON.parse(replaceAll('<%= cats %>', '&quot;', '"')),
+//										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
+//										var instanceId = Wix.Utils.getInstanceId(),
+//										    compId     = Wix.Utils.getOrigCompId();
+		var instanceId = 'Local-InstnaceId-rotem931',
+		    compId     = 'Local-compId3-rotem931';
+
+	</script>
+	<!--AnyFont Utils-->
+	<script src="UI.js"></script>
+	<script src="DB.js"></script>
+	<script src="fonts.js"></script>
+	<script src="globals.js"></script>
+	<script src="filters.js"></script>
+	<!--<script src="lib/webfont.js"></script>-->
+
+	<!--JQuery-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<link rel="stylesheet"
+	      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+
+	<!--Selectize-->
+	<script src="components/selectize.min.js"></script>
+	<link rel="stylesheet" href="components/selectize.css">
+
+	<!--WIX UI Lib CSS-->
+	<script src="components/jquery.nouislider.all.min.js"></script>
+	<link rel="stylesheet" href="lib/ui-lib.min.css">
+
+	<!--nouislider CSS-->
+	<link href="components/jquery.nouislider.min.css" rel="stylesheet">
+	<link href="components/jquery.nouislider.pips.min.css" rel="stylesheet">
+	<!--semantic UI CSS-->
+	<link href="components/semantic/semantic.min.css" rel="stylesheet">
+
+	<!--Redactor Text Editor	-->
+	<link rel="stylesheet" href="components/redactor/redactor.css"/>
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="components/awesome.css"/>
+	<link rel="stylesheet" href="components/redactor/icomoon.css"/>
+	<script src="upload.js"></script>
+	<script src="buildView.js"></script>
+	<script src="components/redactor/redactor.js"></script>
+	<script src="components/redactor/fullscreen.js"></script>
+	<script src="components/redactor/fontsize.js"></script>
+	<script src="components/redactor/increasefontsize.js"></script>
+	<script src="components/redactor/fontsizewidget.js"></script>
+	<script src="components/redactor/fontfacedropdown.js"></script>
+	<script src="components/redactor/fontweightdropdown.js"></script>
+	<script src="components/redactor/italicWidget.js"></script>
+	<script src="components/redactor/fontcolor.js"></script>
+	<script src="components/redactor/letterspacingwidget.js"></script>
+	<script src="components/redactor/fontfamily.js"></script>
+	<script src="components/redactor/undo.js"></script>
+	<script src="components/redactor/textdirection.js"></script>
+
+	<!--AnyFont CSS   -->
+	<link rel="stylesheet" type="text/css" href="anyfont.css">
+
+
+	<script>
+
+		$(document).ready(function ()
+		{
+			WebFont.load({
+				google: {
+					families: ["Exo:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"]
+				}
+			});
+
+			fontContainer = $('[data-tab="selectFont"] .fontContainer');
+			viewPortHeight = $(fontContainer).outerHeight();
+			Filters.init();
+			try
+			{
+				Wix.UI.initialize({});
+				Wix.UI.initialize({});
+			}
+			catch (ex)
+			{
+				console.warn(ex.message);
+			}
+			initSemanticUI();
+			loadSettings();
+			buildAllFontsArray();
+			upload.init();
+		});
+
+	</script>
+
+</head>
+<body wix-ui id="settings">
+<script type="text/javascript"></script>
+
+<header class="box" id="top-header" style="margin-bottom: 50px;">
+	<header class="intro box">
+		<div class="logo">
+			<div class="logo-image"></div>
+		</div>
+	</header>
+
+	<div style="position:fixed; padding: 30% 6% 30% 3%; width: 100%;" >
+		<div class="ui indicating progress" id="progress-bar">
+			<div class="bar"></div>
+			<div class="label"><span id="number-of-fonts-loaded">0</span> / <script> initiallyLoadedFonts </script> Fonts Loaded</div>
+		</div>
+	</div>
+
+	<div class="showme" wix-ctrl="Tabs" wix-options="{value:0}" style="margin-bottom: 10px; display: none;">
+		<ul>
+			<li data-tab="editText">
+				<div>Edit Text</div>
+			</li>
+			<li data-tab="selectFont">
+				<div>Browse Fonts</div>
+			</li>
+			<li data-tab="upload">
+				<div>Upload Fonts</div>
+			</li>
+
+		</ul>
+
+		<div class="tab-content">
+			<div data-tab="editText" class="tab-pane">
+				<textarea id="redactor" name="content"></textarea>
+			</div>
+			<div data-tab="selectFont" class="tab-pane">
+				<div class="fontContainer"></div>
+
+				<div class="fontsFilterContainer">
+
+				<input id="searchFont" name="searchFont" type="search" placeholder="Search fonts..."/>
+					<div class="fontsFilter ui styled fluid accordion">
+					<div class="title">
+						<div class="filterFontsButton ui labeled icon button">
+							<i class="icon"></i> <i class="xl dropdown icon"></i> Filter Fonts
+							<div class="filterIcon filter"></div>
+						</div>
+					</div>
+					<div class="active content fontsFilterPane">
+						<div class="ui grid no-margin">
+							<div class="equal height row">
+								<div class="two wide column label filterColumn" style="top:0">TYPE
+								</div>
+								<div class="thirteen wide ctr right column">
+									<div class="ui buttons">
+										<div data-cat='All' class="compact ui toggle button mini catButton">
+											All
+										</div>
+										<div data-cat='Serif' class="compact ui toggle button mini catButton">
+											Serif
+										</div>
+										<div data-cat='SansSerif' class="compact ui toggle button mini catButton">
+											Sans-Serif
+										</div>
+										<div data-cat='Handwriting' class="compact ui toggle button mini catButton">
+											Handwriting
+										</div>
+										<div data-cat='Display' class="compact ui toggle button mini catButton">
+											Display
+										</div>
+										<div data-cat='Monospace' class="compact ui toggle button mini catButton">
+											Monospace
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="equal height row">
+								<div class="two wide column label filterColumn">
+									THICKNESS
+								</div>
+								<div class="one wide column firstFilterLabel label sliderSideLabel">
+									Thin
+								</div>
+								<div class="slider six wide right column">
+									<div id="thicknessSliderHolder" class="sliderHolder">
+										<div id="thicknessSlider" class="slider"></div>
+									</div>
+								</div>
+								<div class="two wide column label sliderSideLabel">Thick</div>
+								<div class="two wide column label">
+									<div class="ui toggle checkbox sliderCheckbox" id="thicknessSliderCheckbox">
+										<input type="checkbox"> <label></label>
+									</div>
+								</div>
+								<div class="two wide column label sliderLabel sliderStatus" id="thicknessSliderLabel">
+									filter disabled
+								</div>
+							</div>
+							<div class="equal height row">
+								<div class="two wide column label filterColumn">INCLINE</div>
+
+								<div class="one wide column firstFilterLabel label sliderSideLabel">
+									Straight
+								</div>
+								<div class="slider six wide right column">
+									<div id="slantSliderHolder" class="sliderHolder">
+										<div id="slantSlider" class="slider"></div>
+									</div>
+								</div>
+								<div class="two wide column label sliderSideLabel">Italic</div>
+								<div class="two wide column label">
+									<div class="ui toggle checkbox sliderCheckbox" id="slantSliderCheckbox">
+										<input type="checkbox"> <label></label>
+									</div>
+								</div>
+								<div class="two wide column label sliderLabel sliderStatus" id="slantSliderLabel">
+									filter disabled
+								</div>
+
+							</div>
+							<div class="equal height row">
+								<div class="two wide column label filterColumn">WIDTH</div>
+
+								<div class="one wide column firstFilterLabel sliderSideLabel label">
+									Narrow
+								</div>
+								<div class="slider six wide right column">
+									<div id="widthSliderHolder" class="sliderHolder">
+										<div id="widthSlider" class="slider"></div>
+									</div>
+								</div>
+								<div class="two wide column label sliderSideLabel">Wide</div>
+								<div class="two wide column label">
+									<div class="ui toggle checkbox sliderCheckbox" id="widthSliderCheckbox">
+										<input type="checkbox"> <label></label>
+									</div>
+								</div>
+								<div class="two wide column label sliderLabel sliderStatus" id="widthSliderLabel">
+									filter disabled
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div></div>
+			</div>
+			<div data-tab="upload" class="tab-pane">
+				<div class="fontsFilterContainer">
+					<h1> Upload fonts 213</h1>
+					<form id="upload" method="post" action="http://fontupload.herokuapp.com/upload/" enctype="multipart/form-data">
+						<div class="drop">
+							Drop Your fonts bellow or
+
+							<a>Browse</a>
+							<input id="fileInput" type="file" name="upl" multiple style="display: none;"/>
+							<div id="status" style="display: none"></div>
+						</div>
+
+						<div  class="fontContainer drop">
+							<!-- The file uploads will be shown here -->
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</header>
+</body>
+</html>
+
+<!--Underscore-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--WIX UI Lib-->
+<script src="lib/ui-lib.min.js"></script>
+<script src="lib/jquery.fileupload.js"></script>
+<script src="lib/s3upload.js"></script>
+
+<!--nouislider-->
+<script src="components/semantic/semantic.min.js"></script>

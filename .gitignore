@@ -5,6 +5,7 @@
 # IntelliJ project files
 .idea
 credentials.json
+WixKey.js
 *.iml
 out
 gen

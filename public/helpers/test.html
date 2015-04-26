@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<!--jQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="../components/jquery.nouislider.all.min.js"></script><!--semantic UI-->
+	<link href="../components/jquery.nouislider.min.css" rel="stylesheet">
+	<link href="../components/jquery.nouislider.pips.min.css" rel="stylesheet">
+
+	<script>
+		$(document).ready(function ()
+		{
+			$("#thicknessSlider").noUiSlider({
+				start      : [0],
+				step       : 1,
+				snap       : true,
+				range      : {
+					'min': 0,
+					'10%': 1,
+					'20%': 2,
+					'30%': 3,
+					'40%': 4,
+					'50%': 5,
+					'60%': 6,
+					'70%': 7,
+					'80%': 8,
+					'90%': 9,
+					'max': 10
+				},
+				orientation: 'horizontal'
+
+			}).noUiSlider_pips({
+				mode  : 'count',
+				values: 10,
+				density : 1
+//				stepped: true,
+//				orientation: 'horizontal'
+			});
+
+		})
+
+	</script>
+</head>
+<body>
+<div id="thicknessSliderHolder" class="sliderHolder" style="width: 500px;height: 40px">
+	<div id="thicknessSlider" class="thicknessSlider" style="width: 500px;height: 20px"></div>
+</div>
+
+</body>
+</html>

@@ -1,10 +1,12 @@
 {
   "dependencies": {
-    "express": "^4.0.0",
+    "async": "^0.9.0",
+    "aws-sdk": "^2.1.25",
     "body-parser": "^1.8.1",
-    "rand-token": "*",
+    "express": "^4.0.0",
     "fs": "*",
-    "aws-sdk": "*"
+    "mongoose": "^4.0.2",
+    "rand-token": "*"
   },
   "subdomain": "fontupload",
   "scripts": {
