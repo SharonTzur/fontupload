@@ -64,29 +64,50 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.post('/upload', function (req, res) {
     console.log(JSON.stringify(req.body));
+    var name = req.files.upl.name;
+    var ext = name.split('.');
+    ext = ext[ext.length - 1];
+    var cssFile = name.replace(ext,'css');
     //res.end('temp down');
     console.log('"' + AWS_ACCESS_KEY +'"  "' +  AWS_SECRET_KEY + '" "' + S3_BUCKET +'"' );
+
+    upload(req.files.upl.path, name, function (evt) {
+        console.log(evt);
+    }, function (err, data) {
+        console.log(err, data);
+        fs.writeFile(cssFile, '@font-face {font-family:' + name.replace('.' + ext, '') + '; src:url("' + data.Location + '");', function (err) {
+            if (!err)
+            {
+                upload(cssFile, cssFile, function (evt) {
+                    console.log(evt)
+                }, function (err,data) {
+                    res.send({error:err,data:data, name:cssFile});
+                })
+            }
+
+        });
+
+    });
+});
+
+function upload (file, name, progress, done) {
+
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
-    var body = fs.createReadStream(req.files.upl.path);//.pipe(zlib.createGzip());
+    var body = fs.createReadStream(file);//.pipe(zlib.createGzip());
     var s3obj = new aws.S3({
         params: {
             Bucket: S3_BUCKET,
-            Key: req.files.upl.name,
+            Key: name,
             ACL: 'public-read'
         }
     });
     //console.log(body);
-    s3obj.upload({Body: body}).
-        on('httpUploadProgress', function (evt) {
-            console.log(evt);
-        }).
-        send(function (err, data) {
-            console.log(err, data);
-            res.send({error:err,data:data, name:req.files.upl.name});
-        });
-});
+    s3obj.upload({Body: body})
+        .on('httpUploadProgress',progress)
+        .send(done)
 
+}
 app.post('/test', function (req, res) {
     //console.log(req);
     console.log('BODY > ' +  JSON.stringify( req.body));
