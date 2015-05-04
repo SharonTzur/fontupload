@@ -453,6 +453,8 @@ function loadAllFontVariants(fontObj, callback, scope, activeCallback, activeSco
             {
                 if (activeCallback && activeScope)
                     activeCallback.call(activeScope);
+                if (activeCallback && !activeScope)
+                    activeCallback(this.google.families[0].split(":")[0]);
                 fontsCompletelyLoadedIdx.push(idx);
 
             },

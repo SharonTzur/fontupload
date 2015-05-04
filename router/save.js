@@ -4,7 +4,6 @@
 var express = require('express');
 var router = express.Router();
 var db = require('./../db');
-var async = require('async');
 
 
 router.post('/', function (req, res) {

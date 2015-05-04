@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
-        (function () {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                    '://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
-    </script>
     <!--Wix-->
     <script type="text/javascript" src="http://sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
     <!--jQuery -->
@@ -23,6 +12,7 @@
     <script src="globals.js"></script>
     <!--CSS -->
     <link rel="stylesheet" type="text/css" href="widget.css">
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
     <script>
 
         var SERVER_URL = 'http://84.109.234.163:3020';
@@ -31,17 +21,15 @@
 
         //		var instanceId = 'Local-InstnaceId-rotem931',
         //		    compId     = 'Local-compId3-rotem931';
-        var instanceId = Wix.Utils.getInstanceId(),
-                compId = Wix.Utils.getCompId();
+        //        var instanceId = Wix.Utils.getInstanceId(),
+        //                compId = Wix.Utils.getCompId();
+        var instanceId = '<%= instanceId %>',
+                compId = '<%= compId %>',
+                ejs = true;
 
-        $.ajax({
-            type   : "POST",
-            url    : SERVER_URL + "/load/",
-            data   : {
-                instanceId: instanceId,
-                compId    : compId
-            },
-            success: function (data, status, jqXHR) {
+        function load(data) {
+
+            var successFunc = function (data, status, jqXHR) {
                 {
                     console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));
 //					refreshLocalWidget(data, $('#textBox'));
@@ -56,21 +44,38 @@
                         })
                 }
             }
-        });
+            if (ejs)
+                successFunc(data)
+            else
+                $.ajax({
+                    type   : "POST",
+                    url    : SERVER_URL + "/load/",
+                    data   : {
+                        instanceId: instanceId,
+                        compId    : compId
+                    },
+                    success: successFunc
+                });
+        }
+        function killDups(obj) {
+            if (Array.isArray(obj))
+                obj = obj.filter(function (elem, pos) {
+                    return obj.indexOf(elem) == pos;
+                });
+            else
+                for (var prop in obj) {
+                    obj[prop] = obj[prop].filter(function (elem, pos) {
+                        return obj[prop].indexOf(elem) == pos;
+                    });
+                }
+        }
 
         function gotCode(code, uploadedFonts) {
 
             $('#textBox').html(code);
             var fontObjArray = checkCodeForFonts($(code));
-            loadedFonts = loadedFonts.filter(function (elem, pos) {
-                return loadedFonts.indexOf(elem) == pos;
-            });
-            fontObjArray.fontsName = fontObjArray.fontsName.filter(function (elem, pos) {
-                return fontObjArray.fontsName.indexOf(elem) == pos;
-            });
-            fontObjArray.fontsObj = fontObjArray.fontsObj.filter(function (elem, pos) {
-                return fontObjArray.fontsObj.indexOf(elem) == pos;
-            });
+            killDups(fontObjArray);
+            killDups(loadedFonts);
 //
             if (!arraysEqual(loadedFonts, fontObjArray.fontsName)) {
 
@@ -94,18 +99,20 @@
         Wix.addEventListener(Wix.Events.SETTINGS_UPDATED, function (newSettings) {
             console.log('Widget: New settings received: ' + JSON.stringify(newSettings));
             gotCode(newSettings.settings.code, newSettings.settings.uploadedFonts);
-//			$('#textBox').html(data.p.code);
-
-//			refreshLocalWidget(newSettings['settings'], $('#textBox'));
         });
 
         $(document).ready(function () {
+
             buildAllFontsArray();
+            var data = JSON.parse('<%- data %>');
+            data.p.code = $('#textBox').html();
+
+            load(data);
         });
     </script>
 
 </head>
 <body id="widgetBody">
-<div class='textBox' id='textBox'></div>
+<div class='textBox' id='textBox'><%- code %></div>
 </body>
 </html>

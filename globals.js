@@ -9,11 +9,11 @@ module.exports = {
     AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
     S3_BUCKET     : process.env.S3_BUCKET,
     uristring     : process.env.MONGOLAB_URI,
-    //WIX_APP_SECRET : require("./WixKey"),
+    WIX_APP_SECRET: process.env.WIX_APP_SECRET,
+    WIX_APP_ID    : process.env.WIX_APP_ID,
 
 
-
-init: function (mongoose) {
+    init: function (mongoose) {
         var self = this;
         fs.readFile(__dirname + '/credentials.json', function (err, data) {
             if (data) {
@@ -21,7 +21,9 @@ init: function (mongoose) {
                 self.AWS_ACCESS_KEY = credentials.access_key;
                 self.AWS_SECRET_KEY = credentials.secret_key;
                 self.S3_BUCKET = credentials.bucket;
+                self.WIX_APP_SECRET = credentials.wix_secret;
                 self.uristring = credentials.mongo;
+                self.WIX_APP_ID = credentials.wix_app_id;
             }
             mongoose.connect(self.uristring, function (err) {
                 if (err) {

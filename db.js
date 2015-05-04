@@ -19,7 +19,7 @@ var func = {
         this.widgetSettingsModel = mongoose.model('widgetsetting', widgetSettingsSchema);
 
         var uploadedFontsSchema = new Schema({
-            compId       : String,
+            instanceId   : String,
             url          : String,
             fileName     : String,
             uploadedFonts: String

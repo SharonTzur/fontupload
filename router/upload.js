@@ -10,7 +10,7 @@ var globals = require('./../globals');
 
 
 function upload(file, name, progress, done, css) {
-
+    console.log('upload func called' + file);
     aws.config.update({accessKeyId: globals.AWS_ACCESS_KEY, secretAccessKey: globals.AWS_SECRET_KEY});
     var ct = (css) ? 'text/css' : 'application/octet-stream';
     var body = fs.createReadStream(file);//.pipe(zlib.createGzip());
@@ -29,12 +29,14 @@ function upload(file, name, progress, done, css) {
 
 }
 router.post('/db', function (req, res) {
+    console.log('db was called');
     var params = req.body;
-    db.uploadedFontsModel.find({compId: params.compId})
+    db.uploadedFontsModel.find({instanceId: params.instanceId})
         .where('fileName').equals(params.fileName)
         .where('url').equals(params.urlData.Location)
         .exec(function (e, files) {
             if (files[0]) {
+                console.log('db allready exist');
                 res.send('allready exist');
             }
             else {
@@ -44,6 +46,7 @@ router.post('/db', function (req, res) {
                     fileName: params.fileName
                 });
                 newFile.save(function (f) {
+                    console.log('db new instance');
                     res.send('new instance');
                 })
             }
@@ -52,14 +55,19 @@ router.post('/db', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+    console.log('upload was called');
     console.log(JSON.stringify(req.body));
+    if (!req.files)
+    {
+        res.end(500);
+        return
+    }
     var name = req.files.upl.name;
     var ext = name.split('.');
     ext = ext[ext.length - 1];
     var cssFile = name.replace(ext, 'css');
     var format = (ext == 'ttf') ? 'truetype' : ext;
     //res.end('temp down');
-    console.log('"' + AWS_ACCESS_KEY + '"  "' + AWS_SECRET_KEY + '" "' + S3_BUCKET + '"');
 
     upload(req.files.upl.path, name, function (evt) {
         console.log(evt);
@@ -71,6 +79,7 @@ router.post('/', function (req, res) {
                 upload(cssFile, cssFile, function (evt) {
                     console.log(evt)
                 }, function (err, data) {
+                    console.log('upload send');
                     res.send({error: err, data: data, name: cssFile, origfile: name});
                 }, true)
             }

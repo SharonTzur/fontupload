@@ -1,9 +1,10 @@
 (function ($) {
     RedactorPlugins.fontfacedropdown = function () {
         return {
-            input: null,
+            input  : null,
             current: null,
-            init: function () {
+            menu   : null,
+            init   : function () {
                 var dropdown = $(
                     '<div id = "fontfamilydropdown" class="ui anyfontdropdown floating dropdown labeled search icon button">' +
                     '<div class="default text">' +
@@ -17,10 +18,9 @@
                 )
                     .dropdown('setting', 'transition', 'slide down')
                     .dropdown({
-                        onChange: this.fontfacedropdown.onDropdownClick
-                            //function (value, text, $selectedItem) {
-                        //}
-                    })
+                        onChange   : this.fontfacedropdown.onDropdownClick
+                    }
+                )
                     .popup('setting', 'content', 'Select Font');
 
                 var item,
@@ -34,22 +34,45 @@
                 items.push(q.createDivder());
                 for (var i = 0; i < initiallyLoadedFonts; i++)
                     items.push(q.createDropdownItem(i, allFonts[i].family));
+                for (; i < allFonts.length; i++)
+                    items.push(q.createDropdownItem(i, allFonts[i].family)
+                        .addClass('my-hidden')
+                        .hide());
 
                 items.push(q.createHeader('Load More ...')
                     .attr('data-value', i)
+                    .addClass('loadmore')
                     .click(q.loadMore));
 
                 $(dropdown).children('.menu').append(items);
+                $(dropdown).find('input').keyup(function (e) {
+                        var menu = $redactor.fontfacedropdown.menu;
+                        setTimeout(function () {
 
+                            if (!menu.children('.item').not('.my-hidden,.filtered')[0]) {
+                                var families = [];
+                                var hiddens = menu.children('.item.my-hidden').not('.filtered');
+                                hiddens.each(function (i, el) {
+                                    families.push($(el).text());
+                                    $(el).removeClass('my-hidden')
+                                        .show();
+                                    if (i > 10) return false;
+                                });
+                                loadFontArray(families)
+                            }
+                        }, 100); // hate to use timoue but couldnt figure a better way
+                    }
+                )
+                ;
                 var $toolbar = $('ul#redactor-toolbar-0');
                 $toolbar.append(dropdown);
+                this.fontfacedropdown.menu = $(dropdown).children('.menu');
                 //<div wix-param="bgColor" wix-ctrl="ColorPicker" wix-options="{startWithColor: 'color-3'}"></div>
 
             },
 
             loadMore: function (e) {
                 {
-
                     var fontsToLoad = 10,
                         fontFamilyArr = [],
                         $selectedItem = $(e.toElement),
@@ -142,33 +165,32 @@
 
             createDropdownItem: function (index, fontFamily) {
                 return $('<div class="item" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                fontFamily +
-                '</div>');
+                    fontFamily +
+                    '</div>');
 
             },
 
             createSelectedDropdownItem: function (index, fontFamily) {
                 return $('<div class="item selected-fonts" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                fontFamily +
-                '</div>');
-
+                    fontFamily +
+                    '</div>');
             },
 
             createHeader: function (text) {
                 return $('<div class="header" data-value="header" style="font-family:"exo">' +
-                text + '</div>');
+                    text + '</div>');
             },
 
             dividers: 0,
 
             createDivder: function () {
-              return $('<div>').addClass('divider').attr('data-index', this.fontfacedropdown.dividers++);
+                return $('<div>').addClass('divider').attr('data-index', this.fontfacedropdown.dividers++);
             },
 
             createCustomDropdownItem: function (index, fontFamily, text) {
                 return $('<div class="item" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                text +
-                '</div>');
+                    text +
+                    '</div>');
             }
 
         };

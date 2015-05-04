@@ -234,6 +234,25 @@ function getAllFontsIdxByFamily (family){
         return obj.family == family;
     })[0])
 }
+function SearchAllFontsIdxByFamily (family, max){
+    var foundObjs = $.grep(allFonts, function (obj)
+    {
+        return obj.family.search(new RegExp("^" + family, "i")) !=-1
+    });
+    var families = [],
+        returnObj = [],
+        obj = {};
+    for (var i = 0; i < foundObjs.length; i++) {
+        families.push (foundObjs[i].family);
+        obj[foundObjs[i].family] = i;
+    } //ui anyfontdropdown floating dropdown labeled search icon button
+      //ui anyfontdropdown floating dropdown labeled search icon button active
+    return families.sort().slice(0,max);
+
+    for (i = 0; i < families.length && i < max; i++) {
+        returnObj.push(foundObjs[ obj[families[i]]]);
+    }
+}
 
 function getObj (arr,family){
     return $.grep(arr, function (obj)
@@ -243,7 +262,7 @@ function getObj (arr,family){
 }
 
 function arraysEqual(a, b) {
-    debugger;
+    //debugger;
     if (a === b) return true;
     if (a == null || b == null) return false;
     if (a.length != b.length) return false;

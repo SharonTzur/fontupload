@@ -3,6 +3,7 @@
 <head>
 	<script>
 		//Load WebFont Loader
+/*
 		(function ()
 		{
 			var wf = document.createElement('script');
@@ -14,22 +15,24 @@
 			s.parentNode.insertBefore(wf, s);
 
 		})();
+*/
 
 	</script>
 	<!--Wix SDK-->
 	<script type="text/javascript" src="//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
 	<script src="toolbar.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
 
 
 	<script src="utils.js"></script>
 	<script>
-//										var completeFontCatJSON = JSON.parse(replaceAll('<%= cats %>', '&quot;', '"')),
-//										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
 //										var instanceId = Wix.Utils.getInstanceId(),
 //										    compId     = Wix.Utils.getOrigCompId();
-		var instanceId = 'Local-InstnaceId-rotem931',
-		    compId     = 'Local-compId3-rotem931',
-				ejs = false;
+//		var instanceId = 'Local-InstnaceId-rotem931',
+//		    compId     = 'Local-compId3-rotem931';
+		var instanceId = '<%= instanceId %>',
+		    compId     = '<%= compId %>',
+				ejs = true;
 
 	</script>
 	<!--AnyFont Utils-->
@@ -109,9 +112,15 @@
 				console.warn(ex.message);
 			}
 			initSemanticUI();
-			loadSettings();
 			buildAllFontsArray();
+			var data = JSON.parse('<%- data %>');
+			var txtBox = $('#textBox');
+			data.p.code = txtBox.html();
+			txtBox.remove();
+			console.info(data);
 			upload.init();
+
+			loadSettings(data);
 		});
 
 	</script>
@@ -288,6 +297,8 @@
 	</div>
 
 </header>
+<div class='textBox' id='textBox' style="display:none;"><%- code %></div>
+
 </body>
 </html>
 

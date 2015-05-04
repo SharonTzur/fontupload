@@ -94,7 +94,7 @@ var upload = {
                     alert(name + 'is not supported');
                 else {
                     debugger;
-                    uploadedItems[name] = q.addUploadedItem(q.allFontsLength++, {fileName: name}, q, 0);
+                    uploadedItems[name] = q.addUploadedItem(q.allFontsLength++, {fileName: name, family: name.replace('.' + extenstion(name),'')}, q, 0);
                     uploadedItems[name].time = new Date().getTime();
                     if (q.noFont) {
                         q.noFont.hide();
@@ -102,13 +102,15 @@ var upload = {
                     }
                     uploadedItems[name].el.slideDown();
                     var jqXHR = data.submit().done(function (e, data) {
-                        q.sendParse(e.data, e.name);
-                        q.loadAndUpdateDropdown(uploadedItems[e.origfile].index, {
-                            fileName: e.name,
-                            url     : e.data.Location
-                        }, q, function () {
-                            uploadProgress.inc(uploadedItems[e.origfile].el,1.3333);
-                            $('.fontdiv[data-allfontsidx="' + uploadedItems[name].index + '"] .textPreview .text').fadeIn();
+                        q.sendParse(e.data, e.name, function () {
+                            q.loadAndUpdateDropdown(uploadedItems[e.origfile].index, {
+                                fileName: e.name,
+                                family: e.name.replace('.' + extenstion(e.name),''),
+                                url     : e.data.Location
+                            }, q, function () {
+                                uploadProgress.inc(uploadedItems[e.origfile].el,1.3333);
+                                $('.fontdiv[data-allfontsidx="' + uploadedItems[name].index + '"] .textPreview .text').fadeIn();
+                            });
                         });
 
                         console.log(e, data);
@@ -197,17 +199,19 @@ var upload = {
 
     },
 
-    sendParse: function (data, name) {
+    sendParse: function (data, name, callback) {
         $.ajax({
             type   : 'POST',
             url    : SERVER_URL + '/upload/db',
             data   : {
                 fileName  : name,
                 urlData   : data,
-                compId    : compId
+                instanceId    : instanceId,
             },
             success: function (response) {
                 console.log(response);
+                if (callback)
+                    callback();
             }
         });
 
@@ -233,7 +237,6 @@ var upload = {
             q.loadAndUpdateDropdown(q.allFontsLength + i, font, q, function () {
                 $('.fontdiv[data-allfontsidx="' + (q.oldAllFonts + i) + '"] .textPreview .text').show();
             });
-            widgetSettings.uploadedFonts.push(font);
             q.addUploadedItem(q.allFontsLength + i, font, q, 1);
 
             if (i + 1 == list.length)
@@ -241,6 +244,7 @@ var upload = {
         })
     },
     loadAndUpdateDropdown: function (i, font, q, callback) {
+        widgetSettings.uploadedFonts.push(font);
         q.loadUploadedFont(font.url, font.family, i, callback);
         q.divider.after(q.dropdown.createDropdownItem(i, font.family));
     },
@@ -342,7 +346,7 @@ var upload = {
             },
             active: function () {
                 if (idx) fontsCompletelyLoadedIdx.push(idx);
-                if (callback) callback()
+                if (callback) callback(this.custom.families[0])
             }
         });
     },
