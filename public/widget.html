@@ -23,86 +23,26 @@
     <script src="globals.js"></script>
     <!--CSS -->
     <link rel="stylesheet" type="text/css" href="widget.css">
-    <script>
+	<script src="widget.js"></script>
+
+	<script>
 
 //        var SERVER_URL = 'http://84.109.234.163:3020';
         var SERVER_URL = 'http://fontupload.heroku.com';
         var loadedFonts = [];
 
 
-        //		var instanceId = 'Local-InstnaceId-rotem931',
-        //		    compId     = 'Local-compId3-rotem931';
-        var instanceId = Wix.Utils.getInstanceId(),
-                compId = Wix.Utils.getCompId();
+        		var instanceId = 'Local-InstnaceId-rotem931',
+        		    compId     = 'Local-compId3-rotem931';
+//        var instanceId = Wix.Utils.getInstanceId(),
+//                compId = Wix.Utils.getCompId();
 
-        $.ajax({
-            type   : "POST",
-            url    : SERVER_URL + "/load/",
-            data   : {
-                instanceId: instanceId,
-                compId    : compId
-            },
-            success: function (data, status, jqXHR) {
-                {
-                    console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));
-//					refreshLocalWidget(data, $('#textBox'));
-//					refreshLocalWidget(data, $('.redactor-editor'));
-                    gotCode(data.p.code);
-                    if (data.list)
-                        $.each(data.list, function (i, font) {
-                            var fontFamily = font.fileName.split('.')[0];
-                            upload.loadUploadedFont(font.url, fontFamily, null, function () {
-                                loadedFonts.push(fontFamily);
-                            });
-                        })
-                }
-            }
-        });
 
-        function gotCode(code, uploadedFonts) {
+$(document).ready(function () {
 
-            $('#textBox').html(code);
-            var fontObjArray = checkCodeForFonts($(code));
-            loadedFonts = loadedFonts.filter(function (elem, pos) {
-                return loadedFonts.indexOf(elem) == pos;
-            });
-            fontObjArray.fontsName = fontObjArray.fontsName.filter(function (elem, pos) {
-                return fontObjArray.fontsName.indexOf(elem) == pos;
-            });
-            fontObjArray.fontsObj = fontObjArray.fontsObj.filter(function (elem, pos) {
-                return fontObjArray.fontsObj.indexOf(elem) == pos;
-            });
-//
-            if (!arraysEqual(loadedFonts, fontObjArray.fontsName)) {
-
-//                loadedFonts = loadedFonts.concat(fontObjArray.fontsName);
-                for (var i = 0; i < fontObjArray.fontsObj.length; i++) {
-                    if (fontObjArray.fontsObj[i])
-                        loadAllFontVariants(fontObjArray.fontsObj[i], null, null, function (family) {
-                            loadedFonts.push(family)
-                        }, null, fontObjArray.idx[i]);
-                    else {
-                        var font = getObj(uploadedFonts, fontObjArray.fontsName[i])[0];
-                        upload.loadUploadedFont(font.url, font.family, null, function (family) {
-                            loadedFonts.push(family);
-                        });
-                    }
-                }
-            }
-
-        }
-
-        Wix.addEventListener(Wix.Events.SETTINGS_UPDATED, function (newSettings) {
-            console.log('Widget: New settings received: ' + JSON.stringify(newSettings));
-            gotCode(newSettings.settings.code, newSettings.settings.uploadedFonts);
-//			$('#textBox').html(data.p.code);
-
-//			refreshLocalWidget(newSettings['settings'], $('#textBox'));
-        });
-
-        $(document).ready(function () {
-            buildAllFontsArray();
-        });
+	buildAllFontsArray();
+	load();
+});
     </script>
 
 </head>
