@@ -104,9 +104,9 @@ module.exports = {
         var params = req.query;
         console.log('loading instanceId : ' +  params.instanceId );
         console.log('loading compId : ' +  params.compId );
-        console.log('loading OrigCompId : ' +  params.OrigCompId );
-        console.log('loading OR OrigCompId : ' +  params.OrigCompId  || params.compId);
-        var cpid = params.OrigCompId  || params.compId;
+        console.log('loading origCompId : ' +  params.origCompId );
+        console.log('loading OR origCompId : ' +  params.origCompId  || params.compId);
+        var cpid = params.origCompId  || params.compId;
         async.parallel({
             findP       : function (callback) {
                 db.widgetSettingsModel.find({instanceId: params.instanceId})
