@@ -63,7 +63,7 @@ function verify(req) {
     var hash = (headers['content-type'] == 'application/x-www-form-urlencoded') ?
         parseUrlEncodedRequest(req, wixHeaders) :
         parseGenericRequest(req, wixHeaders);
-    return util.verifyHeader(hash, globals.WIX_APP_SECRET, null, headers['x-wix-signature']);
+    return util.verifyHeader(hash, globals.wix[headers['x-wix-application-id']], null, headers['x-wix-signature']);
 
 }
 function parseGenericRequest(req, wixHeaders) {
