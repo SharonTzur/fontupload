@@ -33,7 +33,7 @@ module.exports = {
                 //self.WIX_APP_ID = credentials.wix_app_id;
                 self.wix[credentials.wix_app_id] = credentials.wix_secret;
             }
-            console.log(JSON.stringify('wix creds are: ' + self.wix));
+            console.log('wix creds are: ' +  JSON.stringify(self.wix));
             mongoose.connect(self.uristring, function (err) {
                 if (err) {
                     console.log('ERROR connecting to: ' + self.uristring + '. ' + err);
