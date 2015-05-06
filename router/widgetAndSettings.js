@@ -13,7 +13,8 @@ router.get('/', function (req, res) {
     var appId = qs.parse(req.headers.referer).appDefinitionId;
 
     var file = req.baseUrl.replace("/", "");
-    if (instance && utils.verifyInstance(instance, globals.wix[appId], req, res)) {
+    console.log(globals.wix[appId].user + ': ');
+    if (instance && utils.verifyInstance(instance, globals.wix[appId].secret, req, res)) {
         utils.load(req, function (data) {
             //var data = data._doc;
             var code = data.p.code;

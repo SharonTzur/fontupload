@@ -40,7 +40,6 @@ module.exports = {
     },
 
     verifyHeader: function (instance, secret, req, signature) {
-        console.log(secret);
         var hmac = crypto.createHmac('sha256', secret);
         var newSignature = hmac.update(instance).digest('base64');
         if  (newSignature.substring(0, newSignature.length - 1) == signature.replace(/_/g,'/').replace(/-/g, '+'))

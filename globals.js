@@ -7,8 +7,8 @@ var fs = require('fs');
 module.exports = {
     AWS_SECRET_KEY: process.env.AWS_SECRET_KEY,
     AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
-    S3_BUCKET     : process.env.S3_BUCKET,
-    uristring     : process.env.MONGOLAB_URI,
+    S3_BUCKET: process.env.S3_BUCKET,
+    uristring: process.env.MONGOLAB_URI,
 
     wix: {},
 
@@ -16,8 +16,8 @@ module.exports = {
     init: function (mongoose) {
         var self = this;
 
-        self.wix[process.env.WIX_APP_IDO] = process.env.WIX_APP_SECRETO;
-        self.wix[process.env.WIX_APP_IDX] = process.env.WIX_APP_SECRETX;
+        self.wix[process.env.WIX_APP_IDO] = {secret: process.env.WIX_APP_SECRETO, user: 'Oren'};
+        self.wix[process.env.WIX_APP_IDX] = {secret: process.env.WIX_APP_SECRETX, user: 'Rotem'};
 
         fs.readFile(__dirname + '/credentials.json', function (err, data) {
             if (data) {
@@ -26,9 +26,11 @@ module.exports = {
                 self.AWS_SECRET_KEY = credentials.secret_key;
                 self.S3_BUCKET = credentials.bucket;
                 self.uristring = credentials.mongo;
-                self.wix[credentials.wix_app_id] = credentials.wix_secret;
+                self.wix[credentials.wix_app_id] = {
+                    secret: credentials.wix_secret,
+                    user: credentials.user
+                };
             }
-            console.log('wix creds are: ' +  JSON.stringify(self.wix));
             mongoose.connect(self.uristring, function (err) {
                 if (err) {
                     console.log('ERROR connecting to: ' + self.uristring + '. ' + err);
