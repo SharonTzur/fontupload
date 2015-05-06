@@ -1,13 +1,22 @@
 /**
  * Created by TV on 5/6/2015.
  */
+var ribbon = null;
+var textBox = null;
+function showRibbon () {
+    ribbon.show();
+    textBox.addClass('textRibon');
+}
 function load(data) {
 
     var successFunc = function (data, status, jqXHR) {
         {
+            ribbon = $('#ribbon');
             console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));
 //					refreshLocalWidget(data, $('#textBox'));
 //					refreshLocalWidget(data, $('.redactor-editor'));
+            if (!data.p.paid)
+                showRibbon();
             gotCode(data.p.code);
             if (data.list)
                 $.each(data.list, function (i, font) {
@@ -46,7 +55,7 @@ function killDups(obj) {
 
 function gotCode(code, uploadedFonts) {
 
-    $('#textBox').html(code);
+    textBox.html(code);
     var fontObjArray = checkCodeForFonts($(code));
     killDups(fontObjArray);
     killDups(loadedFonts);

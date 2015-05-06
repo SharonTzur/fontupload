@@ -17,7 +17,6 @@
     <script>
 
 //        var SERVER_URL = 'http://84.109.234.163:3020';
-        var SERVER_URL = 'http://localhost:3020';
         var loadedFonts = [];
 
 
@@ -27,6 +26,7 @@
         //                compId = Wix.Utils.getCompId();
         var instanceId = '<%= instanceId %>',
                 compId = '<%= compId %>',
+                paid = '<%= paid %>',
                 ejs = true;
 
 
@@ -35,7 +35,7 @@
             buildAllFontsArray();
             var data = JSON.parse('<%- data %>');
             data.p.code = $('#textBox').html();
-
+            data.p.paid = paid == 'True';
             load(data);
         });
     </script>
@@ -43,5 +43,6 @@
 </head>
 <body id="widgetBody">
 <div class='textBox' id='textBox'><%- code %></div>
+<div id="ribbon"></div>
 </body>
 </html>

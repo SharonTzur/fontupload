@@ -111,18 +111,25 @@ module.exports = {
             findP       : function (callback) {
                 db.widgetSettingsModel.find({instanceId: params.instanceId})
                     .where('compId').equals(cpid)
+                    .populate('paid')
                     .exec(function (err, ws) {
                         if (ws[0])
                             callback(null, ws[0]);
                         else {
-                            var p = new db.widgetSettingsModel({
-                                compId    : cpid,
-                                instanceId: params.instanceId
+                            var paid = new db.paidModel({instanceId: params.instanceId});
+                            paid.save(function (e, newPaid) {
+
+                                var p = new db.widgetSettingsModel({
+                                    compId    : cpid,
+                                    instanceId: params.instanceId,
+                                    paid: newPaid.id
+                                });
+                                p.save(function (e, newP) {
+                                    console.log('new P');
+                                    //newP.paid = false;
+                                    callback(null, newP);
+                                })
                             });
-                            p.save(function (e, newP) {
-                                console.log('new P');
-                                callback(null, newP);
-                            })
                         }
                     });
             },
@@ -133,9 +140,10 @@ module.exports = {
                     })
             }
         }, function (e, result) {
-
+            var pTemp = result.findP._doc;
+            pTemp.paid = result.findP.paid.paid;
             callback({
-                p   : result.findP._doc,
+                p   : pTemp,
                 list: result.findUploaded._doc
             });
         })

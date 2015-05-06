@@ -23,7 +23,8 @@ router.get('/', function (req, res) {
                 compId    : req.query.OrigCompId || req.query.compId ,
                 instanceId: req.query.instanceId,
                 data      : JSON.stringify(data), //.replace(/\\"/g, "\\'")
-                code: code
+                code: code,
+                pad: data.p.paid
 
             })
         });

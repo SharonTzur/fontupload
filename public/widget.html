@@ -28,18 +28,17 @@
 	<script>
 
 //        var SERVER_URL = 'http://84.109.234.163:3020';
-        var SERVER_URL = 'http://fontupload.heroku.com';
-        var loadedFonts = [];
+        var loadedFonts = [],
+		        ejs = false;
 
 
-        		var instanceId = 'Local-InstnaceId-rotem931',
-        		    compId     = 'Local-compId3-rotem931';
+        		var instanceId = 'Local-InstnaceId-rotem681',
+        		    compId     = 'Local-compId3-rotem681';
 //        var instanceId = Wix.Utils.getInstanceId(),
 //                compId = Wix.Utils.getCompId();
 
 
 $(document).ready(function () {
-
 	buildAllFontsArray();
 	load();
 });
@@ -47,6 +46,7 @@ $(document).ready(function () {
 
 </head>
 <body id="widgetBody">
-<div class='textBox' id='textBox'></div>
+<div class='textBox textRibon' id='textBox'></div>
+<div id="ribbon"></div>
 </body>
 </html>
