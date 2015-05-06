@@ -10,6 +10,8 @@ module.exports = {
     S3_BUCKET     : process.env.S3_BUCKET,
     uristring     : process.env.MONGOLAB_URI,
 
+    wix: {},
+
 
     init: function (mongoose) {
         var self = this;
