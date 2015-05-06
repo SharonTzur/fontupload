@@ -105,16 +105,18 @@ module.exports = {
         console.log('loading instanceId : ' +  params.instanceId );
         console.log('loading compId : ' +  params.compId );
         console.log('loading OrigCompId : ' +  params.OrigCompId );
+        console.log('loading OR OrigCompId : ' +  params.OrigCompId  || params.compId);
+        var cpid = params.OrigCompId  || params.compId;
         async.parallel({
             findP       : function (callback) {
                 db.widgetSettingsModel.find({instanceId: params.instanceId})
-                    .where('compId').equals(params.OrigCompId)
+                    .where('compId').equals(cpid)
                     .exec(function (err, ws) {
                         if (ws[0])
                             callback(null, ws[0]);
                         else {
                             var p = new db.widgetSettingsModel({
-                                compId    : params.OrigCompId,
+                                compId    : cpid,
                                 instanceId: params.instanceId
                             });
                             p.save(function (e, newP) {
