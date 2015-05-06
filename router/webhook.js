@@ -36,6 +36,7 @@ var routeProvision = {
     },
     "/provision/provision": function (req, res) {
         console.log(req.body['instance-id'] + ' just opend the app');
+        res.end();
     }
 };
 router.post('/', function (req, res) {
