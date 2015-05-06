@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
             var code = data.p.code;
             delete data.p.code;
             res.render(file + '.ejs', {
-                compId    : req.query.compId,
+                compId    : req.query.OrigCompId,
                 instanceId: req.query.instanceId,
                 data      : JSON.stringify(data), //.replace(/\\"/g, "\\'")
                 code: code
