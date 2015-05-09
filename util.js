@@ -98,8 +98,30 @@ module.exports = {
         return obj;
     },
 
+    returnObj: function (inst, cpid) {
+        if (cpid)
+        {
+            var id = cpid;
+            cpid = inst.comp.id(cpid);
+            if (!cpid) {
+                inst.comp.push({_id:id});
+                inst.save(function (err, inst) {
+                    console.log('saved');
+                });
+            }
+        }
+        var code = cpid ? cpid.code : db.defaultCode;
+        return {
+            code: code,
+            uploadedFonts: inst.uploadedFonts,
+            _id: inst._id,
+            paid: inst.paid
+
+        };
+    },
 
     load: function (req, callback) {
+        var self = this;
         console.log('load was called');
         var params = req.query;
         console.log('loading instanceId : ' +  params.instanceId );
@@ -107,6 +129,25 @@ module.exports = {
         console.log('loading origCompId : ' +  params.origCompId );
         console.log('loading OR origCompId : ' +  params.origCompId  || params.compId);
         var cpid = params.origCompId  || params.compId;
+
+        db.instance.findById(params.instanceId)
+            .exec(function (err, instance) {
+                if (instance)
+                    callback(self.returnObj(instance, cpid));
+                else {
+                    var newInstance = db.instance({
+                        _id : params.instanceId,
+                        comp: [{_id:cpid}]
+                    });
+                    //newInstance.comp.push({_id:cpid});
+                    newInstance.save(function (err, saveInstance) {
+                       callback(self.returnObj(saveInstance)) ;
+                    });
+                }
+
+            });
+
+/*
         async.parallel({
             findP       : function (callback) {
                 db.widgetSettingsModel.find({instanceId: params.instanceId})
@@ -147,6 +188,7 @@ module.exports = {
                 list: result.findUploaded._doc
             });
         })
+*/
 
 
     }

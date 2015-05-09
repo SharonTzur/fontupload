@@ -4,8 +4,9 @@
 var func = {
 
     widgetSettingsModel: null,
+    instance           : null,
     uploadedFontsModel : null,
-    paidModel : null,
+    paidModel          : null,
     defaultCode        : '<p style="font-family:Exo">Double-Click me to edit this text &amp; set font styling</p>',
 
     init: function (mongoose) {
@@ -16,9 +17,24 @@ var func = {
             instanceId             : String,
             categoryDisplaySettings: String,
             uploadedFonts          : [String],
-            paid : {type: Schema.Types.ObjectId, ref:'payment'}
+            paid                   : {type: Schema.Types.ObjectId, ref: 'payment'}
         });
         this.widgetSettingsModel = mongoose.model('widgetsetting', widgetSettingsSchema);
+
+        var instanceSchema = new Schema({
+            _id          : String,
+            comp         : [{
+                _id                    : String,
+                code                   : {type: String, default: this.defaultCode},
+                categoryDisplaySettings: String
+            }],
+            uploadedFonts: [{
+                url     : String,
+                fileName: String
+            }],
+            paid         : {type: Boolean, default: false}
+        });
+        this.instance = mongoose.model('instance', instanceSchema);
 
         var uploadedFontsSchema = new Schema({
             instanceId   : String,
@@ -29,8 +45,8 @@ var func = {
         this.uploadedFontsModel = mongoose.model('uploadedfont', uploadedFontsSchema);
 
         var paidSchema = new Schema({
-            instanceId   : String,
-            paid          : {type:Boolean, default: false}
+            instanceId: String,
+            paid      : {type: Boolean, default: false}
         });
         this.paidModel = mongoose.model('payment', paidSchema);
 

@@ -34,8 +34,8 @@
 
             buildAllFontsArray();
             var data = JSON.parse('<%- data %>');
-            data.p.code = $('#textBox').html();
-            data.p.paid = paid == 'True';
+            data.code = $('#textBox').html();
+            data.paid = paid == 'True';
             load(data);
         });
     </script>

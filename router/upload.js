@@ -31,6 +31,14 @@ function upload(file, name, progress, done, css) {
 router.post('/db', function (req, res) {
     console.log('db was called');
     var params = req.body;
+    db.instance.findById(params.instanceId)
+        .exec(function (err, instance) {
+            instance.uploadedFonts.addToSet({
+                url: params.urlData.Location,
+                fileName: params.fileName
+            })
+        });
+/*
     db.uploadedFontsModel.find({instanceId: params.instanceId})
         .where('fileName').equals(params.fileName)
         .where('url').equals(params.urlData.Location)
@@ -51,6 +59,7 @@ router.post('/db', function (req, res) {
                 })
             }
         })
+*/
 
 });
 

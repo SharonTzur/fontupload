@@ -12,14 +12,15 @@ function load(data) {
     var successFunc = function (data, status, jqXHR) {
         {
             ribbon = $('#ribbon');
+            textBox = $('#textBox');
             console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));
 //					refreshLocalWidget(data, $('#textBox'));
 //					refreshLocalWidget(data, $('.redactor-editor'));
-            if (!data.p.paid)
+            if (!data.paid)
                 showRibbon();
-            gotCode(data.p.code);
-            if (data.list)
-                $.each(data.list, function (i, font) {
+            gotCode(data.code);
+            if (data.uploadedFonts)
+                $.each(data.uploadedFonts, function (i, font) {
                     var fontFamily = font.fileName.split('.')[0];
                     upload.loadUploadedFont(font.url, fontFamily, null, function () {
                         loadedFonts.push(fontFamily);
@@ -37,7 +38,11 @@ function load(data) {
                 instanceId: instanceId,
                 compId    : compId
             },
-            success: successFunc
+            success: function (response) {
+                $('#textBox').html(response.code);
+                successFunc(response)
+            }
+
         });
 }
 function killDups(obj) {

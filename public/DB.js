@@ -11,7 +11,7 @@ function saveSettings(eventData) {
     $.ajax({
         type   : "POST",
         url    : SERVER_URL + "/save",
-        data   : {settings: widgetSettings},
+        data   : {settings: widgetSettings, compId: compId},
         success: function (data, status, jqXHR) {
             {
                 //console.log('save status: ' + status);
@@ -23,7 +23,7 @@ function saveSettings(eventData) {
 function loadSettings(data) {
     var successFunc = function (data, status, jqXHR) {
         {
-            widgetSettings = (data.p[0] || data.p);
+            widgetSettings = data;
             widgetSettings.categoryDisplaySettings = {
                 All        : "true",
                 Serif      : "false",
@@ -38,15 +38,15 @@ function loadSettings(data) {
             bindEvents();
 
             console.log('the list is: ' + data.list);
-            if (data.list) {
-                if (data.list[0])
+            if (data.uploadedFonts) {
+                if (data.uploadedFonts[0])
                     upload.initList(data.list);
                 else
                     upload.createNoUpladedFonts();
             }
             else
                 upload.createNoUpladedFonts();
-            var fontObjArray = checkCodeForFonts($(data.p.code));
+            var fontObjArray = checkCodeForFonts($(data.code));
             for (var i = 0; i < fontObjArray.fontsObj.length; i++) {
                 loadAllFontVariants(fontObjArray.fontsObj[i], null, null, null, null, fontObjArray.idx[i]);
             }

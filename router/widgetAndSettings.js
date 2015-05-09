@@ -17,14 +17,14 @@ router.get('/', function (req, res) {
     if (instance && utils.verifyInstance(instance, globals.wix[appId].secret, req, res)) {
         utils.load(req, function (data) {
             //var data = data._doc;
-            var code = data.p.code;
-            delete data.p.code;
+            var code = data.code;
+            delete data.code;
             res.render(file + '.ejs', {
                 compId    : req.query.origCompId || req.query.compId ,
                 instanceId: req.query.instanceId,
                 data      : JSON.stringify(data), //.replace(/\\"/g, "\\'")
                 code: code,
-                pad: data.p.paid
+                paid: data.paid
 
             })
         });
