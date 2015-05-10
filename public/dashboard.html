@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<link rel="stylesheet" href="lib/ui-lib.min.css">
+
+<style>
+	.intro.box
+	{
+		padding : 10px;
+	}
+	.logo-image
+	{
+		background-image : url('img/icon60x60.png');
+		height           : 85px;
+		width            : 85px;
+		border-radius    : 9px;
+
+	}
+	.logo
+	{
+		float         : left;
+		border-right  : 1px solid #CCCCCC;
+		padding-right : 20px;
+
+	}
+	div .logo
+	{
+		margin : 0 !important;
+	}
+
+
+</style>
+<script type="text/javascript" src="//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
+
+<body>
+<div class="intro box">
+	<div class="logo">
+		<div class="logo-image"></div>
+	</div>
+		<div wix-ctrl="Upgrade" wix-options="{text:'Upgrade', vendorProductId:'deluxe'}"></div>
+</div>
+
+</body>
+</html>

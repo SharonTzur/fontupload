@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 //    routers
-r.route(app, ['upload', 'load', 'save', 'test', 'webhook',
+r.route(app, ['upload', 'load', 'save', 'test', 'webhook', 'dashboard',
     ['settings', 'widgetAndSettings'],
     ['widget', 'widgetAndSettings']]);
 

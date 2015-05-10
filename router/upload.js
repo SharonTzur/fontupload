@@ -41,28 +41,6 @@ router.post('/db', function (req, res) {
                 res.send((err) ? 'error' : 'succes');
             })
         });
-/*
-    db.uploadedFontsModel.find({instanceId: params.instanceId})
-        .where('fileName').equals(params.fileName)
-        .where('url').equals(params.urlData.Location)
-        .exec(function (e, files) {
-            if (files[0]) {
-                console.log('db allready exist');
-                res.send('allready exist');
-            }
-            else {
-                var newFile = db.uploadedFontsModel({
-                    compId  : params.compId,
-                    url     : params.urlData.Location,
-                    fileName: params.fileName
-                });
-                newFile.save(function (f) {
-                    console.log('db new instance');
-                    res.send('new instance');
-                })
-            }
-        })
-*/
 
 });
 
