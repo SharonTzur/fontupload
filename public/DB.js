@@ -21,6 +21,10 @@ function saveSettings(eventData) {
 }
 
 function loadSettings(data) {
+    $('button.btn-upgrade').click(function (e) {
+        console.log('upgrade');
+        Wix.Settings.openBillingPage();
+    });
     var successFunc = function (data, status, jqXHR) {
         {
             widgetSettings = data;

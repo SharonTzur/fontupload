@@ -1332,3 +1332,6 @@ div.icon.dropdown:after
 {
     background-color : #FFFFFF;
 }
+button.btn-upgrade {
+    float:right;
+}
