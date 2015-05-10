@@ -115,7 +115,7 @@
 			buildAllFontsArray();
 			var data = JSON.parse('<%- data %>');
 			var txtBox = $('#textBox');
-			data.p.code = txtBox.html();
+			data.code = txtBox.html();
 			txtBox.remove();
 			console.info(data);
 			upload.init();
