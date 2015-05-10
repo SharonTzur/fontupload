@@ -127,7 +127,7 @@ module.exports = {
         console.log('loading instanceId : ' +  params.instanceId );
         console.log('loading compId : ' +  params.compId );
         console.log('loading origCompId : ' +  params.origCompId );
-        console.log('loading OR origCompId : ' +  params.origCompId  || params.compId);
+        console.log('loading OR origCompId : ' +  (params.origCompId  || params.compId));
         var cpid = params.origCompId  || params.compId;
 
         db.instance.findById(params.instanceId)
