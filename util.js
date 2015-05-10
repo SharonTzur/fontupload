@@ -22,6 +22,7 @@ module.exports = {
         // sign the data using hmac-sha1-256
         var hmac = crypto.createHmac('sha256', secret);
         var newSignature = hmac.update(data).digest('binary');
+        console.log('vendorProductID: ' + wixData.vendorProductId);
         if (req) req.query.instanceId = wixData.instanceId;
         return (signature === newSignature);
 

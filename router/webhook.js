@@ -34,6 +34,13 @@ var routeProvision = {
         })
 
     },
+
+/*
+    "/provision/provision": function (req, res) {
+
+    },
+*/
+
     "/provision/provision": function (req, res) {
         console.log(req.body['instance-id'] + ' just opend the app');
         res.end();
