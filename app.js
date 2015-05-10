@@ -47,7 +47,7 @@ app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
-app.set('port', process.env.PORT || 3020);
+app.set('port', process.env.PORT || 8080);
 
 var server = app.listen(app.get('port'), function () {
 

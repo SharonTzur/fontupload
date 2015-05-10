@@ -24,7 +24,8 @@ router.get('/', function (req, res) {
                 instanceId: req.query.instanceId,
                 data      : JSON.stringify(data), //.replace(/\\"/g, "\\'")
                 code: code,
-                paid: data.paid
+                paid: data.paid,
+                server: 'http://fontupload.herokuapp.com/'
 
             })
         });
