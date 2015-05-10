@@ -36,6 +36,9 @@ router.post('/db', function (req, res) {
             instance.uploadedFonts.addToSet({
                 url: params.urlData.Location,
                 fileName: params.fileName
+            });
+            instance.save(function (err, i) {
+                res.send((err) ? 'error' : 'succes');
             })
         });
 /*

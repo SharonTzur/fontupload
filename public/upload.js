@@ -206,7 +206,7 @@ var upload = {
             data   : {
                 fileName  : name,
                 urlData   : data,
-                instanceId    : instanceId,
+                instanceId    : instanceId
             },
             success: function (response) {
                 console.log(response);
