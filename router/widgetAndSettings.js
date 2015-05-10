@@ -26,7 +26,6 @@ router.get('/', function (req, res) {
                 code: code,
                 paid: data.paid,
                 server: 'http://fontupload.herokuapp.com'
-
             })
         });
     }
