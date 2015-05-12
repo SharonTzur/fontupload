@@ -21,9 +21,29 @@ function saveSettings(eventData) {
 }
 
 function loadSettings(data) {
-    $('button.btn-upgrade').click(function (e) {
+    $($('button.btn-upgrade')[0]).click(function (e) {
         console.log('upgrade');
-        Wix.Settings.openBillingPage();
+        $.ajax({
+           url: SERVER_URL + '/test/subscribe',
+            data: {instanceId:instanceId},
+            success: function (response) {
+                console.log(response);
+            }
+        });
+                //console.log('upgrade');
+        //Wix.Settings.openBillingPage();
+    });
+    $($('button.btn-upgrade')[1]).click(function (e) {
+        console.log('downgrade');
+        $.ajax({
+           url: SERVER_URL + '/test/unsubscribe',
+            data: {instanceId:instanceId},
+            success: function (response) {
+                console.log(response);
+            }
+        });
+                //console.log('upgrade');
+        //Wix.Settings.openBillingPage();
     });
     var successFunc = function (data, status, jqXHR) {
         {

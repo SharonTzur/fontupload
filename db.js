@@ -20,7 +20,12 @@ var func = {
                 url     : String,
                 fileName: String
             }],
-            paid         : {type: Boolean, default: false}
+            isPaid         : {type: Boolean, default: false},
+            created : Date,
+            subscriptions: [{
+                start: Date,
+                end: Date
+            }]
         });
         this.instance = mongoose.model('instance', instanceSchema);
 

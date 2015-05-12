@@ -4,7 +4,7 @@
 //var Buffer = require('buffer').Buffer;
 var crypto = require("crypto");
 var db = require('./db');
-var async = require('async');
+var globals = require('./globals');
 
 
 module.exports = {
@@ -116,8 +116,7 @@ module.exports = {
             code: code,
             uploadedFonts: inst.uploadedFonts,
             _id: inst._id,
-            paid: inst.paid
-
+            paid: (inst.isPaid) ? true : (inst.created.getTime() + globals.trialPeriod) > Date.now()
         };
     },
 
@@ -138,59 +137,17 @@ module.exports = {
                 else {
                     var newInstance = db.instance({
                         _id : params.instanceId,
+                        created: Date.now(),
                         comp: [{_id:cpid}]
                     });
+                    console.log('new Instance');
                     //newInstance.comp.push({_id:cpid});
-                    newInstance.save(function (err, saveInstance) {
-                       callback(self.returnObj(saveInstance)) ;
+                    newInstance.save(function (err, savedInstance) {
+                       callback(self.returnObj(savedInstance)) ;
                     });
                 }
 
             });
-
-/*
-        async.parallel({
-            findP       : function (callback) {
-                db.widgetSettingsModel.find({instanceId: params.instanceId})
-                    .where('compId').equals(cpid)
-                    .populate('paid')
-                    .exec(function (err, ws) {
-                        if (ws[0])
-                            callback(null, ws[0]);
-                        else {
-                            var paid = new db.paidModel({instanceId: params.instanceId});
-                            paid.save(function (e, newPaid) {
-
-                                var p = new db.widgetSettingsModel({
-                                    compId    : cpid,
-                                    instanceId: params.instanceId,
-                                    paid: newPaid.id
-                                });
-                                p.save(function (e, newP) {
-                                    console.log('new P');
-                                    //newP.paid = false;
-                                    callback(null, newP);
-                                })
-                            });
-                        }
-                    });
-            },
-            findUploaded: function (callback) {
-                db.uploadedFontsModel.find({instanceId: params.instanceId})
-                    .exec(function (err, list) {
-                        callback(null, list)
-                    })
-            }
-        }, function (e, result) {
-            var pTemp = result.findP._doc;
-            pTemp.paid = result.findP.paid.paid;
-            callback({
-                p   : pTemp,
-                list: result.findUploaded._doc
-            });
-        })
-*/
-
 
     }
 

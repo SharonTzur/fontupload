@@ -9,40 +9,43 @@ var async = require('async');
 var router = express.Router();
 
 var routeProvision = {
-    "/provision/disabled" : function (req, res) {
-        async.parallel({
-            removeInstance: function (callback) {
-                db.widgetSettingsModel.find({instanceId: req.body['instance-id']})
-                    .remove()
-                    .exec(function (a, c, b) {
-                        console.log(req.body['instance-id'] + ' deleted');
+    "/provision/disabled": function (req, res) {
+        console.log('/provision/disabled');
+        db.instance.findByIdAndUpdate(req.body['instance-id'],
+            {comp: []},
+            function (err, inst) {
+                res.end();
+            });
+    },
 
-                        callback(null, {a: a, c: c, b: b});
-
-                    })
-            },
-            removeUploaded: function (callback) {
-                db.uploadedFontsModel.find({instanceId: req.body['instance-id']})
-                    .remove()
-                    .exec(function (a, c, b) {
-                        console.log('uploaded delted');
-                        callback(null, {a: a, c: c, b: b});
-                    })
-            }
-        }, function (err, results) {
-            res.send('success');
-        })
+    "billing": function (req, res, upgrade) {
+        db.instance.findById(req.body['instance-id'])
+            .select('isPaid subscriptions')
+            .exec(function (err, instance) {
+                if (upgrade)
+                    instance.subscriptions.push({start: Date.now(), end: null});
+                else  {
+                    var last = instance.subscriptions.length - 1;
+                    instance.subscriptions[last].end = Date.now();
+                }
+                instance.isPaid = upgrade;
+                instance.save(function (err, newInstace) {
+                    res.end();
+                })
+            })
 
     },
 
-/*
-    "/provision/provision": function (req, res) {
-
+    "/billing/upgrade": function (req, res) {
+        this.billing(req,res, true);
     },
-*/
+
+    "/billing/cancel": function (req, res) {
+        this.billing(req,res, false);
+    },
 
     "/provision/provision": function (req, res) {
-        console.log(req.body['instance-id'] + ' just opend the app');
+        console.log(req.body['instance-id'] + ' just opened the app');
         res.end();
     }
 };
