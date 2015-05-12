@@ -1,32 +1,49 @@
-(function ($) {
-    RedactorPlugins.fontfacedropdown = function () {
+(function ($)
+{
+    RedactorPlugins.fontfacedropdown = function ()
+    {
         return {
             input  : null,
             current: null,
             menu   : null,
-            init   : function () {
+            init   : function ()
+            {
+                var searchDivStr =
+                        '<div id="dropdownSearchFontsInput" class="ui icon search input">' +
+                        '<i class="search icon"></i>' +
+                        '<input name="search" placeholder="Search fonts..." type="text">' +
+                        '</div>';
+
                 var dropdown = $(
                     '<div id = "fontfamilydropdown" class="ui anyfontdropdown floating dropdown labeled search icon button">' +
                     '<div class="default text">' +
-                    'Select Font' +
+                    'Select or search font' +
                     '</div>' +
-                    '<input name="hidden-field" type="hidden">' +
+                        //'<input name="hidden-field" type="hidden">' +
                     '<div class="menu">' +
+                    searchDivStr +
                     '</div>' +
                     '<i class="fonticon icon"></i>' +
                     '</div>'
                 )
                     .dropdown('setting', 'transition', 'slide down')
                     .dropdown({
-                        onChange   : this.fontfacedropdown.onDropdownClick
+                        onChange: this.fontfacedropdown.onDropdownClick
                     }
                 )
-                    .popup('setting', 'content', 'Select Font');
+                    .popup('setting', 'content', 'Search and select fonts')
+                    .on('click', function ()
+                    {
+                        $(this).children('.menu')[0].scrollTop = 0;
+                    });
+
 
                 var item,
-                    q = this.fontfacedropdown,
+                    q     = this.fontfacedropdown,
                     items = [];
 
+
+                //items.push(search);
                 items.push(q.createDivder());
                 items.push(q.createHeader('Uploaded Fonts:'));
                 items.push(q.createDivder());
@@ -43,26 +60,43 @@
                     .attr('data-value', i)
                     .addClass('loadmore')
                     .click(q.loadMore));
+                var $dropdownHeaders = $('#fontfamilydropdown .header');
+                var $dropdownDividers = $('#fontfamilydropdown .divider');
 
                 $(dropdown).children('.menu').append(items);
-                $(dropdown).find('input').keyup(function (e) {
+                $(dropdown).find('input').bind('keyup', $.proxy(function (e)
+                    {
+                        if (e.target.value.length > 0)
+                        {
+                            $dropdownHeaders.hide();
+                            dropdownDividers.hide();
+                        }
+                        else
+                        {
+                            $dropdownHeaders.show();
+                            dropdownDividers.show();
+                        }
                         var menu = $redactor.fontfacedropdown.menu;
-                        setTimeout(function () {
+                        setTimeout(function ()
+                        {
 
-                            if (!menu.children('.item').not('.my-hidden,.filtered')[0]) {
+                            if (!menu.children('.item').not('.my-hidden,.filtered')[0])
+                            {
                                 var families = [];
                                 var hiddens = menu.children('.item.my-hidden').not('.filtered');
-                                hiddens.each(function (i, el) {
+                                hiddens.each(function (i, el)
+                                {
                                     families.push($(el).text());
                                     $(el).removeClass('my-hidden')
                                         .show();
-                                    if (i > 10) return false;
+                                    //if (i > 10) return false;
                                 });
                                 loadFontArray(families)
                             }
                         }, 100); // hate to use timoue but couldnt figure a better way
-                    }
-                )
+                    }, this
+                ))
+
                 ;
                 var $toolbar = $('ul#redactor-toolbar-0');
                 $toolbar.append(dropdown);
@@ -71,23 +105,27 @@
 
             },
 
-            loadMore: function (e) {
+            loadMore: function (e)
+            {
                 {
-                    var fontsToLoad = 10,
+                    var fontsToLoad   = 10,
                         fontFamilyArr = [],
                         $selectedItem = $(e.toElement),
-                        menu = $selectedItem.parent(),
-                        q = $redactor.fontfacedropdown;
+                        menu          = $selectedItem.parent(),
+                        q             = $redactor.fontfacedropdown;
 
                     $selectedItem.remove();
                     console.log('load More');
                     var start = parseInt($selectedItem.attr('data-value'));
-                    for (var i = start; i < (fontsToLoad + start); i++) {
+                    for (var i = start; i < (fontsToLoad + start); i++)
+                    {
                         fontFamilyArr.push(allFonts[i].family)
                     }
-                    $.each(fontFamilyArr, function (i, family) {
+                    $.each(fontFamilyArr, function (i, family)
+                    {
                         menu.append(q.createDropdownItem(i + start, family));
-                        if (i + 1 == fontsToLoad) {
+                        if (i + 1 == fontsToLoad)
+                        {
                             menu.append($selectedItem.attr('data-value', start + i).click(q.loadMore));
                             menu[0].scrollTop += menu.height();
                         }
@@ -98,10 +136,12 @@
 
             },
 
-            onDropdownClick: function (value, text, $selectedItem) {
+            onDropdownClick: function (value, text, $selectedItem)
+            {
                 upload.removeAllSelction();
                 var q = $redactor.fontfacedropdown;
-                var fontObj = $.grep(allFonts, function (obj) {
+                var fontObj = $.grep(allFonts, function (obj)
+                {
                     return obj.family == text;
                 })[0];
                 loadAllFontVariants(fontObj, null, null, null, value);
@@ -112,7 +152,8 @@
 
             },
 
-            changeDropdownFont: function (font, value, $selectedItem) {
+            changeDropdownFont: function (font, value, $selectedItem)
+            {
                 font = replaceAll(font, "'", "");
                 var q = this.fontfacedropdown;
                 q.current = font;
@@ -123,7 +164,8 @@
                     upload.selectedItem(upload.fontContainer.children('[data-allfontsidx="' + indexinAllFonts + '"]'));
                 menu.find('.selected').removeClass('selected');
                 menu.find('.active').removeClass('active');
-                if ($selectedItem) {
+                if ($selectedItem)
+                {
                     //$selectedItem.remove();
                     //var old$selectedItem = $selectedItem;
                     $($('.divider')[0]).remove();
@@ -131,31 +173,39 @@
                     var header = menu.find('.header')[0];
                     var selectedDivs = menu.find('.selected-fonts');
 
-                    if (selectedDivs.map(function (i, el) {
+                    if (selectedDivs.map(function (i, el)
+                        {
                             return $(el).attr('data-value')
-                        }).get().indexOf(value + '') == -1) {
-                        if (selectedDivs.length == 5) {    // if allready exits
+                        }).get().indexOf(value + '') == -1)
+                    {
+                        if (selectedDivs.length == 5)
+                        {    // if allready exits
                             selectedDivs[selectedDivs.length - 1].remove();
                         }
                         if ($(header).text() == 'Recent Fonts:')
                             $(header).after($selectedItem);
 
-                        else {
+                        else
+                        {
                             menu.prepend(q.createHeader('Recent Fonts:'));
                             $(header).after($selectedItem);
                         }
                         //debugger;
                         $selectedItem.addClass('active selected selected-fonts');
                     }
-                    else {
+                    else
+                    {
                         var selectedTomove = $('#fontfamilydropdown .menu div[data-value="' + value + '"].selected-fonts');
                         $(header).after(selectedTomove);
                         selectedTomove.addClass('active selected');
                     }
                     $(header).after(q.createDivder());
                 }
-                else {
-                    $('#fontfamilydropdown .menu div[data-value="' + indexinAllFonts + '"].selected-fonts').addClass('active selected');
+                else
+                {
+                    var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + font + '</div>');
+
+                    $('#fontfamilydropdown .menu div[data-value="' + indexinAllFonts + '"].selected-fonts').addClass('active selected').prepend(fontFamilyLabel);
 
                     console.log(q.current);
                 }
@@ -163,34 +213,42 @@
                 $('.redactor-toolbar #fontfamilydropdown .text').text(font);
             },
 
-            createDropdownItem: function (index, fontFamily) {
+            createDropdownItem: function (index, fontFamily)
+            {
+                var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + fontFamily + '</div>');
+
                 return $('<div class="item" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                    fontFamily +
-                    '</div>');
+                fontFamily +
+                '</div>').prepend(fontFamilyLabel);
 
             },
 
-            createSelectedDropdownItem: function (index, fontFamily) {
+
+            createSelectedDropdownItem: function (index, fontFamily)
+            {
                 return $('<div class="item selected-fonts" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                    fontFamily +
-                    '</div>');
+                fontFamily +
+                '</div>');
             },
 
-            createHeader: function (text) {
+            createHeader: function (text)
+            {
                 return $('<div class="header" data-value="header" style="font-family:"exo">' +
-                    text + '</div>');
+                text + '</div>');
             },
 
             dividers: 0,
 
-            createDivder: function () {
+            createDivder: function ()
+            {
                 return $('<div>').addClass('divider').attr('data-index', this.fontfacedropdown.dividers++);
             },
 
-            createCustomDropdownItem: function (index, fontFamily, text) {
+            createCustomDropdownItem: function (index, fontFamily, text)
+            {
                 return $('<div class="item" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                    text +
-                    '</div>');
+                text +
+                '</div>');
             }
 
         };

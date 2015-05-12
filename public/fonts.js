@@ -460,7 +460,7 @@ function loadAllFontVariants(fontObj, callback, scope, activeCallback, activeSco
             },
             fontactive  : function (familyName, fvd)
             {
-                console.log('Font completely loaded : '  + familyName + ':' + fvd);
+                //console.log('Font completely loaded : '  + familyName + ':' + fvd);
                 if (callback && scope)
                     callback.call(scope);
             },
@@ -561,10 +561,13 @@ function checkCodeForFonts($codeRecieved, loadedFonts)
     {
         var q = $redactor.fontfacedropdown;
 
+        var $dropdownSearchFontsInput = $('#dropdownSearchFontsInput');
         for (i = 0; i < indexes.length; i++)
-            dropDown.prepend( q.createSelectedDropdownItem(indexes[i], allFonts[indexes[i]].family));
-        dropDown.prepend(q.createDivder());
-        dropDown.prepend(q.createHeader('Recent Fonts:'));
+            {
+                $dropdownSearchFontsInput.after( q.createSelectedDropdownItem(indexes[i], allFonts[indexes[i]].family));
+            }
+        $dropdownSearchFontsInput.after(q.createDivder());
+        $dropdownSearchFontsInput.after(q.createHeader('Recent Fonts:'));
     }
 
     return {idx :indexes, fontsObj: fontObjs, fontsName: fonts};

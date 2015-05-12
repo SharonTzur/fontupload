@@ -1332,6 +1332,27 @@ div.icon.dropdown:after
 {
     background-color : #FFFFFF;
 }
+
+#fontfamilydropdown .default.text,
+#fontweightdropdown .default.text
+{
+    color : #666666;
+}
+
+.fontfamilydropdownlabel
+{
+    font-family: 'exo';
+    font-weight: 700;
+    font-size: 11px;
+    text-align: left;
+    border-bottom: 1px dashed #ddd;
+}
+
+
+#fontfamilydropdown .item
+{
+    /*text-align : center;*/
+}
 button.btn-upgrade {
     float:right;
 }

@@ -10,13 +10,15 @@
 
 //region JSON
 
+var freeFonts = [0,1,2,3,4,5,6,7,8,9];
+
 var completeFontCatJSON = {
         "Serif"      : {
             "fonts": [{
                 "family"  : "Adamina",
                 "variants": ["400"],
                 "italic"  : false,
-                "str"     : "Adamina:400"
+                "str"     : "Adamina:400",
             }, {
                 "family"  : "Alegreya",
                 "variants": ["400", "700", "900"],
