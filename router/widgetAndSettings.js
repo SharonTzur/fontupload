@@ -13,6 +13,7 @@ router.get('/', function (req, res) {
     var appId = qs.parse(req.headers.referer).appDefinitionId;
 
     var file = req.baseUrl.replace("/", "");
+    if (file == 'seo') file = 'widget';
     console.log(globals.wix[appId].user + ': ');
     if (instance && utils.verifyInstance(instance, globals.wix[appId].secret, req, res)) {
         utils.load(req, function (data) {
@@ -25,8 +26,8 @@ router.get('/', function (req, res) {
                 data      : JSON.stringify(data), //.replace(/\\"/g, "\\'")
                 code: code,
                 paid: data.paid,
-                server: 'http://fontupload.herokuapp.com'
-                //server: 'http://84.109.234.163:8080'
+                //server: 'http://fontupload.herokuapp.com'
+                server: 'http://84.109.234.163:8080'
             })
         });
     }

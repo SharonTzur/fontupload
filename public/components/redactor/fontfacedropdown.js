@@ -69,12 +69,12 @@
                         if (e.target.value.length > 0)
                         {
                             $dropdownHeaders.hide();
-                            dropdownDividers.hide();
+                            $dropdownDividers.hide();
                         }
                         else
                         {
                             $dropdownHeaders.show();
-                            dropdownDividers.show();
+                            $dropdownDividers.show();
                         }
                         var menu = $redactor.fontfacedropdown.menu;
                         setTimeout(function ()
@@ -138,6 +138,7 @@
 
             onDropdownClick: function (value, text, $selectedItem)
             {
+                text = $(text).text();
                 upload.removeAllSelction();
                 var q = $redactor.fontfacedropdown;
                 var fontObj = $.grep(allFonts, function (obj)
@@ -205,9 +206,8 @@
                 {
                     var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + font + '</div>');
 
-                    $('#fontfamilydropdown .menu div[data-value="' + indexinAllFonts + '"].selected-fonts').addClass('active selected').prepend(fontFamilyLabel);
+                    $('#fontfamilydropdown .menu div[data-value="' + indexinAllFonts + '"].selected-fonts').addClass('active selected');//.prepend(fontFamilyLabel);
 
-                    console.log(q.current);
                 }
                 this.fontWeightDropdown.populateList(indexinAllFonts);
                 $('.redactor-toolbar #fontfamilydropdown .text').text(font);
