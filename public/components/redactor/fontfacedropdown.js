@@ -61,15 +61,15 @@
                 items.push(q.createDivder());
                 for (var i = 0; i < initiallyLoadedFonts; i++)
                     items.push(q.createDropdownItem(i, allFonts[i].family).addClass('original'));
+                items.push(q.createHeader('Load More ...')
+                    .attr('data-value', i)
+                    .addClass('loadmore')
+                    .click(q.loadMore));
                 for (; i < allFonts.length; i++)
                     items.push(q.createDropdownItem(i, allFonts[i].family)
                         .addClass('my-hidden')
                         .hide());
 
-                items.push(q.createHeader('Load More ...')
-                    .attr('data-value', i)
-                    .addClass('loadmore')
-                    .click(q.loadMore));
                 //var $dropdownHeaders = $('#fontfamilydropdown .header');
                 //var $dropdownDividers = $('#fontfamilydropdown .divider');
 

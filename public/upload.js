@@ -264,7 +264,7 @@ var upload = {
         upload.selectedItem(this);
         var index = $(this).attr('data-allfontsidx');
         var $selectedDropdownItem = $(upload.divider.parent().children('[data-value="' + index + '"]')[0]);
-        $redactor.fontfacedropdown.onDropdownClick(index, $selectedDropdownItem.text(), $selectedDropdownItem);
+        $redactor.fontfacedropdown.onDropdownClick(index, $selectedDropdownItem.html(), $selectedDropdownItem);
 
     },
 

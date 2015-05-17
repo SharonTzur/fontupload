@@ -1352,6 +1352,10 @@ div.icon.dropdown:after
 #fontfamilydropdown .item
 {
     /*text-align : center;*/
+    text-overflow: ellipsis;
+    width: 216px;
+    overflow: hidden;
+
 }
 button.btn-upgrade {
     float:right;
