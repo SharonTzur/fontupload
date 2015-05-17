@@ -13,12 +13,8 @@
                 else
                     toolbarIcon.addClass('redactor-act');
 
-            },
-
-            reset: function ()
-            {
-
             }
+
         };
     };
 })(jQuery);

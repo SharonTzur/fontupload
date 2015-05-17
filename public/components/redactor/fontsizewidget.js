@@ -57,7 +57,6 @@
             },
 
             updateInput : function (value) {
-                console.log('updateInput' + value);
                 this.fontsizewidget.input.val(parseInt( value));
             },
 
