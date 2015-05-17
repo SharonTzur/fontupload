@@ -11903,6 +11903,7 @@ var widgetSettings,
 //region Fonts
 
 var
+    loadedFamilies = [],
     allFonts                  = [],
     fontsLoaded               = 0,
     loadedFontStrings         = [],
@@ -11993,3 +11994,9 @@ var newWidgets = {
         func:'updateFontColor'
     }
 };
+
+Object.defineProperty(Array.prototype, 'addToSet', {
+    value        : function (value) {
+        if (this.indexOf(value) == -1) this.push(value)
+    }, enumerable: false
+})

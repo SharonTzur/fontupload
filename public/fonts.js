@@ -334,6 +334,7 @@ function loadFontArray(strings, activeCallback, fontactiveCallback, fontinactive
         },
         fontactive  : function (family, fvd)
         {
+            loadedFamilies.addToSet(family);
             if (fontactiveCallback)
                 fontactiveCallback();
         },
@@ -564,7 +565,7 @@ function checkCodeForFonts($codeRecieved, loadedFonts)
         var $dropdownSearchFontsInput = $('#dropdownSearchFontsInput');
         for (i = 0; i < indexes.length; i++)
             {
-                $dropdownSearchFontsInput.after( q.createSelectedDropdownItem(indexes[i], allFonts[indexes[i]].family));
+                $dropdownSearchFontsInput.after( q.createDropdownItem(indexes[i], allFonts[indexes[i]].family).addClass('original'));
             }
         $dropdownSearchFontsInput.after(q.createDivder());
         $dropdownSearchFontsInput.after(q.createHeader('Recent Fonts:'));

@@ -6,6 +6,7 @@
             input  : null,
             current: null,
             menu   : null,
+
             init   : function ()
             {
                 var searchDivStr =
@@ -28,7 +29,16 @@
                 )
                     .dropdown('setting', 'transition', 'slide down')
                     .dropdown({
-                        onChange: this.fontfacedropdown.onDropdownClick
+                        onChange: this.fontfacedropdown.onDropdownClick,
+                        onHide :function (e) {
+                            var menu = $redactor.fontfacedropdown.menu;
+                            menu.children('.filtered').removeClass('filtered');
+                            menu.children().not('.search').hide();
+                            menu.children('.original').show();
+
+                            $(this).find('input').val('');
+                            $(this).find('input').trigger('keyup');
+                        }
                     }
                 )
                     .popup('setting', 'content', 'Search and select fonts')
@@ -50,7 +60,7 @@
                 items.push(q.createHeader('All Fonts:'));
                 items.push(q.createDivder());
                 for (var i = 0; i < initiallyLoadedFonts; i++)
-                    items.push(q.createDropdownItem(i, allFonts[i].family));
+                    items.push(q.createDropdownItem(i, allFonts[i].family).addClass('original'));
                 for (; i < allFonts.length; i++)
                     items.push(q.createDropdownItem(i, allFonts[i].family)
                         .addClass('my-hidden')
@@ -60,40 +70,52 @@
                     .attr('data-value', i)
                     .addClass('loadmore')
                     .click(q.loadMore));
-                var $dropdownHeaders = $('#fontfamilydropdown .header');
-                var $dropdownDividers = $('#fontfamilydropdown .divider');
+                //var $dropdownHeaders = $('#fontfamilydropdown .header');
+                //var $dropdownDividers = $('#fontfamilydropdown .divider');
 
                 $(dropdown).children('.menu').append(items);
+/*
+                $(dropdown).find('input').blur(function (e) {
+                    $(this).val('');
+                    $(this).trigger('keyup');
+
+                });
+*/
                 $(dropdown).find('input').bind('keyup', $.proxy(function (e)
                     {
                         if (e.target.value.length > 0)
                         {
-                            $dropdownHeaders.hide();
-                            $dropdownDividers.hide();
+                            $('#fontfamilydropdown .header').hide();
+                            $('#fontfamilydropdown .divider').hide();
+                            setTimeout(function ()
+                            {
+
+                                if (true || !menu.children('.item').not('.my-hidden,.filtered')[0])
+                                {
+                                    var families = [];
+                                    var hiddens = menu.children('.item.my-hidden').not('.filtered');
+                                    hiddens.each(function (i, el)
+                                    {
+                                        //if ( $(el).text() == 'EaterEater')
+                                        //    debugger;
+                                        if (fontsCompletelyLoadedIdx.indexOf( Number($(el).attr('data-value'))) == -1  &&
+                                            loadedFamilies.indexOf($(el).children().text()) == -1)
+                                        families.push($(el).children().text());
+                                        $(el).removeClass('my-hidden')
+                                            .show();
+                                        //if (i > 10) return false;
+                                    });
+                                    if (families.length)
+                                        loadFontArray(families)
+                                }
+                            }, 100); // hate to use timoue but couldnt figure a better way
                         }
                         else
                         {
-                            $dropdownHeaders.show();
-                            $dropdownDividers.show();
+                            $('#fontfamilydropdown .header').show();
+                            $('#fontfamilydropdown .divider').show();
                         }
                         var menu = $redactor.fontfacedropdown.menu;
-                        setTimeout(function ()
-                        {
-
-                            if (!menu.children('.item').not('.my-hidden,.filtered')[0])
-                            {
-                                var families = [];
-                                var hiddens = menu.children('.item.my-hidden').not('.filtered');
-                                hiddens.each(function (i, el)
-                                {
-                                    families.push($(el).text());
-                                    $(el).removeClass('my-hidden')
-                                        .show();
-                                    //if (i > 10) return false;
-                                });
-                                loadFontArray(families)
-                            }
-                        }, 100); // hate to use timoue but couldnt figure a better way
                     }, this
                 ))
 
@@ -204,7 +226,7 @@
                 }
                 else
                 {
-                    var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + font + '</div>');
+                    //var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + font + '</div>');
 
                     $('#fontfamilydropdown .menu div[data-value="' + indexinAllFonts + '"].selected-fonts').addClass('active selected');//.prepend(fontFamilyLabel);
 
