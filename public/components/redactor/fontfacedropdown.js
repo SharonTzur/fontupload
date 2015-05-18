@@ -40,12 +40,9 @@
                     });
 
 
-                var item,
-                    q     = this.fontfacedropdown,
+                var q     = this.fontfacedropdown,
                     items = [];
 
-
-                //items.push(search);
                 items.push(q.createDivder());
                 items.push(q.createHeader('Uploaded Fonts:'));
                 items.push(q.createDivder());
@@ -74,7 +71,6 @@
             search: function (e) {
                 if (e.target.value.length > 0)
                 {
-                    debugger;
                     var menu = $redactor.fontfacedropdown.menu;
                     menu.children('.header').hide();
                     menu.children('.divider').hide();
@@ -103,7 +99,6 @@
 
             resetSearch:                             function (e) {
                 var menu = $redactor.fontfacedropdown.menu;
-                debugger;
                 menu.children('.filtered').removeClass('filtered');
                 menu.children('.original').css('display','');
                 menu.children('.item').not('.original').hide().removeClass('my-hidden').addClass('my-hidden');

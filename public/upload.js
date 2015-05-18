@@ -11,35 +11,6 @@ var upload = {
     listOffont    : [],
     allFontsLength: null,
 
-
-    obindFileInput: function () {
-        var status_elem = $('#status');
-        var fileInput = $('#fileInput');
-        fileInput.change(function (e) {
-            status_elem.show();
-
-            //var url_elem = document.getElementById("avatar_url");
-            //var preview_elem = document.getElementById("preview");
-            var s3upload = new S3Upload({
-                s3_object_name   : fileInput[0].files[0].name,
-                //s3_object_name: fileInput[0].files[0].name,
-                file_dom_selector: 'fileInput',
-                s3_sign_put_url  : 'http://fontupload.herokuapp.com/sign_s3',
-                onProgress       : function (percent, message) {
-                    status_elem.html('Upload progress: ' + percent + '% ' + message);
-                },
-                onFinishS3Put    : function (public_url) {
-                    status_elem.html('Upload completed. Uploaded to: ' + public_url);
-                    //url_elem.value = public_url;
-                    //preview_elem.innerHTML = '<img src="'+public_url+'" style="width:300px;" />';
-                },
-                onError          : function (status) {
-                    status_elem.html('Upload error: ' + status);
-                }
-            });
-        });
-    },
-
     bindFileInput: function () {
         var ul = $('#upload ul');
         var q = this;
@@ -90,10 +61,14 @@ var upload = {
                 });
 
                 // Automatically upload the file once it is added to the queue
+                if (wasUploaded(name))
+                {
+                    alert (name + ' was uploaded');
+                    return;
+                }
                 if (supportedFont.indexOf(ext) == -1)
                     alert(name + 'is not supported');
                 else {
-                    debugger;
                     uploadedItems[name] = q.addUploadedItem(q.allFontsLength++, {fileName: name, family: name.replace('.' + extenstion(name),'')}, q, 0);
                     uploadedItems[name].time = new Date().getTime();
                     if (q.noFont) {
@@ -166,36 +141,6 @@ var upload = {
 
             return (bytes / 1000).toFixed(2) + ' KB';
         }
-
-    },
-
-    oldbindFileInput: function () {
-        var fileInput = $('#fileInput');
-        var fileDisplayArea = $('#fileDisplayArea');
-        fileInput.change(function (e) {
-            var file = fileInput[0].files[0];
-            var name = file.name;
-
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $.ajax({
-                    type   : 'POST',
-                    url    : SERVER_URL + '/upload',
-                    data   : {
-                        fileName  : name,
-                        base64    : reader.result,
-                        instanceId: instanceId,
-                        compId    : compId
-                    },
-                    success: function (response) {
-                        console.log(response);
-                    }
-                });
-            };
-
-            reader.readAsDataURL(file);
-        });
 
     },
 
@@ -339,8 +284,6 @@ var upload = {
     },
 
     loadUploadedFont: function (url, font, idx, callback) {
-        //$('head').prepend('<style> @font-face { font-family:  ' + font
-        //    + '; src: url("' + url + '") }</style> ')
         WebFont.load({
             custom: {
                 families: [font],
@@ -406,5 +349,24 @@ var uploadProgress = {
         }
     }
 };
+function wasUploaded (name) {
+    var toreturn = $.grep(widgetSettings.uploadedFonts, function (obj) {
+        return obj.family == name.replace('.' + extenstion(name),'')
+    });
+    return toreturn.length
 
+}
 
+/*
+{
+    ETag: ""
+    ad5b23cb1be33e5dda68bc8954c9b257
+    "", VersionId
+:
+    "wd.z9_lLFXTYxWBi764Wp4fkJHuujomu", Location
+:
+    "https://anyfont.s3.amazonaws.com/IndieFlower.css"
+ETag: ""ad5b23cb1be33e5dda68bc8954c9b257""
+Location: "https://anyfont.s3.amazonaws.com/IndieFlower.css"
+VersionId: "cZs6ITpWRZUFY9Sj_iSf2Uh.RkuLmXtO"
+}*/
