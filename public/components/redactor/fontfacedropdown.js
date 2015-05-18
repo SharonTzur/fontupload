@@ -30,7 +30,7 @@
                     .dropdown('setting', 'transition', 'slide down')
                     .dropdown({
                         onChange: this.fontfacedropdown.onDropdownClick,
-                        onHide :this.fontfacedropdown.resetSearch,
+                        onHide : this.fontfacedropdown.resetSearch
                     }
                 )
                     .popup('setting', 'content', 'Search and select fonts')
@@ -80,6 +80,7 @@
                     {
                         var families = [];
                         var hiddens = menu.children('.item.my-hidden').not('.filtered');
+                        menu.children('.filtered').css('display','');
                         hiddens.each(function (i, el)
                         {
                             // only push fonts that werent loaded
@@ -102,7 +103,7 @@
                 menu.children('.filtered').removeClass('filtered');
                 menu.children('.original').css('display','');
                 menu.children('.item').not('.original').hide().removeClass('my-hidden').addClass('my-hidden');
-                $(this).find('input').val('');
+                $('#fontfamilydropdown input').val('');
                 $('#fontfamilydropdown .header').show();
                 $('#fontfamilydropdown .divider').show();
 
