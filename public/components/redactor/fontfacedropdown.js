@@ -30,17 +30,7 @@
                     .dropdown('setting', 'transition', 'slide down')
                     .dropdown({
                         onChange: this.fontfacedropdown.onDropdownClick,
-                        onHide :function (e) {
-                            var menu = $redactor.fontfacedropdown.menu;
-                            debugger;
-                            menu.children('.filtered').removeClass('filtered');
-                            menu.children('.original').css('display','');
-                            menu.children('.item').not('.original').hide().removeClass('my-hidden').addClass('my-hidden');
-                            $(this).find('input').val('');
-                            $('#fontfamilydropdown .header').show();
-                            $('#fontfamilydropdown .divider').show();
-
-                        }
+                        onHide :this.fontfacedropdown.resetSearch,
                     }
                 )
                     .popup('setting', 'content', 'Search and select fonts')
@@ -73,58 +63,56 @@
                         .addClass('my-hidden')
                         .hide());
 
-                //var $dropdownHeaders = $('#fontfamilydropdown .header');
-                //var $dropdownDividers = $('#fontfamilydropdown .divider');
-
                 $(dropdown).children('.menu').append(items);
-/*
-                $(dropdown).find('input').blur(function (e) {
-                    $(this).val('');
-                    $(this).trigger('keyup');
-
-                });
-*/
-                $(dropdown).find('input').bind('keyup', $.proxy(function (e)
-                    {
-                        //debugger;
-                        if (e.target.value.length > 0)
-                        {
-                            $('#fontfamilydropdown .header').hide();
-                            $('#fontfamilydropdown .divider').hide();
-                            $('#fontfamilydropdown .uploaded').hide();
-                            $('#fontfamilydropdown .recent').hide();
-                            var menu = $redactor.fontfacedropdown.menu;
-                            //setTimeout(function ()
-                            //{
-
-                                    var families = [];
-                                    var hiddens = menu.children('.item.my-hidden').not('.filtered');
-                                    hiddens.each(function (i, el)
-                                    {
-                                        // only push fonts that werent loaded
-                                        if (fontsCompletelyLoadedIdx.indexOf( Number($(el).attr('data-value'))) == -1  &&
-                                            loadedFamilies.indexOf($(el).children().text()) == -1)
-                                        families.push($(el).children().text());
-                                        $(el).removeClass('my-hidden')
-                                            .show();
-                                    });
-                                    if (families.length)
-                                        loadFontArray(families);
-                            //}, 100); // hate to use timeout but couldnt figure a better way
-                        }
-                        else
-                        {
-                        }
-                    }, this
-                ))
-
-                ;
+                $(dropdown).find('input').bind('keyup', $.proxy(q.search, this ));
                 var $toolbar = $('ul#redactor-toolbar-0');
                 $toolbar.append(dropdown);
-                this.fontfacedropdown.menu = $(dropdown).children('.menu');
-                //<div wix-param="bgColor" wix-ctrl="ColorPicker" wix-options="{startWithColor: 'color-3'}"></div>
+                q.menu = $(dropdown).children('.menu');
 
             },
+
+            search: function (e) {
+                if (e.target.value.length > 0)
+                {
+                    debugger;
+                    var menu = $redactor.fontfacedropdown.menu;
+                    menu.children('.header').hide();
+                    menu.children('.divider').hide();
+                    menu.children('.uploaded').hide();
+                    menu.children('.recent').hide();
+                    setTimeout(function ()
+                    {
+                        var families = [];
+                        var hiddens = menu.children('.item.my-hidden').not('.filtered');
+                        hiddens.each(function (i, el)
+                        {
+                            // only push fonts that werent loaded
+                            if (fontsCompletelyLoadedIdx.indexOf( Number($(el).attr('data-value'))) == -1  &&
+                                loadedFamilies.indexOf($(el).children().text()) == -1)
+                                families.push($(el).children().text());
+                            $(el).removeClass('my-hidden')
+                                .show();
+                        });
+                        if (families.length)
+                            loadFontArray(families);
+                    }, 100); // hate to use timeout but couldnt figure a better way
+                }
+                else
+                    this.fontfacedropdown.resetSearch();
+            },
+
+            resetSearch:                             function (e) {
+                var menu = $redactor.fontfacedropdown.menu;
+                debugger;
+                menu.children('.filtered').removeClass('filtered');
+                menu.children('.original').css('display','');
+                menu.children('.item').not('.original').hide().removeClass('my-hidden').addClass('my-hidden');
+                $(this).find('input').val('');
+                $('#fontfamilydropdown .header').show();
+                $('#fontfamilydropdown .divider').show();
+
+            },
+
 
             loadMore: function (e)
             {
