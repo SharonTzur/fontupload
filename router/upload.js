@@ -46,7 +46,7 @@ router.post('/db', function (req, res) {
 
 router.post('/', function (req, res) {
     console.log('upload was called');
-    console.log(JSON.stringify(req.body));
+    //console.log(JSON.stringify(req.body));
     if (!req.files)
     {
         res.end(500);

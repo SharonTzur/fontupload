@@ -33,7 +33,11 @@
                         onHide :this.fontfacedropdown.resetSearch,
                     }
                 )
-                    .popup('setting', 'content', 'Search and select fonts');
+                    .popup('setting', 'content', 'Search and select fonts')
+                    .on('click', function ()
+                    {
+                        $(this).children('.menu')[0].scrollTop = 0;
+                    });
 
 
                 var item,
@@ -49,11 +53,10 @@
                 items.push(q.createDivder());
                 for (var i = 0; i < initiallyLoadedFonts; i++)
                     items.push(q.createDropdownItem(i, allFonts[i].family));
-                items.push(q.createLoadMoreButton()
+                items.push(q.createHeader('Load More ...')
                     .attr('data-value', i)
                     .addClass('loadmore')
                     .click(q.loadMore));
-
                 for (; i < allFonts.length; i++)
                     items.push(q.createDropdownItem(i, allFonts[i].family)
                         .removeClass('original')
@@ -68,11 +71,10 @@
 
             },
 
-            search: function (e)
-            {
+            search: function (e) {
                 if (e.target.value.length > 0)
                 {
-                    //debugger;
+                    debugger;
                     var menu = $redactor.fontfacedropdown.menu;
                     menu.children('.header').hide();
                     menu.children('.divider').hide();
@@ -101,7 +103,7 @@
 
             resetSearch:                             function (e) {
                 var menu = $redactor.fontfacedropdown.menu;
-                //debugger;
+                debugger;
                 menu.children('.filtered').removeClass('filtered');
                 menu.children('.original').css('display','');
                 menu.children('.item').not('.original').hide().removeClass('my-hidden').addClass('my-hidden');
@@ -112,17 +114,17 @@
             },
 
 
-             loadMore: function (e)
+            loadMore: function (e)
             {
                 {
                     var fontsToLoad   = 10,
                         fontFamilyArr = [],
                         $selectedItem = $(e.toElement),
-                        menu          = $selectedItem.parents('.menu'),
+                        menu          = $selectedItem.parent(),
                         q             = $redactor.fontfacedropdown;
 
-                    if ($selectedItem.hasClass('button')) $selectedItem = $selectedItem.parent();
                     $selectedItem.remove();
+                    console.log('load More');
                     var start = parseInt($selectedItem.attr('data-value'));
                     for (var i = start; i < (fontsToLoad + start); i++)
                     {
@@ -245,15 +247,6 @@
             },
 
             dividers: 0,
-
-            createLoadMoreButton : function() {
-                return $(
-                    '<div class="header" data-value="header" style="font-family:"exo">' +
-                        '<div class="ui primary button">' +
-                            '<i class="refresh icon"></i> Load More Fonts...' +
-                        '</div>' +
-                    '</div>');
-            },
 
             createDivder: function ()
             {
