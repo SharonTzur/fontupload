@@ -33,11 +33,7 @@
                         onHide : this.fontfacedropdown.resetSearch
                     }
                 )
-                    .popup('setting', 'content', 'Search and select fonts')
-                    .on('click', function ()
-                    {
-                        $(this).children('.menu')[0].scrollTop = 0;
-                    });
+                    .popup('setting', 'content', 'Search and select fonts');
 
 
                 var q     = this.fontfacedropdown,

@@ -30,8 +30,7 @@
                     })
                     .popup('setting', 'content', 'Select Weight');
 
-                    var item,
-                        items = [];
+                    var items = [];
                     for (var fontWieghtDisplayName in fontVarientObjTextToNum)
                         items.push(this.fontWeightDropdown
                             .createDropdownFirstItem(fontVarientObjTextToNum[fontWieghtDisplayName],fontWieghtDisplayName));
@@ -88,10 +87,6 @@
 
             list : null,
 
-            reset: function ()
-            {
-
-            }
         };
     };
 })(jQuery);
