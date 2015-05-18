@@ -127,13 +127,14 @@ header .logo
     /*background-color : transparent !important;*/
     color : #2D2D2D !important;
 }
+
 .fontContainer
 {
-    height  : 418px;
-    padding : 23px 21px 16px 19px;
+    overflow-x: hidden;
+    height     : 418px;
+    padding    : 23px 21px 16px 19px;
     overflow-y : auto;
-    border : 1px solid #CCCCCC;
-
+    border     : 1px solid #CCCCCC;
 }
 
 .fontdiv
@@ -283,7 +284,6 @@ header .logo
 
 }
 
-
 .uilib-scrollDiv
 {
     padding : 0 0 12px !important;
@@ -359,7 +359,6 @@ header .logo
     background-color : #F0F0F0 !important;
     font-size        : 12px !important;
 }
-
 
 .no-margin
 {
@@ -549,7 +548,7 @@ input[type=text].uilib-input.x-large
 
 .ui.icon.input > i.icon:after, .ui.icon.input > i.icon:before
 {
-    left : -54px !important;
+    /*left : -54px !important;*/
 }
 
 #fontsFilterPane .ui.button
@@ -1047,21 +1046,22 @@ li.toolbarComp
 #fontfamilydropdown,
 #fontweightdropdown
 {
-    position    : relative;
-    margin-left : 5px;
-    line-height : 17px !important;
-    width       : 200px;
-    padding-top : 3px;
-    top         : -8px;
-    padding-left: 43px !important;
+    position     : relative;
+    margin-left  : 5px;
+    line-height  : 17px !important;
+    width        : 200px;
+    padding-top  : 3px;
+    top          : -8px;
+    padding-left : 43px !important;
 
 }
 
 #fontweightdropdown .text
 {
-    width: 68px;
+    width : 68px;
 
 }
+
 #fontweightdropdown
 {
     width : 130px;
@@ -1094,8 +1094,8 @@ li.toolbarComp
 
 #fontweightdropdown.icon.dropdown:after
 {
-    left        : 111px;
-    bottom: 2px;
+    left   : 111px;
+    bottom : 2px;
 
 }
 
@@ -1341,22 +1341,30 @@ div.icon.dropdown:after
 
 .fontfamilydropdownlabel
 {
-    font-family: 'exo';
-    font-weight: 700;
-    font-size: 11px;
-    text-align: left;
-    border-bottom: 1px dashed #ddd;
+    font-family   : 'exo';
+    font-weight   : 700;
+    font-size     : 11px;
+    text-align    : left;
+    border-bottom : 1px dashed #DDDDDD;
 }
-
 
 #fontfamilydropdown .item
 {
     /*text-align : center;*/
-    text-overflow: ellipsis;
-    width: 216px;
-    overflow: hidden;
+    text-overflow : ellipsis;
+    width         : 216px;
+    overflow      : hidden;
 
 }
-button.btn-upgrade {
-    float:right;
+
+button.btn-upgrade
+{
+    float : right;
+}
+
+#fontfamilydropdown .loadmore .button
+{
+    height      : 36px;
+    line-height : 9px;
+    width       : 182px;
 }

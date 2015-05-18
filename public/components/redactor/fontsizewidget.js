@@ -51,7 +51,6 @@
                     size = Math.max(Number(this.fontsizewidget.input.val()) - 1,0);
                 }
 
-                console.log('incrementFontSize ' + size);
                 this.fontsizewidget.input.val(size);
                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
             },

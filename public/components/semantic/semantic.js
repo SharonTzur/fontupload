@@ -3383,7 +3383,7 @@ $.fn.dropdown = function(parameters) {
             query
           ;
           query = $search.val();
-
+          if (query.length < 1) return;
           module.verbose('Searching for query', query);
           module.filter(query);
           if(module.is.searchSelection() && module.can.show() ) {
