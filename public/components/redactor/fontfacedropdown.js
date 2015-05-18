@@ -32,12 +32,14 @@
                         onChange: this.fontfacedropdown.onDropdownClick,
                         onHide :function (e) {
                             var menu = $redactor.fontfacedropdown.menu;
+                            debugger;
                             menu.children('.filtered').removeClass('filtered');
-                            menu.children().not('.search').hide();
-                            menu.children('.original').show();
-
+                            menu.children('.original').css('display','');
+                            menu.children('.item').not('.original').hide().removeClass('my-hidden').addClass('my-hidden');
                             $(this).find('input').val('');
-                            $(this).find('input').trigger('keyup');
+                            $('#fontfamilydropdown .header').show();
+                            $('#fontfamilydropdown .divider').show();
+
                         }
                     }
                 )
@@ -60,13 +62,14 @@
                 items.push(q.createHeader('All Fonts:'));
                 items.push(q.createDivder());
                 for (var i = 0; i < initiallyLoadedFonts; i++)
-                    items.push(q.createDropdownItem(i, allFonts[i].family).addClass('original'));
+                    items.push(q.createDropdownItem(i, allFonts[i].family));
                 items.push(q.createHeader('Load More ...')
                     .attr('data-value', i)
                     .addClass('loadmore')
                     .click(q.loadMore));
                 for (; i < allFonts.length; i++)
                     items.push(q.createDropdownItem(i, allFonts[i].family)
+                        .removeClass('original')
                         .addClass('my-hidden')
                         .hide());
 
@@ -83,39 +86,35 @@
 */
                 $(dropdown).find('input').bind('keyup', $.proxy(function (e)
                     {
+                        //debugger;
                         if (e.target.value.length > 0)
                         {
                             $('#fontfamilydropdown .header').hide();
                             $('#fontfamilydropdown .divider').hide();
-                            setTimeout(function ()
-                            {
+                            $('#fontfamilydropdown .uploaded').hide();
+                            $('#fontfamilydropdown .recent').hide();
+                            var menu = $redactor.fontfacedropdown.menu;
+                            //setTimeout(function ()
+                            //{
 
-                                if (true || !menu.children('.item').not('.my-hidden,.filtered')[0])
-                                {
                                     var families = [];
                                     var hiddens = menu.children('.item.my-hidden').not('.filtered');
                                     hiddens.each(function (i, el)
                                     {
-                                        //if ( $(el).text() == 'EaterEater')
-                                        //    debugger;
+                                        // only push fonts that werent loaded
                                         if (fontsCompletelyLoadedIdx.indexOf( Number($(el).attr('data-value'))) == -1  &&
                                             loadedFamilies.indexOf($(el).children().text()) == -1)
                                         families.push($(el).children().text());
                                         $(el).removeClass('my-hidden')
                                             .show();
-                                        //if (i > 10) return false;
                                     });
                                     if (families.length)
-                                        loadFontArray(families)
-                                }
-                            }, 100); // hate to use timoue but couldnt figure a better way
+                                        loadFontArray(families);
+                            //}, 100); // hate to use timeout but couldnt figure a better way
                         }
                         else
                         {
-                            $('#fontfamilydropdown .header').show();
-                            $('#fontfamilydropdown .divider').show();
                         }
-                        var menu = $redactor.fontfacedropdown.menu;
                     }, this
                 ))
 
@@ -149,7 +148,7 @@
                         if (i + 1 == fontsToLoad)
                         {
                             menu.append($selectedItem.attr('data-value', start + i).click(q.loadMore));
-                            menu[0].scrollTop += menu.height();
+                            //menu[0].scrollTop += menu.height();
                         }
                     });
                     q.changeDropdownFont(q.current);
@@ -206,12 +205,12 @@
                             selectedDivs[selectedDivs.length - 1].remove();
                         }
                         if ($(header).text() == 'Recent Fonts:')
-                            $(header).after($selectedItem);
+                            $(header).after($selectedItem.addClass('recent'));
 
                         else
                         {
                             menu.prepend(q.createHeader('Recent Fonts:'));
-                            $(header).after($selectedItem);
+                            $(header).after($selectedItem.addClass('recent'));
                         }
                         //debugger;
                         $selectedItem.addClass('active selected selected-fonts');
@@ -239,7 +238,7 @@
             {
                 var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + fontFamily + '</div>');
 
-                return $('<div class="item" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
+                return $('<div class="item original" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
                 fontFamily +
                 '</div>').prepend(fontFamilyLabel);
 

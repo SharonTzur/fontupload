@@ -223,6 +223,7 @@ var upload = {
         q.fontContainer = $('[data-tab="upload"] .fontContainer');
         q.allFontsLength = q.oldAllFonts = allFonts.length;
     },
+
     initList             : function (list) {
         var q = this;
         q.dropdown = $redactor.fontfacedropdown;
@@ -243,10 +244,11 @@ var upload = {
                 q.allFontsLength = allFonts.length;
         })
     },
+
     loadAndUpdateDropdown: function (i, font, q, callback) {
         widgetSettings.uploadedFonts.push(font);
         q.loadUploadedFont(font.url, font.family, i, callback);
-        q.divider.after(q.dropdown.createDropdownItem(i, font.family));
+        q.divider.after(q.dropdown.createDropdownItem(i, font.family).addClass('uploaded'));
     },
 
     addUploadedItem: function (i, font, q, opacity) {
