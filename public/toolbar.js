@@ -47,6 +47,7 @@ var $redactor,
                             $redactor.selection.save();
                         });
                         var self = this;
+                        debugger;
 
                         setTimeout(function () {
                             //debugger;
