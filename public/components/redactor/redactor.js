@@ -3748,10 +3748,13 @@
                     if (tag == "em")
                         { tag = "span" ; type = "style"; value = "font-style:Italic;"}
 
+                    if (tag == "strong")
+                        { tag = "span" ; type = "style"; value = "font-weight:Bold;"}
+
                     if (!this.selection.getHtml()) {
                         this.inline.nonIsSelected(tag, type, value, toolBarIcon);
                         widgetSettings.code =  $redactor.$editor.html();
-                        saveSettings();
+                        refreshWidget();
 						this.selection.removeMarkers();
 
 					}
