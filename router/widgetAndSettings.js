@@ -11,11 +11,15 @@ router.get('/', function (req, res) {
     //console.log(req);
     var instance = req.query.instance;
     var appId = qs.parse(req.headers.referer).appDefinitionId;
-
+    if (!appId)
+    {
+        res.send('No App Id, probably not loading from wix');
+        return;
+    }
     var file = req.baseUrl.replace("/", "");
     if (file == 'seo') file = 'widget';
-    console.log ('>appId : ', appId);
-    console.log ('>globals.wix : ', JSON.stringify(globals.wix));
+    //console.log ('>appId : ', appId);
+    //console.log ('>globals.wix : ', JSON.stringify(globals.wix));
     console.log(globals.wix[appId].user + ': ');
     if (instance && utils.verifyInstance(instance, globals.wix[appId].secret, req, res)) {
         utils.load(req, function (data) {
