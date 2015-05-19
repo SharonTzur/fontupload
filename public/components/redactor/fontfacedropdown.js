@@ -187,12 +187,12 @@
                             selectedDivs[selectedDivs.length - 1].remove();
                         }
                         if ($(header).text() == 'Recent Fonts:')
-                            $(header).after($selectedItem.addClass('recent'));
+                            $(header).after($selectedItem.addClass('recent original'));
 
                         else
                         {
                             menu.prepend(q.createHeader('Recent Fonts:'));
-                            $(header).after($selectedItem.addClass('recent'));
+                            $(header).after($selectedItem.addClass('recent original'));
                         }
                         //debugger;
                         $selectedItem.addClass('active selected selected-fonts');
