@@ -10,6 +10,7 @@ var upload = {
     noFont        : null,
     listOffont    : [],
     allFontsLength: null,
+    input : null,
 
     bindFileInput: function () {
         var ul = $('#upload ul');
@@ -17,16 +18,19 @@ var upload = {
         var name = null;
         var time = null;
         var uploadedItems = {};
-        var input = $('#upload input');
+        this.input = $('#upload input');
+        var self = this;
 
         $('.drop a, .noFontLabel a').click(function () {
             // Simulate a click on the file input button
             // to show the file browser dialog
-            input.click();
+            self.input.click();
         });
 
         // Initialize the jQuery File Upload plugin
-        $('#upload').fileupload({
+        var initUpload = function () {
+
+            $('#upload').fileupload({
 
             // This element will accept file drag/drop uploading
             dropZone: $('.drop'),
@@ -63,11 +67,15 @@ var upload = {
                 // Automatically upload the file once it is added to the queue
                 if (wasUploaded(name))
                 {
+                    console.log('was uploaded');
                     alert (name + ' was uploaded');
+                    restInput();
                     return;
                 }
-                if (supportedFont.indexOf(ext) == -1)
+                if (supportedFont.indexOf(ext) == -1)  {
                     alert(name + 'is not supported');
+                    restInput();
+                }
                 else {
                     uploadedItems[name] = q.addUploadedItem(q.allFontsLength++, {fileName: name, family: name.replace('.' + extenstion(name),'')}, q, 0);
                     uploadedItems[name].time = new Date().getTime();
@@ -85,6 +93,7 @@ var upload = {
                             }, q, function () {
                                 uploadProgress.inc(uploadedItems[e.origfile].el,1.3333);
                                 $('.fontdiv[data-allfontsidx="' + uploadedItems[name].index + '"] .textPreview .text').fadeIn();
+                                restInput();
                             });
                         });
 
@@ -119,6 +128,13 @@ var upload = {
             }
 
         });
+        };
+        initUpload();
+        var restInput = function () {
+            self.input.replaceWith(self.input.val('').clone(true));
+            console.log('was reset');
+            //initUpload();
+        };
 
         // Prevent the default action when a file is dropped on the window
         $(document).on('drop dragover', function (e) {

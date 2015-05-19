@@ -47,7 +47,7 @@ var $redactor,
                             $redactor.selection.save();
                         });
                         var self = this;
-                        debugger;
+                        //debugger;
 
                         setTimeout(function () {
                             //debugger;
@@ -55,7 +55,7 @@ var $redactor,
                             self.$editor.focus();
                             self.$editor.blur();
 
-                        },500);
+                        }, 500);
 
 /*
                         this.selection.selectAll();

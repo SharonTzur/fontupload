@@ -85,7 +85,7 @@
 
             removedWeight: false,
 
-            list : null,
+            list : null
 
         };
     };

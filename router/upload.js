@@ -56,7 +56,7 @@ router.post('/', function (req, res) {
     var ext = name.split('.');
     ext = ext[ext.length - 1];
     var cssFile = name.replace(ext, 'css');
-    var format = (ext == 'ttf') ? 'truetype' : ext;
+    var format = (ext == 'ttf') ? 'truetype' : (ext == 'otf') ? 'opentype' : ext;
     //res.end('temp down');
 
     upload(req.files.upl.path, name, function (evt) {
