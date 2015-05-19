@@ -6,7 +6,7 @@ var $redactor,
         {
             $('#redactor').redactor(
                 {
-                    plugins       : ['fullscreen', 'advanced', 'textdirection', 'undo', 'fontsizewidget', 'letterspacingwidget', 'fontfacedropdown', 'fontWeightDropdown', 'fontItalic', 'fontColor', 'fontBgColor'],
+                    plugins       : ['fullscreen', 'advanced', 'textdirection', 'undo', 'fontsizewidget', 'letterspacingwidget', 'fontfacedropdown', 'fontWeightDropdown', 'fontItalic','fontBold' ,'fontColor', 'fontBgColor'],
 
                     changeCallback: function ()
                     {

@@ -11985,6 +11985,10 @@ var newWidgets = {
         css : 'font-style',
         func: 'updateItalic'
     },
+    'fontBold'        : {
+        css : 'font-weight',
+        func: 'updateBold'
+    },
     'fontColor' : {
         css:'color',
         func:'updateFontColor'
