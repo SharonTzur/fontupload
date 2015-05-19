@@ -20,6 +20,7 @@ module.exports = {
 
         self.wix[process.env.WIX_APP_IDO] = {secret: process.env.WIX_APP_SECRETO, user: 'Oren'};
         self.wix[process.env.WIX_APP_IDX] = {secret: process.env.WIX_APP_SECRETX, user: 'Rotem'};
+        console.log(JSON.stringify( self.wix) );
 
         fs.readFile(__dirname + '/credentials.json', function (err, data) {
             if (data) {
