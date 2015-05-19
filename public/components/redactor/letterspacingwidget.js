@@ -51,7 +51,7 @@
             },
 
             updateSpacing : function (value) {
-                this.letterspacingwidget.input.val(parseInt(value));
+                this.letterspacingwidget.input.val(+value.replace("px",""));
 
             },
 
