@@ -12,9 +12,7 @@
                     toolbarIcon.removeClass('redactor-act');
                 else
                     toolbarIcon.addClass('redactor-act');
-
             }
-
         };
     };
 })(jQuery);
