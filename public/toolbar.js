@@ -55,6 +55,15 @@ var $redactor,
                             self.$editor.focus();
                             self.$editor.blur();
 
+                            $('.redactor-editor').css('max-height', '480px');
+                            $('ul#redactor-toolbar-0 .re-fullscreen').click(function () {
+
+                                if ( $(this).hasClass('re-normalscreen') )
+                                    $('.redactor-editor').css('max-height', '673px');
+                                else
+                                    $('.redactor-editor').css('max-height', '480px');
+
+                            })
                         }, 500);
 
 /*
