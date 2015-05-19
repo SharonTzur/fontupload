@@ -41,11 +41,6 @@ var $redactor,
 
                         this.code.set(decodeTextForURL(widgetSettings.code));
                         //var me = this;
-                        this.$editor.blur(function ()
-                        {
-                            $redactor.selection.removeMarkers();
-                            $redactor.selection.save();
-                        });
                         var self = this;
                         //debugger;
 
@@ -55,6 +50,11 @@ var $redactor,
                             self.$editor.focus();
                             self.$editor.blur();
 
+                            self.$editor.blur(function ()
+                            {
+                                $redactor.selection.removeMarkers();
+                                $redactor.selection.save();
+                            });
                             $('.redactor-editor').css('max-height', '480px');
                             $('ul#redactor-toolbar-0 .re-fullscreen').click(function () {
 
