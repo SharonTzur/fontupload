@@ -20,13 +20,15 @@ var upload = {
         var uploadedItems = {};
         this.input = $('#upload input');
         var self = this;
+        var bindAs = function ($elem) {
 
-        $('.drop a, .noFontLabel a').click(function () {
-            // Simulate a click on the file input button
-            // to show the file browser dialog
-            self.input.click();
-        });
-
+            $('.drop a, .noFontLabel a').click(function (e) {
+                // Simulate a click on the file input button
+                // to show the file browser dialog
+                $elem.click();
+            });
+        };
+        bindAs(self.input);
         // Initialize the jQuery File Upload plugin
         var initUpload = function () {
 
@@ -132,6 +134,8 @@ var upload = {
         initUpload();
         var restInput = function () {
             self.input.replaceWith(self.input.val('').clone(true));
+            $('.drop a, .noFontLabel a').unbind('click');
+            bindAs($('#upload input'));
             console.log('was reset');
             //initUpload();
         };
