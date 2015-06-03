@@ -27,8 +27,8 @@
 //										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
 //										var instanceId = Wix.Utils.getInstanceId(),
 //										    compId     = Wix.Utils.getOrigCompId();
-		var instanceId = '3',
-		    compId     = '5',
+		var instanceId = Number(new Date()),
+		    compId     = Number(new Date()),
 			 SERVER_URL = 'http://localhost:8080',
 			ejs = false;
 
