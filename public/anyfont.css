@@ -1019,7 +1019,7 @@ li.toolbarComp
     position     : relative;
     margin-left  : 5px;
     line-height  : 17px !important;
-    width        : 200px;
+    width        : 234px;
     padding-top  : 3px;
     top          : 0px;
     padding-left : 43px !important;
@@ -1079,7 +1079,9 @@ div.icon.dropdown:after
     content     : "\f0d7";
     font-family : Icons;
     position    : absolute;
-    left        : 183px;
+    left        : 218px;
+    top         : 4px;
+
 }
 
 .uilib-tabs .tab-content > div.tab-pane
