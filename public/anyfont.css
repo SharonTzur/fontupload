@@ -1368,3 +1368,14 @@ button.btn-upgrade
     line-height : 9px;
     width       : 182px;
 }
+
+.redactor-editor
+{
+    max-height : 480px;
+
+}
+.ui.positive.button.fontdiv.textPreview.loadMoreButton
+{
+    line-height : 71px;
+    /* font-weight: 300; */
+}
