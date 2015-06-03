@@ -196,7 +196,7 @@ header .logo
 {
     font-size     : 22px !important;
     display       : inline-block;
-    width         : 411px;
+    width         : 390px;
     position      : relative;
     overflow      : hidden;
     text-overflow : ellipsis;
@@ -385,9 +385,13 @@ header.box
     background-color : #454545;
     margin-left      : -2px;
     height           : 45px;
-    border           : 1px solid #CCCCCC;
     padding          : 9px;
 
+}
+
+.fontsFilterContainer .ui.active.button:active, .fontsFilterContainer .ui.button:active
+{
+    box-shadow : none;
 }
 
 #searchFont
@@ -483,10 +487,7 @@ input[type=text].uilib-input.x-large
 
 .filterFontsButton.ui.labeled.icon.button
 {
-    /*background-color           : #5BBD72;*/
-    border-bottom-left-radius  : 0;
-    border-bottom-right-radius : 0;
-    /*color                      : #FFFFFF;*/
+    border-radius : 0 !important;
 }
 
 .firstFilterLabel
@@ -544,7 +545,7 @@ input[type=text].uilib-input.x-large
 
 .ui.styled.accordion .content, .ui.styled.accordion .accordion .content
 {
-    padding : 0.5em 0 0em 0 !important;
+    padding : 0 0 0 0 !important;
 }
 
 .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before
@@ -575,6 +576,12 @@ i.icon.dropdown.xl:before
     font-size : 20px !important;
 }
 
+.fontsFilterContainer .ui.styled.accordion, .fontsFilterContainer .ui.styled.accordion .accordion
+{
+    border-radius : 0 !important;
+    margin-left   : -1px;
+}
+
 .filterFontsButton
 {
     display     : block !important;
@@ -587,7 +594,7 @@ i.icon.dropdown.xl:before
 .fontsFilter.ui.styled.accordion .title
 {
     padding : 0 !important;
-    width   : 555px !important;
+    width   : 553px !important;
 
 }
 
@@ -606,21 +613,10 @@ i.icon.dropdown.xl:before
 
 }
 
-.fontsFilterPane .equal.height.row:nth-child(1)
-{
-    padding : 0 0 5px 0 !important;
-}
-
-.fontsFilterPane .equal.height.row:nth-child(2)
+.fontsFilterPane .equal.height.row:nth-child(2n+1)
 {
     background-color : #EFEFEF !important;
 
-}
-
-.fontsFilterPane .equal.height.row:last-of-type
-{
-    padding          : 4px 0 17px !important;
-    background-color : #EFEFEF !important;
 }
 
 .fontsFilterPane .equal.height.row
@@ -1025,20 +1021,25 @@ li.toolbarComp
     line-height  : 17px !important;
     width        : 200px;
     padding-top  : 3px;
-    top          : -8px;
+    top          : 0px;
     padding-left : 43px !important;
 
 }
 
-#fontweightdropdown .text
+#fontfamilydropdown .text
 {
-    width : 68px;
+    width         : 151px;
+    height        : 14px;
+    overflow      : hidden;
+    text-overflow : initial;
+    position      : absolute;
 
 }
 
 #fontweightdropdown
 {
     width : 130px;
+    top   : -8px;
 
 }
 
@@ -1088,7 +1089,8 @@ div.icon.dropdown:after
 
 .fontsFilterContainer
 {
-    margin : 20px 0 20px 0;
+    margin : 0px 0 1px 0;
+
 }
 
 .fontdiv.loadMoreButton
@@ -1180,7 +1182,7 @@ div.icon.dropdown:after
 
 .variantPreviewLine
 {
-    width         : 325px;
+    width         : 300px;
     display       : inline-block;
     /*text-align    : center;*/
     padding-right : 10px;
@@ -1304,7 +1306,7 @@ div.icon.dropdown:after
 
 .textPreview.font-selected .browseVariants
 {
-    background-color : #FFFFFF;
+    background-color : transparent;
 }
 
 #fontfamilydropdown .default.text,
