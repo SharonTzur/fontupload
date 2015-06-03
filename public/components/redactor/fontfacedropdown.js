@@ -150,6 +150,8 @@
                 })[0];
                 loadAllFontVariants(fontObj, null, null, null, value);
                 $redactor.selection.restore();
+                if (text.indexOf(' ') != -1)
+                    text = "'" + text + "'";
                 $redactor.inline.format('span', 'style', 'font-family:' + text + ';');
                 $redactor.selection.removeMarkers();
                 q.changeDropdownFont(text, value, $selectedItem);
