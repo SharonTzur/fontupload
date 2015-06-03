@@ -28,7 +28,8 @@ if (!RedactorPlugins) var RedactorPlugins = {};
                     this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';display:inline-block;');
             },
             updateFontColor: function (value) {
-                this.fontBgColor.background.css('background', value)
+                if (value != "rgba(0, 0, 0, 0)")
+                    this.fontBgColor.background.css('background', value)
 
             },
             remove: function(rule)
