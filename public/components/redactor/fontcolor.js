@@ -12,8 +12,8 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             init: function()
             {
                 var $toolbar = $('ul#redactor-toolbar-0');
-                var $el = $('<div id="text" wix-ctrl="ColorPicker" wix-model="textColor" wix-options="{startWithColor:\'#ffffff\'}">');
-                $toolbar.append($el);
+                var $el = $('<div id="textColor" wix-ctrl="ColorPicker" wix-model="textColor" wix-options="{startWithColor:\'#ffffff\'}"></div>');
+                $toolbar.append('<span class="colorLabel">Text Color</span>', $el);
                 Wix.UI.initializePlugin($el);
                 Wix.UI.onChange('textColor', this.fontColor.set);
                 this.fontColor.background = this.$toolbar.find('#text .color-box-inner');

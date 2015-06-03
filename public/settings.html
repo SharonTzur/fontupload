@@ -27,8 +27,8 @@
 //										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
 //										var instanceId = Wix.Utils.getInstanceId(),
 //										    compId     = Wix.Utils.getOrigCompId();
-		var instanceId = '1',
-		    compId     = '1',
+		var instanceId = '2',
+		    compId     = '2',
 			 SERVER_URL = 'http://localhost:8080',
 			ejs = false;
 
@@ -137,7 +137,7 @@
 		</div>
 	</div>
 
-	<div class="showme" wix-ctrl="Tabs" wix-options="{value:0}" style="margin-bottom: 10px; display: none;">
+	<div class="showme" wix-ctrl="Tabs" wix-options="{value:1}" style="margin-bottom: 10px; display: none;">
 		<ul>
 			<li data-tab="editText">
 				<div>Edit Text</div>
@@ -156,11 +156,44 @@
 				<textarea id="redactor" name="content"></textarea>
 			</div>
 			<div data-tab="selectFont" class="tab-pane">
-				<div class="fontContainer"></div>
+
+				<div id="font-container-header">
+
+					<div class="ui buttons">
+						<div data-cat='All' class="compact ui toggle button mini catButton">
+							All
+						</div>
+						<div data-cat='Serif' class="compact ui toggle button mini catButton">
+							Serif
+						</div>
+						<div data-cat='SansSerif' class="compact ui toggle button mini catButton">
+							Sans-Serif
+						</div>
+						<div data-cat='Handwriting' class="compact ui toggle button mini catButton">
+							Handwriting
+						</div>
+						<div data-cat='Display' class="compact ui toggle button mini catButton">
+							Display
+						</div>
+						<div data-cat='Monospace' class="compact ui toggle button mini catButton">
+							Monospace
+						</div>
+					</div>
+
+					<div class="ui search" id="searchFont">
+						<div class="ui icon input">
+							<input class="prompt" type="text" placeholder="Search fonts">
+							<i class="search icon"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="fontContainer">
+
+				</div>
 
 				<div class="fontsFilterContainer">
 
-				<input id="searchFont" name="searchFont" type="search" placeholder="Search fonts..."/>
 					<div class="fontsFilter ui styled fluid accordion">
 					<div class="title">
 						<div class="filterFontsButton ui labeled icon button">
@@ -170,32 +203,6 @@
 					</div>
 					<div class="active content fontsFilterPane">
 						<div class="ui grid no-margin">
-							<div class="equal height row">
-								<div class="two wide column label filterColumn" style="top:0">TYPE
-								</div>
-								<div class="thirteen wide ctr right column">
-									<div class="ui buttons">
-										<div data-cat='All' class="compact ui toggle button mini catButton">
-											All
-										</div>
-										<div data-cat='Serif' class="compact ui toggle button mini catButton">
-											Serif
-										</div>
-										<div data-cat='SansSerif' class="compact ui toggle button mini catButton">
-											Sans-Serif
-										</div>
-										<div data-cat='Handwriting' class="compact ui toggle button mini catButton">
-											Handwriting
-										</div>
-										<div data-cat='Display' class="compact ui toggle button mini catButton">
-											Display
-										</div>
-										<div data-cat='Monospace' class="compact ui toggle button mini catButton">
-											Monospace
-										</div>
-									</div>
-								</div>
-							</div>
 							<div class="equal height row">
 								<div class="two wide column label filterColumn">
 									THICKNESS

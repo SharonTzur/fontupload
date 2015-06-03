@@ -9,40 +9,34 @@ function initSemanticUI()
 function onCatButtonPressed()
 {
     Filters.clearFilters();
-    function toggleButton()
-    {
 
-        if ($(this).hasClass('active'))
-            $(this).removeClass('active');
-        else
-            $(this).addClass('active');
-        if (widgetSettings.categoryDisplaySettings[$(this).data('cat')] === "true")
-            widgetSettings.categoryDisplaySettings[$(this).data('cat')] = "false";
-        else
-            widgetSettings.categoryDisplaySettings[$(this).data('cat')] = "true";
+    /*
+     function toggleButton()
+     {
+
+     if ($(this).hasClass('active'))
+     $(this).removeClass('active');
+     else
+     $(this).addClass('active');
+     if (widgetSettings.categoryDisplaySettings[$(this).data('cat')] === "true")
+     widgetSettings.categoryDisplaySettings[$(this).data('cat')] = "false";
+     else
+     widgetSettings.categoryDisplaySettings[$(this).data('cat')] = "true";
+     }
+     */
+
+    $('#searchFont').find('input').val('');
+
+    var $catButtons = $('.catButton');
+    $catButtons.removeClass('active');
+    $(this).addClass('active');
+    for (var cat in widgetSettings.categoryDisplaySettings)
+    {
+        widgetSettings.categoryDisplaySettings[cat] = "false";
     }
 
-    $('#searchFont').val('');
+    widgetSettings.categoryDisplaySettings[$(this).data('cat')] = "true";
 
-    var pressedCat = $(this).data('cat'),
-        allButton = $('.catButton[data-cat="All"]'),
-        otherButtons = $('.catButton').not('.catButton[data-cat="All"]');
-
-    if (widgetSettings.categoryDisplaySettings.All === "true" && pressedCat !== "All")
-    {
-        toggleButton.call(allButton[0]);
-    }
-
-    toggleButton.call(this);
-    if (pressedCat == "All")
-    {
-        otherButtons.removeClass('active');
-        for (var i = 0; i < categories.length; i++)
-        {
-            if (categories[i] != 'All')
-                widgetSettings.categoryDisplaySettings[categories[i]] = "false";
-        }
-    }
     refreshFontList();
     saveSettings({data: {published: false}});
 }
@@ -73,6 +67,8 @@ function refreshUI()
 
 function onSearchKeyUp()
 {
+    $.proxy(onCatButtonPressed, $('.catButton[data-cat="All"]')[0])();
+
     currentViewFonts = [];
     var searchTerm = arguments[0].target.value;
     Filters.clearFilters();
@@ -82,7 +78,7 @@ function onSearchKeyUp()
     currentViewDisplayed = 0;
     currentViewLoaded = 0;
 
-    if (searchTerm.length>0)
+    if (searchTerm.length > 0)
     {
         for (var i = 0; i < allFonts.length; i++)
         {
