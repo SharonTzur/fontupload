@@ -177,7 +177,7 @@
                     $($('.divider')[0]).remove();
                     $selectedItem = $selectedItem.clone();
                     var header = menu.find('.header')[0];
-                    var selectedDivs = menu.find('.selected-fonts');
+                    var selectedDivs = menu.find('.recent');
 
                     if (selectedDivs.map(function (i, el)
                         {
