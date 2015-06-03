@@ -17,7 +17,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 
                 Wix.UI.initializePlugin($el);
                 Wix.UI.onChange('bgColor', this.fontBgColor.set);
-                this.fontBgColor.background = this.$toolbar.find('#bg .color-box-inner');
+                this.fontBgColor.background = this.$toolbar.find('#fontBGColor .color-box-inner');
             },
             set: function(value, key)
             {

@@ -16,40 +16,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
                 $toolbar.append('<span class="colorLabel">Text Color</span>', $el);
                 Wix.UI.initializePlugin($el);
                 Wix.UI.onChange('textColor', this.fontColor.set);
-                this.fontColor.background = this.$toolbar.find('#text .color-box-inner');
-            },
-            buildPicker: function($dropdown, name, colors)
-            {
-                var rule = (name == 'backcolor') ? 'background-color' : 'color';
-
-                var len = colors.length;
-                var self = this;
-                var func = function(e)
-                {
-                    e.preventDefault();
-                    self.fontcolor.set($(this).data('rule'), $(this).attr('rel'));
-                };
-
-                for (var z = 0; z < len; z++)
-                {
-                    var color = colors[z];
-
-                    var $swatch = $('<a rel="' + color + '" data-rule="' + rule +'" href="#" style="float: left; font-size: 0; border: 2px solid #fff; padding: 0; margin: 0; width: 22px; height: 22px;"></a>');
-                    $swatch.css('background-color', color);
-                    $swatch.on('click', func);
-
-                    $dropdown.append($swatch);
-                }
-
-                var $elNone = $('<a href="#" style="display: block; clear: both; padding: 5px; font-size: 12px; line-height: 1;"></a>').html(this.lang.get('none'));
-                $elNone.on('click', $.proxy(function(e)
-                {
-                    e.preventDefault();
-                    this.fontcolor.remove(rule);
-
-                }, this));
-
-                $dropdown.append($elNone);
+                this.fontColor.background = this.$toolbar.find('#textColor .color-box-inner');
             },
             set: function(value, key)
             {
@@ -69,6 +36,40 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 })(jQuery);
 
 /*
+ buildPicker: function($dropdown, name, colors)
+ {
+ var rule = (name == 'backcolor') ? 'background-color' : 'color';
+
+ var len = colors.length;
+ var self = this;
+ var func = function(e)
+ {
+ e.preventDefault();
+ self.fontcolor.set($(this).data('rule'), $(this).attr('rel'));
+ };
+
+ for (var z = 0; z < len; z++)
+ {
+ var color = colors[z];
+
+ var $swatch = $('<a rel="' + color + '" data-rule="' + rule +'" href="#" style="float: left; font-size: 0; border: 2px solid #fff; padding: 0; margin: 0; width: 22px; height: 22px;"></a>');
+ $swatch.css('background-color', color);
+ $swatch.on('click', func);
+
+ $dropdown.append($swatch);
+ }
+
+ var $elNone = $('<a href="#" style="display: block; clear: both; padding: 5px; font-size: 12px; line-height: 1;"></a>').html(this.lang.get('none'));
+ $elNone.on('click', $.proxy(function(e)
+ {
+ e.preventDefault();
+ this.fontcolor.remove(rule);
+
+ }, this));
+
+ $dropdown.append($elNone);
+ },
+
  var colors = [
  '#ffffff', '#000000', '#eeece1', '#1f497d', '#4f81bd', '#c0504d', '#9bbb59', '#8064a2', '#4bacc6', '#f79646', '#ffff00',
  '#f2f2f2', '#7f7f7f', '#ddd9c3', '#c6d9f0', '#dbe5f1', '#f2dcdb', '#ebf1dd', '#e5e0ec', '#dbeef3', '#fdeada', '#fff2ca',
