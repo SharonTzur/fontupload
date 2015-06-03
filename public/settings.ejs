@@ -3,37 +3,34 @@
 <head>
 	<script>
 		//Load WebFont Loader
-/*
 		(function ()
 		{
 			var wf = document.createElement('script');
 			wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-			'://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
+					'://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
 			wf.type = 'text/javascript';
 			wf.async = 'true';
 			var s = document.getElementsByTagName('script')[0];
 			s.parentNode.insertBefore(wf, s);
 
 		})();
-*/
 
 	</script>
 	<!--Wix SDK-->
 	<script type="text/javascript" src="//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
 	<script src="toolbar.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
 
 
 	<script src="utils.js"></script>
 	<script>
-//										var instanceId = Wix.Utils.getInstanceId(),
-//										    compId     = Wix.Utils.getOrigCompId();
-//		var instanceId = 'Local-InstnaceId-rotem931',
-//		    compId     = 'Local-compId3-rotem931';
-		var instanceId = '<%= instanceId %>',
-                SERVER_URL = '<%= server %>',
-		    compId     = '<%= compId %>',
-				ejs = true;
+		//										var completeFontCatJSON = JSON.parse(replaceAll('<%= cats %>', '&quot;', '"')),
+		//										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
+		//										var instanceId = Wix.Utils.getInstanceId(),
+		//										    compId     = Wix.Utils.getOrigCompId();
+		var instanceId = Number(new Date()),
+				compId     = Number(new Date()),
+				SERVER_URL = 'http://localhost:8080',
+				ejs = false;
 
 	</script>
 	<!--AnyFont Utils-->
@@ -49,7 +46,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<link rel="stylesheet"
-	      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+		  href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
 
 	<!--Selectize-->
 	<script src="components/selectize.min.js"></script>
@@ -80,8 +77,8 @@
 	<script src="components/redactor/fontfacedropdown.js"></script>
 	<script src="components/redactor/fontweightdropdown.js"></script>
 	<script src="components/redactor/italicWidget.js"></script>
-    <script src="components/redactor/boldWidget.js"></script>
-    <script src="components/redactor/fontcolor.js"></script>
+	<script src="components/redactor/boldWidget.js"></script>
+	<script src="components/redactor/fontcolor.js"></script>
 	<script src="components/redactor/fontBgColor.js"></script>
 	<script src="components/redactor/letterspacingwidget.js"></script>
 	<script src="components/redactor/fontfamily.js"></script>
@@ -114,15 +111,9 @@
 				console.warn(ex.message);
 			}
 			initSemanticUI();
+			loadSettings();
 			buildAllFontsArray();
-			var data = JSON.parse('<%- data %>');
-			var txtBox = $('#textBox');
-			data.code = txtBox.html();
-			txtBox.remove();
-			console.info(data);
 			upload.init();
-
-			loadSettings(data);
 		});
 
 	</script>
@@ -136,9 +127,8 @@
 		<div class="logo">
 			<div class="logo-image"></div>
 		</div>
-        <button class="uilib-btn btn-upgrade">Upgrade this App</button>
-        <button class="uilib-btn btn-upgrade"> DownGrade this App</button>
-    </header>
+		<button class="uilib-btn btn-upgrade" >Upgrade this App</button>
+	</header>
 
 	<div style="position:fixed; padding: 30% 6% 30% 3%; width: 100%;" >
 		<div class="ui indicating progress" id="progress-bar">
@@ -166,121 +156,127 @@
 				<textarea id="redactor" name="content"></textarea>
 			</div>
 			<div data-tab="selectFont" class="tab-pane">
-				<div class="fontContainer"></div>
+
+				<div id="font-container-header">
+
+					<div class="ui buttons">
+						<div data-cat='All' class="compact ui toggle button mini catButton">
+							All
+						</div>
+						<div data-cat='Serif' class="compact ui toggle button mini catButton">
+							Serif
+						</div>
+						<div data-cat='SansSerif' class="compact ui toggle button mini catButton">
+							Sans-Serif
+						</div>
+						<div data-cat='Handwriting' class="compact ui toggle button mini catButton">
+							Handwriting
+						</div>
+						<div data-cat='Display' class="compact ui toggle button mini catButton">
+							Display
+						</div>
+						<div data-cat='Monospace' class="compact ui toggle button mini catButton">
+							Monospace
+						</div>
+					</div>
+
+					<div class="ui search" id="searchFont">
+						<div class="ui icon input">
+							<input class="prompt" type="text" placeholder="Search fonts">
+							<i class="search icon"></i>
+						</div>
+					</div>
+				</div>
 
 				<div class="fontsFilterContainer">
-
-				<input id="searchFont" name="searchFont" type="search" placeholder="Search fonts..."/>
 					<div class="fontsFilter ui styled fluid accordion">
-					<div class="title">
-						<div class="filterFontsButton ui labeled icon button">
-							<i class="icon"></i> <i class="xl dropdown icon"></i> Filter Fonts
-							<div class="filterIcon filter"></div>
-						</div>
-					</div>
-					<div class="active content fontsFilterPane">
-						<div class="ui grid no-margin">
-							<div class="equal height row">
-								<div class="two wide column label filterColumn" style="top:0">TYPE
-								</div>
-								<div class="thirteen wide ctr right column">
-									<div class="ui buttons">
-										<div data-cat='All' class="compact ui toggle button mini catButton">
-											All
-										</div>
-										<div data-cat='Serif' class="compact ui toggle button mini catButton">
-											Serif
-										</div>
-										<div data-cat='SansSerif' class="compact ui toggle button mini catButton">
-											Sans-Serif
-										</div>
-										<div data-cat='Handwriting' class="compact ui toggle button mini catButton">
-											Handwriting
-										</div>
-										<div data-cat='Display' class="compact ui toggle button mini catButton">
-											Display
-										</div>
-										<div data-cat='Monospace' class="compact ui toggle button mini catButton">
-											Monospace
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="equal height row">
-								<div class="two wide column label filterColumn">
-									THICKNESS
-								</div>
-								<div class="one wide column firstFilterLabel label sliderSideLabel">
-									Thin
-								</div>
-								<div class="slider six wide right column">
-									<div id="thicknessSliderHolder" class="sliderHolder">
-										<div id="thicknessSlider" class="slider"></div>
-									</div>
-								</div>
-								<div class="two wide column label sliderSideLabel">Thick</div>
-								<div class="two wide column label">
-									<div class="ui toggle checkbox sliderCheckbox" id="thicknessSliderCheckbox">
-										<input type="checkbox"> <label></label>
-									</div>
-								</div>
-								<div class="two wide column label sliderLabel sliderStatus" id="thicknessSliderLabel">
-									filter disabled
-								</div>
-							</div>
-							<div class="equal height row">
-								<div class="two wide column label filterColumn">INCLINE</div>
-
-								<div class="one wide column firstFilterLabel label sliderSideLabel">
-									Straight
-								</div>
-								<div class="slider six wide right column">
-									<div id="slantSliderHolder" class="sliderHolder">
-										<div id="slantSlider" class="slider"></div>
-									</div>
-								</div>
-								<div class="two wide column label sliderSideLabel">Italic</div>
-								<div class="two wide column label">
-									<div class="ui toggle checkbox sliderCheckbox" id="slantSliderCheckbox">
-										<input type="checkbox"> <label></label>
-									</div>
-								</div>
-								<div class="two wide column label sliderLabel sliderStatus" id="slantSliderLabel">
-									filter disabled
-								</div>
-
-							</div>
-							<div class="equal height row">
-								<div class="two wide column label filterColumn">WIDTH</div>
-
-								<div class="one wide column firstFilterLabel sliderSideLabel label">
-									Narrow
-								</div>
-								<div class="slider six wide right column">
-									<div id="widthSliderHolder" class="sliderHolder">
-										<div id="widthSlider" class="slider"></div>
-									</div>
-								</div>
-								<div class="two wide column label sliderSideLabel">Wide</div>
-								<div class="two wide column label">
-									<div class="ui toggle checkbox sliderCheckbox" id="widthSliderCheckbox">
-										<input type="checkbox"> <label></label>
-									</div>
-								</div>
-								<div class="two wide column label sliderLabel sliderStatus" id="widthSliderLabel">
-									filter disabled
-								</div>
-
+						<div class="title">
+							<div class="filterFontsButton ui labeled icon button">
+								<i class="icon"></i> <i class="xl dropdown icon"></i> Filter Fonts
+								<div class="filterIcon filter"></div>
 							</div>
 						</div>
-					</div>
+						<div class="content fontsFilterPane">
+							<div class="ui grid no-margin">
+								<div class="equal height row">
+									<div class="two wide column label filterColumn">
+										THICKNESS
+									</div>
+									<div class="one wide column firstFilterLabel label sliderSideLabel">
+										Thin
+									</div>
+									<div class="slider six wide right column">
+										<div id="thicknessSliderHolder" class="sliderHolder">
+											<div id="thicknessSlider" class="slider"></div>
+										</div>
+									</div>
+									<div class="two wide column label sliderSideLabel">Thick</div>
+									<div class="two wide column label">
+										<div class="ui toggle checkbox sliderCheckbox" id="thicknessSliderCheckbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</div>
+									<div class="two wide column label sliderLabel sliderStatus" id="thicknessSliderLabel">
+										filter disabled
+									</div>
+								</div>
+								<div class="equal height row">
+									<div class="two wide column label filterColumn">INCLINE</div>
 
-				</div></div>
+									<div class="one wide column firstFilterLabel label sliderSideLabel">
+										Straight
+									</div>
+									<div class="slider six wide right column">
+										<div id="slantSliderHolder" class="sliderHolder">
+											<div id="slantSlider" class="slider"></div>
+										</div>
+									</div>
+									<div class="two wide column label sliderSideLabel">Italic</div>
+									<div class="two wide column label">
+										<div class="ui toggle checkbox sliderCheckbox" id="slantSliderCheckbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</div>
+									<div class="two wide column label sliderLabel sliderStatus" id="slantSliderLabel">
+										filter disabled
+									</div>
+
+								</div>
+								<div class="equal height row">
+									<div class="two wide column label filterColumn">WIDTH</div>
+
+									<div class="one wide column firstFilterLabel sliderSideLabel label">
+										Narrow
+									</div>
+									<div class="slider six wide right column">
+										<div id="widthSliderHolder" class="sliderHolder">
+											<div id="widthSlider" class="slider"></div>
+										</div>
+									</div>
+									<div class="two wide column label sliderSideLabel">Wide</div>
+									<div class="two wide column label">
+										<div class="ui toggle checkbox sliderCheckbox" id="widthSliderCheckbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</div>
+									<div class="two wide column label sliderLabel sliderStatus" id="widthSliderLabel">
+										filter disabled
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div></div>
+				<div class="fontContainer">
+
+				</div>
+
 			</div>
 			<div data-tab="upload" class="tab-pane">
 				<div class="fontsFilterContainer">
 					<h1> Upload fonts 213</h1>
-					<form id="upload" method="post" action='<%= server + '/upload' %>' enctype="multipart/form-data">
+					<form id="upload" method="post" action="http://localhost:8080/upload" enctype="multipart/form-data">
 						<div class="drop">
 							Drop Your fonts bellow or
 
@@ -301,8 +297,6 @@
 	</div>
 
 </header>
-<div class='textBox' id='textBox' style="display:none;"><%- code %></div>
-
 </body>
 </html>
 
