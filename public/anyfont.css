@@ -1038,7 +1038,7 @@ li.toolbarComp
 
 #fontweightdropdown
 {
-    width : 130px;
+    width : 140px;
     top   : -8px;
 
 }
@@ -1069,7 +1069,7 @@ li.toolbarComp
 
 #fontweightdropdown.icon.dropdown:after
 {
-    left   : 111px;
+    left   : 123px;
     bottom : 2px;
 
 }
