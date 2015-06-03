@@ -21,7 +21,11 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             },
             set: function(value, key)
             {
-                this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';');
+                this.selection.restore();
+                if (this.selection.getHtml())
+                    this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';');
+                else
+                    this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';display:inline-block;');
             },
             updateFontColor: function (value) {
                 this.fontBgColor.background.css('background', value)

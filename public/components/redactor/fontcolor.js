@@ -53,6 +53,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             },
             set: function(value, key)
             {
+                this.selection.restore();
                 this.inline.format('span', 'style', 'color: ' + value.cssColor + ';');
             },
             updateFontColor: function (value) {
