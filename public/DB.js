@@ -61,7 +61,6 @@ function loadSettings(data) {
             refreshFontList();
             bindEvents();
 
-            console.log('the list is: ' + data.uploadedFonts);
             if (data.uploadedFonts) {
                 if (data.uploadedFonts[0])
                     upload.initList(data.uploadedFonts);

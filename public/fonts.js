@@ -63,7 +63,7 @@ function refreshFontList()
     if (currentViewFonts.length === 0)
     {
         $(fontContainer).html('<div class="noFontsLabel">Sorry, no fonts were found! <a id="clearFiltersLink"> <br /><b> Click Here </b></a> to clear all search filters</div>');
-        $('#clearFiltersLink').on('click', $.proxy(Filters.clearFilters, Filters))();
+        $('#clearFiltersLink').on('click', $.proxy(Filters.clearFilters, Filters));
     }
     else
     {
@@ -206,8 +206,8 @@ function displayFontsInBrowser(callback)
         };
 
         var $browseVariants = $('<div class="magnify browseVariants" style="" data-allfontsidx="' + allFontsIdx + '" id="browseVariants-' + family + '"></div>')
-            .click($.proxy(toggleFontVariantPreview, $textPreview))
-            .mouseover($.proxy(toggleFontVariantPreview, $textPreview));
+            .click($.proxy(toggleFontVariantPreview, $textPreview));
+            //.mouseover($.proxy(toggleFontVariantPreview, $textPreview));
 
         $textPreview.append($browseVariants)
             .click(onFontSelected);

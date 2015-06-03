@@ -6,26 +6,12 @@ function initSemanticUI()
     $('.ui.accordion').accordion();
 }
 
-function onCatButtonPressed()
+function onCatButtonPressed(e)
 {
     Filters.clearFilters();
 
-    /*
-     function toggleButton()
-     {
-
-     if ($(this).hasClass('active'))
-     $(this).removeClass('active');
-     else
-     $(this).addClass('active');
-     if (widgetSettings.categoryDisplaySettings[$(this).data('cat')] === "true")
-     widgetSettings.categoryDisplaySettings[$(this).data('cat')] = "false";
-     else
-     widgetSettings.categoryDisplaySettings[$(this).data('cat')] = "true";
-     }
-     */
-
-    $('#searchFont').find('input').val('');
+        if (e!='keyUp')
+        $('#searchFont').find('input').val('');
 
     var $catButtons = $('.catButton');
     $catButtons.removeClass('active');
@@ -67,7 +53,7 @@ function refreshUI()
 
 function onSearchKeyUp()
 {
-    $.proxy(onCatButtonPressed, $('.catButton[data-cat="All"]')[0])();
+    $.proxy(onCatButtonPressed, $('.catButton[data-cat="All"]')[0], 'keyUp')();
 
     currentViewFonts = [];
     var searchTerm = arguments[0].target.value;
