@@ -488,6 +488,8 @@ input[type=text].uilib-input.x-large
 .filterFontsButton.ui.labeled.icon.button
 {
     border-radius : 0 !important;
+    width         : 100%;
+
 }
 
 .firstFilterLabel
