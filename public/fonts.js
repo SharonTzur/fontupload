@@ -261,6 +261,7 @@ function loadFonts(callback, scope)
             {
                 progressBar.parent().fadeOut();
                 $('.showme').fadeIn();
+                $('#top-header').fadeIn().removeClass('loading');
             }, 200)
         }
     }
