@@ -15,7 +15,7 @@
                                 '<input name="hidden-field" type="hidden">' +
                                 '<div class="menu" style="font-family: exo">' +
                                 '</div>' +
-                                '<i class="fonticon icon"></i>' +
+                                '<i class="fonticon width icon"></i>' +
                         '</div>'
 
                 )

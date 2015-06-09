@@ -259,9 +259,9 @@ function loadFonts(callback, scope)
         {
             setTimeout(function ()
             {
-                progressBar.parent().fadeOut();
-                $('.showme').fadeIn();
-                $('#top-header').fadeIn().removeClass('loading');
+                progressBar.parent().fadeOut('slow');
+                $('.showme').fadeIn('slow');
+                $('#top-header').fadeIn('slow').removeClass('loading');
             }, 200)
         }
     }

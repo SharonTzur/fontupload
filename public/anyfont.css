@@ -128,14 +128,6 @@ header .logo
     color : #2D2D2D !important;
 }
 
-.fontContainer
-{
-    overflow-x : hidden;
-    height     : 418px;
-    padding    : 23px 21px 16px 19px;
-    overflow-y : auto;
-}
-
 .fontdiv
 {
     margin-bottom : 5px;
@@ -159,6 +151,7 @@ header .logo
     /* margin: 5px 0 !important; */
     padding                : 0 21px;
     top                    : -15px;
+    margin                 : auto;
 
 }
 
@@ -497,12 +490,28 @@ input[type=text].uilib-input.x-large
     margin-right : 26px;
 }
 
+.fontContainer
+{
+    overflow-x : hidden;
+    height     : 418px;
+    overflow-y : auto;
+    margin-top : 20px;
+}
+
 .noFontsLabel
 {
-    text-align  : center;
-    margin-top  : 40px;
-    line-height : 28px;
-
+    text-align          : center;
+    line-height         : 23px;
+    border              : 11px dashed #777777;
+    border-radius       : 8px;
+    height              : 290px;
+    padding             : 173px 0px 0px 0px;
+    font-size           : 18px;
+    background-color    : #EFEFEF;
+    background-image    : url('img/download.png');
+    background-repeat   : no-repeat;
+    background-position : 50% 29%;
+    background-size     : 100px;
 }
 
 .sliderCheckbox
@@ -606,7 +615,7 @@ i.icon.dropdown.xl:before
     position    : relative;
     top         : 1px;
     font-size   : 12px;
-    left        : 450px;
+    left        : 470px;
 }
 
 .filterIcon::before
@@ -1131,6 +1140,12 @@ div.icon.dropdown:after
     background-position : 10px;
 }
 
+.fonticon.width
+{
+    background-image : url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAACHElEQVR4Xu3dwZHDMBADQTIDh+GnavlRuMrULjuN6csAwBS0S1O6vfylHdhp9cQvAMQhAAAA4g7E5WsAAMQdiMvXAACIOxCXrwEAEHcgLl8DACDuQFy+BqgDMDN33IO0/H3O+aQdiIsHAAA0QJkBDVBOf60FAAB4BJQZ0ADl9D0C4ukDAAC/R8DDhq4DfgvoZv9XDgAAxB2Iy9cAAIg7EJevAQAQdyAuXwMAIO5AXL4GAEDcgbh8DQCAuANx+RqgDoCfg9sEuBLWzt+t4Hj+AACAdwPTDJgB0vF7MygePwAA4PsAbQbMAO38rYHx/AEAAOcAaQbMAOn4rYHx+AEAAOcAbQbMAO38rYHx/AGQB+C6rlfdhLJ+t4LL6ftETDx9AADAIyDOAAAAEHcgLl8DACDuQFy+BgBA3IG4fA0AgLgDcfkaoA7AOecd9yAt342gdPwuhcbjBwAA3ApuM2AGaOfvUmg8fwAAwNvBaQbMAOn4rYHx+AEAAOcAbQbMAO38rYHx/AEAAOcAaQbMAOn4rYHx+AEAAOcAbQbMAO38rYHx/AEAAOcAaQbMAOn4rYHx+AEAAOcAbQbMAO38rYHx/AEAAOcAaQbMAOn4rYHx+AEAAOcAbQbMAO38rYHx/AGQB2Bm7roJZf2+FFpO3z+NiqcPAAB4BMQZAAAA4g7E5WsAAMQdiMvXAACIOxCXrwEAEHcgLl8DACDuQFz+F+QrcLj3is5XAAAAAElFTkSuQmCC');
+
+}
+
 .ui.ribbon.label:after
 {
     border-right-color : #AAAAAA !important;
@@ -1194,6 +1209,8 @@ div.icon.dropdown:after
     overflow-x    : hidden;
     float         : left;
     line-height   : 37px;
+    overflow      : hidden;
+
 }
 
 .variantPreviewTitle
@@ -1427,3 +1444,48 @@ header#top-header.loading
     /*background-size     : 61%;*/
 
 }
+
+#fontsUploadContainer
+{
+    padding : 10px;
+}
+
+#fontUpload
+{
+    padding : 0px;
+}
+
+.upload-header
+{
+    background-color : #3B83C0;
+    height           : 50px;
+    color            : white;
+    font-weight      : 300;
+    font-size        : 24px;
+    line-height      : 51px;
+    text-align       : center;
+    font-style       : italic;
+    border-radius    : 8px 8px 0 0;
+}
+
+.upload-font-form-container
+{
+    padding   : 19px 10px 10px 10px;
+    font-size : 16px;
+
+}
+
+.fontContainer.drop
+{
+    margin-bottom : 5px;
+}
+
+.fontContainer.drop:before
+{
+    content         : 'Uploaded Fonts:';
+    line-height     : 40px;
+    font-weight     : 700;
+    text-decoration : underline;
+
+}
+

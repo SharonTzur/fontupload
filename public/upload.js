@@ -23,6 +23,7 @@ var upload = {
         var bindAs = function ($elem) {
 
             $('.drop a, .noFontLabel a').click(function (e) {
+                debugger;
                 // Simulate a click on the file input button
                 // to show the file browser dialog
                 $elem.click();
@@ -287,7 +288,7 @@ var upload = {
         this.noFont = createView({
             tag : 'div',
             cls : 'noFontsLabel',
-            html: 'Want Your Owrn Fonts? drag them here <br /> or <a><b> Click Here </b></a> to browse'
+            html: 'Drag &amp; Drop files here <br /> or <a><b> Click Here </b></a> to browse'
         }).build().element;
         this.fontContainer.append(this.noFont);
         this.divider = $('#fontfamilydropdown .menu .divider[data-index="1"]');

@@ -7,7 +7,7 @@
 		{
 			var wf = document.createElement('script');
 			wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-			'://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
+					'://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
 			wf.type = 'text/javascript';
 			wf.async = 'true';
 			var s = document.getElementsByTagName('script')[0];
@@ -23,14 +23,14 @@
 
 	<script src="utils.js"></script>
 	<script>
-//										var completeFontCatJSON = JSON.parse(replaceAll('<%= cats %>', '&quot;', '"')),
-//										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
-//										var instanceId = Wix.Utils.getInstanceId(),
-//										    compId     = Wix.Utils.getOrigCompId();
-		var instanceId = 22,
-		    compId     = 22,
-			 SERVER_URL = 'http://localhost:8080',
-			ejs = false;
+		//										var completeFontCatJSON = JSON.parse(replaceAll('<%= cats %>', '&quot;', '"')),
+		//										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
+		//										var instanceId = Wix.Utils.getInstanceId(),
+		//										    compId     = Wix.Utils.getOrigCompId();
+		var instanceId = 26,
+				compId = 22,
+				SERVER_URL = 'http://localhost:8080',
+				ejs = false;
 
 	</script>
 	<!--AnyFont Utils-->
@@ -122,23 +122,26 @@
 <body wix-ui id="settings">
 <script type="text/javascript"></script>
 
-<header class="box loading" id="top-header"  style="margin-bottom: 50px;">
+<header class="box loading" id="top-header" style="margin-bottom: 50px;">
 	<header class="intro box ">
 		<div class="logo">
 			<div class="logo-image"></div>
 		</div>
-			<button class="uilib-btn btn-upgrade" >Upgrade this App</button>
+		<button class="uilib-btn btn-upgrade">Upgrade this App</button>
 	</header>
 
-	<div id='loadingIndicator' style="" >
+	<div id='loadingIndicator' style="">
 		<div id="loading-logo"></div>
 		<div class="ui indicating progress" id="progress-bar">
 			<div class="bar"></div>
-			<div class="label"><span id="number-of-fonts-loaded">0</span> / <script> initiallyLoadedFonts </script> Fonts Loaded</div>
+			<div class="label"><span id="number-of-fonts-loaded">0</span> /
+				<script> initiallyLoadedFonts </script>
+			                                                              Fonts Loaded
+			</div>
 		</div>
 	</div>
 
-	<div class="showme" wix-ctrl="Tabs" wix-options="{value:0}" style="margin-bottom: 10px; display: none;">
+	<div class="showme" wix-ctrl="Tabs" wix-options="{value:2}" style="margin-bottom: 10px; display: none;">
 		<ul>
 			<li data-tab="editText">
 				<div>Edit Text</div>
@@ -183,115 +186,127 @@
 
 					<div class="ui search" id="searchFont">
 						<div class="ui icon input">
-							<input class="prompt" type="text" placeholder="Search fonts">
-							<i class="search icon"></i>
+							<input class="prompt" type="text" placeholder="Search fonts"> <i class="search icon"></i>
 						</div>
 					</div>
 				</div>
 
 				<div class="fontsFilterContainer">
 					<div class="fontsFilter ui styled fluid accordion">
-					<div class="title">
-						<div class="filterFontsButton ui labeled icon button">
-							<i class="icon"></i> <i class="xl dropdown icon"></i> Filter Fonts
-							<div class="filterIcon filter"></div>
-						</div>
-					</div>
-					<div class="content fontsFilterPane">
-						<div class="ui grid no-margin">
-							<div class="equal height row">
-								<div class="two wide column label filterColumn">
-									THICKNESS
-								</div>
-								<div class="one wide column firstFilterLabel label sliderSideLabel">
-									Thin
-								</div>
-								<div class="slider six wide right column">
-									<div id="thicknessSliderHolder" class="sliderHolder">
-										<div id="thicknessSlider" class="slider"></div>
-									</div>
-								</div>
-								<div class="two wide column label sliderSideLabel">Thick</div>
-								<div class="two wide column label">
-									<div class="ui toggle checkbox sliderCheckbox" id="thicknessSliderCheckbox">
-										<input type="checkbox"> <label></label>
-									</div>
-								</div>
-								<div class="two wide column label sliderLabel sliderStatus" id="thicknessSliderLabel">
-									filter disabled
-								</div>
-							</div>
-							<div class="equal height row">
-								<div class="two wide column label filterColumn">INCLINE</div>
-
-								<div class="one wide column firstFilterLabel label sliderSideLabel">
-									Straight
-								</div>
-								<div class="slider six wide right column">
-									<div id="slantSliderHolder" class="sliderHolder">
-										<div id="slantSlider" class="slider"></div>
-									</div>
-								</div>
-								<div class="two wide column label sliderSideLabel">Italic</div>
-								<div class="two wide column label">
-									<div class="ui toggle checkbox sliderCheckbox" id="slantSliderCheckbox">
-										<input type="checkbox"> <label></label>
-									</div>
-								</div>
-								<div class="two wide column label sliderLabel sliderStatus" id="slantSliderLabel">
-									filter disabled
-								</div>
-
-							</div>
-							<div class="equal height row">
-								<div class="two wide column label filterColumn">WIDTH</div>
-
-								<div class="one wide column firstFilterLabel sliderSideLabel label">
-									Narrow
-								</div>
-								<div class="slider six wide right column">
-									<div id="widthSliderHolder" class="sliderHolder">
-										<div id="widthSlider" class="slider"></div>
-									</div>
-								</div>
-					;			<div class="two wide column label sliderSideLabel">Wide</div>
-								<div class="two wide column label">
-									<div class="ui toggle checkbox sliderCheckbox" id="widthSliderCheckbox">
-										<input type="checkbox"> <label></label>
-									</div>
-								</div>
-								<div class="two wide column label sliderLabel sliderStatus" id="widthSliderLabel">
-									filter disabled
-								</div>
-
+						<div class="title">
+							<div class="filterFontsButton ui labeled icon button">
+								<i class="icon"></i> <i class="xl dropdown icon"></i> Filter Fonts
+								<div class="filterIcon filter"></div>
 							</div>
 						</div>
-					</div>
+						<div class="content fontsFilterPane">
+							<div class="ui grid no-margin">
+								<div class="equal height row">
+									<div class="two wide column label filterColumn">
+										THICKNESS
+									</div>
+									<div class="one wide column firstFilterLabel label sliderSideLabel">
+										Thin
+									</div>
+									<div class="slider six wide right column">
+										<div id="thicknessSliderHolder" class="sliderHolder">
+											<div id="thicknessSlider" class="slider"></div>
+										</div>
+									</div>
+									<div class="two wide column label sliderSideLabel">Thick</div>
+									<div class="two wide column label">
+										<div class="ui toggle checkbox sliderCheckbox" id="thicknessSliderCheckbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</div>
+									<div class="two wide column label sliderLabel sliderStatus"
+									     id="thicknessSliderLabel">
+										filter disabled
+									</div>
+								</div>
+								<div class="equal height row">
+									<div class="two wide column label filterColumn">INCLINE</div>
 
-				</div></div>
+									<div class="one wide column firstFilterLabel label sliderSideLabel">
+										Straight
+									</div>
+									<div class="slider six wide right column">
+										<div id="slantSliderHolder" class="sliderHolder">
+											<div id="slantSlider" class="slider"></div>
+										</div>
+									</div>
+									<div class="two wide column label sliderSideLabel">Italic</div>
+									<div class="two wide column label">
+										<div class="ui toggle checkbox sliderCheckbox" id="slantSliderCheckbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</div>
+									<div class="two wide column label sliderLabel sliderStatus" id="slantSliderLabel">
+										filter disabled
+									</div>
+
+								</div>
+								<div class="equal height row">
+									<div class="two wide column label filterColumn">WIDTH</div>
+
+									<div class="one wide column firstFilterLabel sliderSideLabel label">
+										Narrow
+									</div>
+									<div class="slider six wide right column">
+										<div id="widthSliderHolder" class="sliderHolder">
+											<div id="widthSlider" class="slider"></div>
+										</div>
+									</div>
+									;
+									<div class="two wide column label sliderSideLabel">Wide</div>
+									<div class="two wide column label">
+										<div class="ui toggle checkbox sliderCheckbox" id="widthSliderCheckbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</div>
+									<div class="two wide column label sliderLabel sliderStatus" id="widthSliderLabel">
+										filter disabled
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
 				<div class="fontContainer">
 
 				</div>
 
 			</div>
 			<div data-tab="upload" class="tab-pane">
-				<div class="fontsFilterContainer">
-					<h1> Upload font files</h1>
-					<form id="upload" method="post" action="http://localhost:8080/upload" enctype="multipart/form-data">
-						<div class="drop">
-							Drop Your fonts bellow or
+				<div id="fontsUploadContainer">
+					<div id="fontUpload" class="box">
+						<div class="upload-header"> Upload Font Files</div>
+						<div class="upload-font-form-container">
+							<form id="upload" method="post" action="http://localhost:8080/upload"
+							      enctype="multipart/form-data">
+								<div class="drop">
+									You can upload your own font file in TTF format.
+									<br>
+									<strong style="line-height: 25px;">
+										Drag &amp; Drop Your files below or
+									</strong>
 
-							<a>Browse</a>
-							<input id="fileInput" type="file" name="upl" multiple style="display: none;"/>
-							<div id="status" style="display: none"></div>
+									<a>Browse</a> <input id="fileInput" type="file" name="upl" multiple
+									                     style="display: none;"/>
+
+									<div id="status" style="display: none"></div>
+								</div>
+
+								<div class="fontContainer drop">
+									<!-- The file uploads will be shown here -->
+								</div>
+
+							</form>
 						</div>
 
-						<div  class="fontContainer drop">
-							<!-- The file uploads will be shown here -->
-						</div>
-
-					</form>
-
+					</div>
 				</div>
 			</div>
 		</div>
