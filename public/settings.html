@@ -122,15 +122,15 @@
 <body wix-ui id="settings">
 <script type="text/javascript"></script>
 
-<header class="box" id="top-header" style="margin-bottom: 50px;">
-	<header class="intro box">
+<header class="box loading" id="top-header"  style="margin-bottom: 50px;">
+	<header class="intro box ">
 		<div class="logo">
 			<div class="logo-image"></div>
 		</div>
 			<button class="uilib-btn btn-upgrade" >Upgrade this App</button>
 	</header>
 
-	<div style="position:fixed; padding: 30% 6% 30% 3%; width: 100%;" >
+	<div id='loadingIndicator' style="" >
 		<div class="ui indicating progress" id="progress-bar">
 			<div class="bar"></div>
 			<div class="label"><span id="number-of-fonts-loaded">0</span> / <script> initiallyLoadedFonts </script> Fonts Loaded</div>
@@ -253,7 +253,7 @@
 										<div id="widthSlider" class="slider"></div>
 									</div>
 								</div>
-								<div class="two wide column label sliderSideLabel">Wide</div>
+					;			<div class="two wide column label sliderSideLabel">Wide</div>
 								<div class="two wide column label">
 									<div class="ui toggle checkbox sliderCheckbox" id="widthSliderCheckbox">
 										<input type="checkbox"> <label></label>
@@ -275,7 +275,7 @@
 			</div>
 			<div data-tab="upload" class="tab-pane">
 				<div class="fontsFilterContainer">
-					<h1> Upload fonts 213</h1>
+					<h1> Upload font files</h1>
 					<form id="upload" method="post" action="http://localhost:8080/upload" enctype="multipart/form-data">
 						<div class="drop">
 							Drop Your fonts bellow or
