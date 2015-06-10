@@ -70,17 +70,24 @@
             populateList : function (indexinAllFonts) {
                 this.fontWeightDropdown.list.children().hide();
                 var q = this.fontWeightDropdown;
-                $.each(allFonts[indexinAllFonts].variants, function (index, fontWeight) {
-                    q.list.children('[data-value="' + fontWeight + '"]').show();
-                });
-                if (allFonts[indexinAllFonts].variants.length == 1) {
-                    if ($redactor)
-                        $redactor.$editor.children().css('font-weight', '');
-                    q.setActive('Normal');
-                    q.list.parent().addClass('disabled');
+
+                if (indexinAllFonts != -1)
+                {
+                    $.each(allFonts[indexinAllFonts].variants, function (index, fontWeight)
+                    {
+                        q.list.children('[data-value="' + fontWeight + '"]').show();
+                    });
+
+                    if (allFonts[indexinAllFonts].variants.length == 1) {
+                        if ($redactor)
+                            $redactor.$editor.children().css('font-weight', '');
+                        q.setActive('Normal');
+                        q.list.parent().addClass('disabled');
+                    }
+                    else
+                        q.list.parent().removeClass('disabled')
                 }
-                else
-                    q.list.parent().removeClass('disabled')
+
             },
 
             removedWeight: false,

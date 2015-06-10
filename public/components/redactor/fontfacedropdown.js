@@ -160,7 +160,10 @@
 
             changeDropdownFont: function (font, value, $selectedItem)
             {
-                font = replaceAll(font, "'", "");
+                if (font)
+                {
+                    font = replaceAll(font, "'", "");
+                }
                 var q = this.fontfacedropdown;
                 q.current = font;
                 upload.removeAllSelction();

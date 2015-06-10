@@ -86,12 +86,12 @@ function onSearchKeyUp()
             return a.family > b.family ? 1 : -1
         });
     }
-    console.info('Found ' + currentViewFonts.length + ' fonts. is variants ? ' + Filters.filterOptions.isVariantMode);
+    //console.info('Found ' + currentViewFonts.length + ' fonts. is variants ? ' + Filters.filterOptions.isVariantMode);
 
     $(fontContainer).empty();
     if (!currentViewFonts.length)
     {
-        $(fontContainer).html('<div class="noFontsLabel">Sorry, no fonts were found! <a id="clearFiltersLink"> <br /><b> Click Here </b></a> to clear all search filters</div>');
+        $(fontContainer).html('<div class="noFontsFilteredLabel">Sorry, no fonts were found! <a id="clearFiltersLink"> <br /><b> Click Here </b></a> to clear all search filters</div>');
         $('#clearFiltersLink').on('click', $.proxy(Filters.clearFilters, Filters));
     }
     else
