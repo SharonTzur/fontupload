@@ -24,11 +24,11 @@
 
 	<script src="utils.js"></script>
 	<script>
-												var instanceId = Wix.Utils.getInstanceId(),
-												    compId     = Wix.Utils.getOrigCompId();
-//		var instanceId = 38,
+				var instanceId = Wix.Utils.getInstanceId(),
+						compId     = Wix.Utils.getOrigCompId();
+//		var instanceId = 39,
 //				compId = 22;
-				var ejs = false;
+		var ejs = false;
 
 		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 
@@ -128,8 +128,27 @@
 		<div class="logo">
 			<div class="logo-image"></div>
 		</div>
-		<button class="uilib-btn btn-upgrade">Upgrade this App</button>
-	</header>
+		<div id="intro-text">
+			<div style="margin-bottom: 5px;"><strong>Welcome to AnyFont !<br></strong></div>
+			<ul>
+				<li>
+					Create beautiful title and paragraph typography.
+				</li>
+				<li>
+					Select from over 650 fonts and 1200 font variants.
+				</li>
+				<li>
+					Use the font uploader to upload your own font file.
+				</li>
+				<li>
+					Use multiple fonts and styles in your title or paragraph.
+				</li>
+			</ul>
+			<br>
+
+			<br>
+			<button id='upgrade-button' class="uilib-btn btn-upgrade">Upgrade this App</button>
+		</div>	</header>
 
 	<div id='loadingIndicator' style="">
 		<div id="loading-logo"></div>
@@ -147,7 +166,7 @@
 			<li data-tab="editText">
 				<div>Edit Text</div>
 			</li>
-			<li data-tab="selectFont">
+			<li  data-tab="selectFont">
 				<div>Browse Fonts</div>
 			</li>
 			<li data-tab="upload">
@@ -156,14 +175,14 @@
 
 		</ul>
 
-		<div class="tab-content">
+		<div  class="tab-content">
 			<div data-tab="editText" class="tab-pane">
 				<textarea id="redactor" name="content"></textarea>
 			</div>
-			<div data-tab="selectFont" class="tab-pane">
+			<div id="selectFont" data-tab="selectFont" class="tab-pane">
 
 				<div id="font-container-header">
-					Filter by category :
+					Categories
 					<div class="ui buttons">
 						<div data-cat='All' class="compact ui toggle button mini catButton">
 							All
