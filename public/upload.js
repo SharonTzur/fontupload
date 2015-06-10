@@ -120,9 +120,9 @@ var upload = {
                             console.log(e, data);
                             Wix.UI.create({ctrl: 'Popup',
                                 options: {
-                                    modal:true,
+                                    modal:false,
                                     content : name + ' was uploaded',
-                                    buttonSet: 'ok',
+                                    buttonSet: 'okCancel',
                                     fixed:true,
                                     title:'Modal'
                                 }});
