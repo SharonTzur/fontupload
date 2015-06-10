@@ -28,10 +28,12 @@
 		//										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
 		//										var instanceId = Wix.Utils.getInstanceId(),
 		//										    compId     = Wix.Utils.getOrigCompId();
-		var instanceId = 33,
+		var instanceId = 38,
 				compId = 22,
-				SERVER_URL = 'http://localhost:8080',
 				ejs = false;
+
+				var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
+
 
 	</script>
 	<!--AnyFont Utils-->
@@ -288,7 +290,7 @@
 					<div id="fontUpload" class="box">
 						<div class="upload-header"> Upload Font Files</div>
 						<div class="upload-font-form-container">
-							<form id="upload" method="post" action="http://localhost:8080/upload"
+							<form id="upload" method="post"
 							      enctype="multipart/form-data">
 								<div class="drop">
 									<div class="upload-text">You can upload your own font file.

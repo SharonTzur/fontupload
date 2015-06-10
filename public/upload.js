@@ -224,6 +224,7 @@ var upload = {
 
     init: function ()
     {
+        $('#upload').attr('action', SERVER_URL + '/upload');
         var q = this;
         //q.customFontUL = $('#custom-font-list');
         q.fontContainer = $('[data-tab="upload"] .fontContainer');
