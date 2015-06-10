@@ -401,7 +401,7 @@ header.box
 
 #font-container-header
 {
-    background-color : #3B83C0;
+    background-color : #454545;
     margin-left      : -2px;
     height           : 40px;
     padding          : 9px;
@@ -1541,7 +1541,7 @@ header#top-header.loading
 
 .ui.primary.button.fontdiv.textPreview.loadMoreButton
 {
-    margin-left : 37px;
+    margin-left : 20px;
     width       : 461px;
 }
 
