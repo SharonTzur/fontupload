@@ -38,7 +38,7 @@ router.post('/db', function (req, res) {
                 fileName: params.fileName
             });
             instance.save(function (err, i) {
-                res.send((err) ? 'error' : 'succes');
+                res.send((err) ? 'error' : 'success');
             })
         });
 

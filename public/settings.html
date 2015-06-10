@@ -27,7 +27,7 @@
 		//										    allVariants         = JSON.parse(replaceAll('<%= variants %>', '&quot;', '"'));
 		//										var instanceId = Wix.Utils.getInstanceId(),
 		//										    compId     = Wix.Utils.getOrigCompId();
-		var instanceId = 26,
+		var instanceId = 32,
 				compId = 22,
 				SERVER_URL = 'http://localhost:8080',
 				ejs = false;
@@ -162,7 +162,7 @@
 			<div data-tab="selectFont" class="tab-pane">
 
 				<div id="font-container-header">
-
+				Filter by category :
 					<div class="ui buttons">
 						<div data-cat='All' class="compact ui toggle button mini catButton">
 							All
@@ -184,19 +184,22 @@
 						</div>
 					</div>
 
-					<div class="ui search" id="searchFont">
-						<div class="ui icon input">
-							<input class="prompt" type="text" placeholder="Search fonts"> <i class="search icon"></i>
-						</div>
-					</div>
+
 				</div>
 
 				<div class="fontsFilterContainer">
 					<div class="fontsFilter ui styled fluid accordion">
 						<div class="title">
 							<div class="filterFontsButton ui labeled icon button">
-								<i class="icon"></i> <i class="xl dropdown icon"></i> Filter Fonts
-								<div class="filterIcon filter"></div>
+								<i class="icon"></i> <i class="xl dropdown icon"></i> More Filters
+
+								<div class="ui search" id="searchFont">
+									<div class="ui icon input">
+										<input class="prompt" type="text" placeholder="Search fonts"> <i class="search icon"></i>
+									</div>
+								</div>
+
+								<!--<div class="filterIcon filter"></div>-->
 							</div>
 						</div>
 						<div class="content fontsFilterPane">
@@ -287,7 +290,7 @@
 							<form id="upload" method="post" action="http://localhost:8080/upload"
 							      enctype="multipart/form-data">
 								<div class="drop">
-									You can upload your own font file in TTF format.
+									<div class="upload-text">You can upload your own font file.
 									<br>
 									<strong style="line-height: 25px;">
 										Drag &amp; Drop Your files below or
@@ -295,7 +298,7 @@
 
 									<a>Browse</a> <input id="fileInput" type="file" name="upl" multiple
 									                     style="display: none;"/>
-
+									</div>
 									<div id="status" style="display: none"></div>
 								</div>
 

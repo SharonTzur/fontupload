@@ -23,14 +23,12 @@
 
 	<script src="utils.js"></script>
 	<script>
-
-																var instanceId = Wix.Utils.getInstanceId(),
+												var instanceId = Wix.Utils.getInstanceId(),
 												    compId     = Wix.Utils.getOrigCompId();
-//		var instanceId = 22,
-//				compId     = 22;
-
-		var SERVER_URL = 'http://localhost:8080',
-				ejs = false;
+//		var instanceId = 32,
+//				compId = 22,
+//				SERVER_URL = 'http://localhost:8080',
+//				ejs = false;
 
 	</script>
 	<!--AnyFont Utils-->
@@ -122,22 +120,26 @@
 <body wix-ui id="settings">
 <script type="text/javascript"></script>
 
-<header class="box" id="top-header" style="margin-bottom: 50px;">
-	<header class="intro box">
+<header class="box loading" id="top-header" style="margin-bottom: 50px;">
+	<header class="intro box ">
 		<div class="logo">
 			<div class="logo-image"></div>
 		</div>
-		<button class="uilib-btn btn-upgrade" >Upgrade this App</button>
+		<button class="uilib-btn btn-upgrade">Upgrade this App</button>
 	</header>
 
-	<div id='loadingIndicator' style="position:fixed; padding: 30% 6% 30% 3%; width: 100%;" >
+	<div id='loadingIndicator' style="">
+		<div id="loading-logo"></div>
 		<div class="ui indicating progress" id="progress-bar">
 			<div class="bar"></div>
-			<div class="label"><span id="number-of-fonts-loaded">0</span> / <script> initiallyLoadedFonts </script> Fonts Loaded</div>
+			<div class="label"><span id="number-of-fonts-loaded">0</span> /
+				<script> initiallyLoadedFonts </script>
+																		  Fonts Loaded
+			</div>
 		</div>
 	</div>
 
-	<div class="showme" wix-ctrl="Tabs" wix-options="{value:0}" style="margin-bottom: 10px; display: none;">
+	<div class="showme" wix-ctrl="Tabs" wix-options="{value:2}" style="margin-bottom: 10px; display: none;">
 		<ul>
 			<li data-tab="editText">
 				<div>Edit Text</div>
@@ -158,7 +160,7 @@
 			<div data-tab="selectFont" class="tab-pane">
 
 				<div id="font-container-header">
-
+					Filter by category :
 					<div class="ui buttons">
 						<div data-cat='All' class="compact ui toggle button mini catButton">
 							All
@@ -180,20 +182,22 @@
 						</div>
 					</div>
 
-					<div class="ui search" id="searchFont">
-						<div class="ui icon input">
-							<input class="prompt" type="text" placeholder="Search fonts">
-							<i class="search icon"></i>
-						</div>
-					</div>
+
 				</div>
 
 				<div class="fontsFilterContainer">
 					<div class="fontsFilter ui styled fluid accordion">
 						<div class="title">
 							<div class="filterFontsButton ui labeled icon button">
-								<i class="icon"></i> <i class="xl dropdown icon"></i> Filter Fonts
-								<div class="filterIcon filter"></div>
+								<i class="icon"></i> <i class="xl dropdown icon"></i> More Filters
+
+								<div class="ui search" id="searchFont">
+									<div class="ui icon input">
+										<input class="prompt" type="text" placeholder="Search fonts"> <i class="search icon"></i>
+									</div>
+								</div>
+
+																					  <!--<div class="filterIcon filter"></div>-->
 							</div>
 						</div>
 						<div class="content fontsFilterPane">
@@ -216,7 +220,8 @@
 											<input type="checkbox"> <label></label>
 										</div>
 									</div>
-									<div class="two wide column label sliderLabel sliderStatus" id="thicknessSliderLabel">
+									<div class="two wide column label sliderLabel sliderStatus"
+										 id="thicknessSliderLabel">
 										filter disabled
 									</div>
 								</div>
@@ -253,6 +258,7 @@
 											<div id="widthSlider" class="slider"></div>
 										</div>
 									</div>
+									;
 									<div class="two wide column label sliderSideLabel">Wide</div>
 									<div class="two wide column label">
 										<div class="ui toggle checkbox sliderCheckbox" id="widthSliderCheckbox">
@@ -267,30 +273,41 @@
 							</div>
 						</div>
 
-					</div></div>
+					</div>
+				</div>
 				<div class="fontContainer">
 
 				</div>
 
 			</div>
 			<div data-tab="upload" class="tab-pane">
-				<div class="fontsFilterContainer">
-					<h1> Upload fonts 213</h1>
-					<form id="upload" method="post" action="http://localhost:8080/upload" enctype="multipart/form-data">
-						<div class="drop">
-							Drop Your fonts bellow or
+				<div id="fontsUploadContainer">
+					<div id="fontUpload" class="box">
+						<div class="upload-header"> Upload Font Files</div>
+						<div class="upload-font-form-container">
+							<form id="upload" method="post" action="http://localhost:8080/upload"
+								  enctype="multipart/form-data">
+								<div class="drop">
+									<div class="upload-text">You can upload your own font file.
+										<br>
+										<strong style="line-height: 25px;">
+											Drag &amp; Drop Your files below or
+										</strong>
 
-							<a>Browse</a>
-							<input id="fileInput" type="file" name="upl" multiple style="display: none;"/>
-							<div id="status" style="display: none"></div>
+										<a>Browse</a> <input id="fileInput" type="file" name="upl" multiple
+															 style="display: none;"/>
+									</div>
+									<div id="status" style="display: none"></div>
+								</div>
+
+								<div class="fontContainer drop">
+									<!-- The file uploads will be shown here -->
+								</div>
+
+							</form>
 						</div>
 
-						<div  class="fontContainer drop">
-							<!-- The file uploads will be shown here -->
-						</div>
-
-					</form>
-
+					</div>
 				</div>
 			</div>
 		</div>

@@ -111,7 +111,7 @@
             loadMore: function (e)
             {
                 {
-                    var fontsToLoad   = 1,
+                    var fontsToLoad   = 30,
                         fontFamilyArr = [],
                         $selectedItem = $(e.toElement),
                         menu          = $selectedItem.parents('.menu'),

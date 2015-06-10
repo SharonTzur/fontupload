@@ -10,9 +10,10 @@ var upload = {
     noFont        : null,
     listOffont    : [],
     allFontsLength: null,
-    input : null,
+    input         : null,
 
-    bindFileInput: function () {
+    bindFileInput: function ()
+    {
         var ul = $('#upload ul');
         var q = this;
         var name = null;
@@ -20,10 +21,11 @@ var upload = {
         var uploadedItems = {};
         this.input = $('#upload input');
         var self = this;
-        var bindAs = function ($elem) {
+        var bindAs = function ($elem)
+        {
 
-            $('.drop a, .noFontLabel a').click(function (e) {
-                debugger;
+            $('.drop a, .noFontLabel a').click(function (e)
+            {
                 // Simulate a click on the file input button
                 // to show the file browser dialog
                 $elem.click();
@@ -31,132 +33,167 @@ var upload = {
         };
         bindAs(self.input);
         // Initialize the jQuery File Upload plugin
-        var initUpload = function () {
+        var initUpload = function ()
+        {
 
             $('#upload').fileupload({
 
-            // This element will accept file drag/drop uploading
-            dropZone: $('.drop'),
+                // This element will accept file drag/drop uploading
+                dropZone: $('.drop'),
 
-            // This function is called when a file is added to the queue;
-            // either via the browse button, or via drag/drop:
-            add: function (e, data) {
+                // This function is called when a file is added to the queue;
+                // either via the browse button, or via drag/drop:
+                add: function (e, data)
+                {
 
-                var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"' +
-                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+                    var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"' +
+                        ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
 
-                // Append the file name and file size
-                name = data.files[0].name;
-                var ext = extenstion(name);
-                tpl.find('p').text(data.files[0].name)
-                    .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+                    // Append the file name and file size
+                    name = data.files[0].name;
+                    var ext = extenstion(name);
+                    tpl.find('p').text(data.files[0].name)
+                        .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
 
-                // Add the HTML to the UL element
-                data.context = tpl.appendTo(ul);
+                    // Add the HTML to the UL element
+                    data.context = tpl.appendTo(ul);
 
-                // Listen for clicks on the cancel icon
-                tpl.find('span').click(function () {
+                    // Listen for clicks on the cancel icon
+                    tpl.find('span').click(function ()
+                    {
 
-                    if (tpl.hasClass('working')) {
-                        jqXHR.abort();
-                    }
+                        if (tpl.hasClass('working'))
+                        {
+                            jqXHR.abort();
+                        }
 
-                    tpl.fadeOut(function () {
-                        tpl.remove();
+                        tpl.fadeOut(function ()
+                        {
+                            tpl.remove();
+                        });
+
                     });
 
-                });
-
-                // Automatically upload the file once it is added to the queue
-                if (wasUploaded(name))
-                {
-                    console.log('was uploaded');
-                    alert (name + ' was uploaded');
-                    restInput();
-                    return;
-                }
-                if (supportedFont.indexOf(ext) == -1)  {
-                    alert(name + 'is not supported');
-                    restInput();
-                }
-                else {
-                    uploadedItems[name] = q.addUploadedItem(q.allFontsLength++, {fileName: name, family: name.replace('.' + extenstion(name),'')}, q, 0);
-                    uploadedItems[name].time = new Date().getTime();
-                    if (q.noFont) {
-                        q.noFont.hide();
-                        q.createUploadDivider();
+                    // Automatically upload the file once it is added to the queue
+                    if (wasUploaded(name))
+                    {
+                        console.log('was uploaded');
+                        alert(name + 'was uploaded');
+                        restInput();
+                        return;
                     }
-                    uploadedItems[name].el.slideDown();
-                    var jqXHR = data.submit().done(function (e, data) {
-                        q.sendParse(e.data, e.name, function () {
-                            q.loadAndUpdateDropdown(uploadedItems[e.origfile].index, {
-                                fileName: e.name,
-                                family: e.name.replace('.' + extenstion(e.name),''),
-                                url     : e.data.Location
-                            }, q, function () {
-                                uploadProgress.inc(uploadedItems[e.origfile].el,1.3333);
-                                $('.fontdiv[data-allfontsidx="' + uploadedItems[name].index + '"] .textPreview .text').fadeIn();
-                                restInput();
+                    if (supportedFont.indexOf(ext) == -1)
+                    {
+                        alert(name + 'is not supported');
+                        restInput();
+                    }
+                    else
+                    {
+                        uploadedItems[name] = q.addUploadedItem(q.allFontsLength++, {
+                            fileName: name,
+                            family  : name.replace('.' + extenstion(name), '')
+                        }, q, 0);
+                        uploadedItems[name].time = new Date().getTime();
+                        if (q.noFont)
+                        {
+                            q.noFont.hide();
+                            q.createUploadDivider();
+                        }
+                        uploadedItems[name].el.slideDown();
+                        var jqXHR = data.submit().done(function (e, data)
+                        {
+                            q.sendParse(e.data, e.name, function ()
+                            {
+                                q.loadAndUpdateDropdown(uploadedItems[e.origfile].index, {
+                                    fileName: e.name,
+                                    family  : e.name.replace('.' + extenstion(e.name), ''),
+                                    url     : e.data.Location
+                                }, q, function ()
+                                {
+                                    uploadProgress.inc(uploadedItems[e.origfile].el, 1.3333);
+                                    $('.fontdiv[data-allfontsidx="' + uploadedItems[name].index + '"] .textPreview .text').fadeIn();
+                                    restInput();
+                                });
+
+                            });
+
+                            console.log(e, data);
+                            Wix.UI.create({ctrl: 'Popup',
+                                options: {
+                                    modal:true,
+                                    content : name + ' was uploaded',
+                                    buttonSet: 'ok',
+                                    fixed:true,
+                                    title:'Modal'
+                                }});
+
+
+                        }).fail(function (e, data)
+                        {
+                            console.log(e, data);
+                            uploadedItems[name].el.slideUp(function ()
+                            {
+                                q.noFont.show();
+                                uploadedItems[name].el.remove();
+                                delete uploadedItems[name];
                             });
                         });
+                    }
+                },
 
-                        console.log(e, data);
-                    }).fail(function (e, data) {
-                        console.log(e, data);
-                        uploadedItems[name].el.slideUp(function () {
-                            q.noFont.show();
-                            uploadedItems[name].el.remove();
-                            delete uploadedItems[name];
-                        });
+                progress: function (e, data)
+                {
+
+                    // Calculate the completion percentage of the upload
+                    //var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $.each(data.files, function (i, file)
+                    {
+                        uploadedItems[file.name].newTime = new Date().getTime();
+                        uploadedItems[file.name].delay = uploadedItems[file.name].newTime - uploadedItems[file.name].time;
+                        uploadedItems[file.name].time = uploadedItems[file.name].newTime;
+                        uploadProgress.inc(uploadedItems[file.name].el, data.loaded / data.total, uploadedItems[file.name].delay);
+                        //uploadedItems[file.name].el.css("opacity", data.loaded / data.total);
                     });
+                },
+
+                fail: function (e, data)
+                {
+                    // Something has gone wrong!
+                    data.context.addClass('error');
                 }
-            },
 
-            progress: function (e, data) {
-
-                // Calculate the completion percentage of the upload
-                //var progress = parseInt(data.loaded / data.total * 100, 10);
-                $.each(data.files, function (i, file) {
-                    uploadedItems[file.name].newTime = new Date().getTime();
-                    uploadedItems[file.name].delay = uploadedItems[file.name].newTime - uploadedItems[file.name].time;
-                    uploadedItems[file.name].time = uploadedItems[file.name].newTime;
-                    uploadProgress.inc(uploadedItems[file.name].el, data.loaded / data.total,  uploadedItems[file.name].delay);
-                    //uploadedItems[file.name].el.css("opacity", data.loaded / data.total);
-                });
-            },
-
-            fail: function (e, data) {
-                // Something has gone wrong!
-                data.context.addClass('error');
-            }
-
-        });
+            });
         };
         initUpload();
-        var restInput = function () {
+        var restInput = function ()
+        {
             self.input.replaceWith(self.input.val('').clone(true));
             $('.drop a, .noFontLabel a').unbind('click');
             bindAs($('#upload input'));
-            console.log('was reset');
             //initUpload();
         };
 
         // Prevent the default action when a file is dropped on the window
-        $(document).on('drop dragover', function (e) {
+        $(document).on('drop dragover', function (e)
+        {
             e.preventDefault();
         });
 
         // Helper function that formats the file sizes
-        function formatFileSize(bytes) {
-            if (typeof bytes !== 'number') {
+        function formatFileSize(bytes)
+        {
+            if (typeof bytes !== 'number')
+            {
                 return '';
             }
 
-            if (bytes >= 1000000000) {
+            if (bytes >= 1000000000)
+            {
                 return (bytes / 1000000000).toFixed(2) + ' GB';
             }
 
-            if (bytes >= 1000000) {
+            if (bytes >= 1000000)
+            {
                 return (bytes / 1000000).toFixed(2) + ' MB';
             }
 
@@ -165,16 +202,18 @@ var upload = {
 
     },
 
-    sendParse: function (data, name, callback) {
+    sendParse: function (data, name, callback)
+    {
         $.ajax({
             type   : 'POST',
             url    : SERVER_URL + '/upload/db',
             data   : {
                 fileName  : name,
                 urlData   : data,
-                instanceId    : instanceId
+                instanceId: instanceId
             },
-            success: function (response) {
+            success: function (response)
+            {
                 console.log(response);
                 if (callback)
                     callback();
@@ -183,14 +222,16 @@ var upload = {
 
     },
 
-    init                 : function () {
+    init: function ()
+    {
         var q = this;
         //q.customFontUL = $('#custom-font-list');
         q.fontContainer = $('[data-tab="upload"] .fontContainer');
         q.allFontsLength = q.oldAllFonts = allFonts.length;
     },
 
-    initList             : function (list) {
+    initList: function (list)
+    {
         var q = this;
         q.dropdown = $redactor.fontfacedropdown;
         q.divider = $('#fontfamilydropdown .menu .divider[data-index="1"]');
@@ -199,9 +240,11 @@ var upload = {
         q.bindFileInput();
         widgetSettings.uploadedFonts = [];
 
-        $.each(list, function (i, font) {
-            font.family = font.fileName.replace('.' + extenstion(font.fileName),'' );
-            q.loadAndUpdateDropdown(q.allFontsLength + i, font, q, function () {
+        $.each(list, function (i, font)
+        {
+            font.family = font.fileName.replace('.' + extenstion(font.fileName), '');
+            q.loadAndUpdateDropdown(q.allFontsLength + i, font, q, function ()
+            {
                 $('.fontdiv[data-allfontsidx="' + (q.oldAllFonts + i) + '"] .textPreview .text').show();
             });
             q.addUploadedItem(q.allFontsLength + i, font, q, 1);
@@ -211,13 +254,15 @@ var upload = {
         })
     },
 
-    loadAndUpdateDropdown: function (i, font, q, callback) {
+    loadAndUpdateDropdown: function (i, font, q, callback)
+    {
         widgetSettings.uploadedFonts.push(font);
         q.loadUploadedFont(font.url, font.family, i, callback);
         q.divider.after(q.dropdown.createDropdownItem(i, font.family).addClass('uploaded'));
     },
 
-    addUploadedItem: function (i, font, q, opacity) {
+    addUploadedItem: function (i, font, q, opacity)
+    {
         var text = stripHtml(widgetSettings.code).substring(0, 50);
         allFonts.push({family: font.family, variants: ['400'], italic: false, str: 'Uploaded'});
         var item = q.createUploadedItem(i, font.family, text, opacity);
@@ -227,7 +272,8 @@ var upload = {
         return {el: item, index: i};
     },
 
-    onClickUploadedItem: function (e) {
+    onClickUploadedItem: function (e)
+    {
         upload.removeAllSelction();
         upload.selectedItem(this);
         var index = $(this).attr('data-allfontsidx');
@@ -236,7 +282,8 @@ var upload = {
 
     },
 
-    createUploadedItem: function (i, fontFamily, text, opacity) {
+    createUploadedItem: function (i, fontFamily, text, opacity)
+    {
         opacity = (typeof opacity == 'undefined') ? 1 : opacity;
         text = (typeof text == 'undefined') ? '' : text;
         var q = this;
@@ -284,7 +331,8 @@ var upload = {
         }).build().element;
     },
 
-    createNoUpladedFonts: function () {
+    createNoUpladedFonts: function ()
+    {
         this.noFont = createView({
             tag : 'div',
             cls : 'noFontsLabel',
@@ -297,27 +345,31 @@ var upload = {
         return this.noFont;
     },
 
-    createUploadDivider: function () {
+    createUploadDivider: function ()
+    {
         var d = this.dropdown.createDivder();
         this.divider.before(d);
         this.divider = d;
 
     },
 
-    loadUploadedFont: function (url, font, idx, callback) {
+    loadUploadedFont: function (url, font, idx, callback)
+    {
         WebFont.load({
             custom: {
                 families: [font],
                 urls    : [url]
             },
-            active: function () {
+            active: function ()
+            {
                 if (idx) fontsCompletelyLoadedIdx.push(idx);
                 if (callback) callback(this.custom.families[0])
             }
         });
     },
 
-    removeAllSelction: function () {
+    removeAllSelction: function ()
+    {
         upload.fontContainer.find('.font-selected')
             .removeClass('font-selected');
         var but = upload.fontContainer.find('.active')
@@ -326,7 +378,8 @@ var upload = {
             .append($('<i>').addClass('arrow right icon'));
     },
 
-    selectedItem: function (q) {
+    selectedItem: function (q)
+    {
         var mainDiv = ($(q).hasClass('fontdiv')) ? $(q) : $(q).parents('.fontdiv');
         mainDiv.find('.textPreview')
             .addClass('font-selected');
@@ -342,11 +395,10 @@ var upload = {
 var uploadProgress = {
     running: null,
     queue  : [],
-    min: 200,
+    min    : 200,
 
-    inc    : function (el, value, time) {
-        console.log(time);
-        console.log(value);
+    inc: function (el, value, time)
+    {
         this.queue.push({
             el   : el,
             value: value * 0.75,
@@ -356,12 +408,15 @@ var uploadProgress = {
             this.run(0);
     },
 
-    run: function (i) {
-        if (typeof this.queue[i] == 'undefined') {
+    run: function (i)
+    {
+        if (typeof this.queue[i] == 'undefined')
+        {
             this.running = false;
             this.queue = [];
         }
-        else {
+        else
+        {
             this.queue[i].el.animate({
                 opacity: this.queue[i].value
 
@@ -370,24 +425,26 @@ var uploadProgress = {
         }
     }
 };
-function wasUploaded (name) {
-    var toreturn = $.grep(widgetSettings.uploadedFonts, function (obj) {
-        return obj.family == name.replace('.' + extenstion(name),'')
+function wasUploaded(name)
+{
+    var toreturn = $.grep(widgetSettings.uploadedFonts, function (obj)
+    {
+        return obj.family == name.replace('.' + extenstion(name), '')
     });
     return toreturn.length
 
 }
 
 /*
-{
-    ETag: ""
-    ad5b23cb1be33e5dda68bc8954c9b257
-    "", VersionId
-:
-    "wd.z9_lLFXTYxWBi764Wp4fkJHuujomu", Location
-:
-    "https://anyfont.s3.amazonaws.com/IndieFlower.css"
-ETag: ""ad5b23cb1be33e5dda68bc8954c9b257""
-Location: "https://anyfont.s3.amazonaws.com/IndieFlower.css"
-VersionId: "cZs6ITpWRZUFY9Sj_iSf2Uh.RkuLmXtO"
-}*/
+ {
+ ETag: ""
+ ad5b23cb1be33e5dda68bc8954c9b257
+ "", VersionId
+ :
+ "wd.z9_lLFXTYxWBi764Wp4fkJHuujomu", Location
+ :
+ "https://anyfont.s3.amazonaws.com/IndieFlower.css"
+ ETag: ""ad5b23cb1be33e5dda68bc8954c9b257""
+ Location: "https://anyfont.s3.amazonaws.com/IndieFlower.css"
+ VersionId: "cZs6ITpWRZUFY9Sj_iSf2Uh.RkuLmXtO"
+ }*/

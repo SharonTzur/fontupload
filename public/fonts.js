@@ -62,7 +62,7 @@ function refreshFontList()
     $(fontContainer).empty();
     if (currentViewFonts.length === 0)
     {
-        $(fontContainer).html('<div class="noFontsLabel">Sorry, no fonts were found! <a id="clearFiltersLink"> <br /><b> Click Here </b></a> to clear all search filters</div>');
+        $(fontContainer).html('<div class="noFontsFilteredLabel">Sorry, no fonts were found with the current filter. <a id="clearFiltersLink"> <br /><b> Click Here </b></a> to clear all search filters</div>');
         $('#clearFiltersLink').on('click', $.proxy(Filters.clearFilters, Filters));
     }
     else
@@ -225,7 +225,7 @@ function displayFontsInBrowser(callback)
 
     if (lastDisplayedIndex < currentViewFonts.length)
     {
-        var $loadMoreButton = $('<div class="ui positive button fontdiv textPreview loadMoreButton">Load More Fonts...</div>')
+        var $loadMoreButton = $('<div class="ui primary button fontdiv textPreview loadMoreButton"><i class="refresh icon"></i>Load more fonts...</div>')
             .click(onLoadMoreClicked);
         container.append($loadMoreButton);
     }
