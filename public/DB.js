@@ -48,15 +48,6 @@ function loadSettings(data) {
     var successFunc = function (data, status, jqXHR) {
         {
             widgetSettings = data;
-            widgetSettings.categoryDisplaySettings = {
-                All        : "true",
-                Serif      : "false",
-                SansSerif  : "false",
-                Monospace  : "false",
-                Handwriting: "false",
-                Display    : "false"
-            };
-            //console.log('Settings : load status: ' + status + '. Data :' + JSON.stringify(widgetSettings));
             refreshUI();
             refreshFontList();
             bindEvents();
