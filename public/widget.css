@@ -42,6 +42,7 @@ body
     /*width    : calc(100% - 57px);*/
     width      : 85%;
     min-height : 80px;
+    max-width  : calc(100% - 90px);
 
 }
 
@@ -55,7 +56,7 @@ body
     .textRibbon
     {
         background            : url('./img/AnyFont-Ribbon-Straight.png') no-repeat;
-        background-size       : contain;
+        background-size       : 35%;
         background-position-x : 100%;
         min-height            : 50px !important;
 
