@@ -6,12 +6,12 @@
 #ribbon
 {
     background      : url('./img/AnyFont-Ribbon-Right.png') no-repeat;
-    /*border: 3px solid red;*/
-    height          : 60px;
-    background-size : 70px;
-    width           : 57px;
+    border          : 1px solid red;
+    height          : 100%;
+    background-size : contain;
+    width           : 10%;
     position        : absolute;
-    left            : 0;
+    right           : 0;
 }
 
 body
