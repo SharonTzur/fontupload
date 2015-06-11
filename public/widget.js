@@ -5,7 +5,7 @@ var ribbon = null;
 var textBox = null;
 function showRibbon () {
     ribbon.show();
-    textBox.addClass('textRibon');
+    textBox.addClass('textRibbon');
 }
 function load(data) {
 

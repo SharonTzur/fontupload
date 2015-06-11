@@ -1,4 +1,10 @@
+
 #textBox p
+{
+    margin : 0;
+}
+
+#widgetBody
 {
     margin : 0;
 }
@@ -6,12 +12,11 @@
 #ribbon
 {
     background      : url('./img/AnyFont-Ribbon-Right.png') no-repeat;
-    border          : 1px solid red;
-    height          : 100%;
     background-size : contain;
     width           : 10%;
-    position        : absolute;
-    right           : 0;
+    float           : left;
+    /* display: list-item; */
+    min-height      : 80px;
 }
 
 body
@@ -19,8 +24,28 @@ body
     /* position: absolute; */
 }
 
-.textRibon
+.textRibbon
 {
-    position : absolute;
-    width    : calc(100% - 57px);
+}
+
+#widget-container
+{
+    float : left;
+    width : 100%;
+}
+
+#textBox
+{
+    float : left;
+    /*width    : calc(100% - 57px);*/
+    width : 90%;
+}
+
+@media all and (max-height : 200px)
+{
+    #ribbon
+    {
+        background      : url('./img/AnyFont-Ribbon-Straight.png') no-repeat;
+        background-size : contain;
+    }
 }
