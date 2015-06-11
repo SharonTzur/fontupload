@@ -1,22 +1,26 @@
 #textBox p
 {
-    margin: 0;
+    margin : 0;
 }
-#ribbon {
-    background: url('./img/ribbon.png') no-repeat;
+
+#ribbon
+{
+    background      : url('./img/ribbon.png') no-repeat;
     /*border: 3px solid red;*/
-    height: 60px;
-    background-size: 70px;
-    width: 57px;
-    position: absolute;
-    right: 0;
+    height          : 60px;
+    background-size : 70px;
+    width           : 57px;
+    position        : absolute;
+    left            : 0;
 }
+
 body
 {
     /* position: absolute; */
 }
 
-.textRibon {
-    position: absolute;
-    width: calc(100% - 57px);
+.textRibon
+{
+    position : absolute;
+    width    : calc(100% - 57px);
 }
