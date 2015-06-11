@@ -9,15 +9,19 @@
     margin : 0;
 }
 
+/*
 #ribbon
 {
-    background      : url('./img/AnyFont-Ribbon-Right.png') no-repeat;
-    background-size : contain;
-    width           : 10%;
-    float           : left;
-    /* display: list-item; */
-    min-height      : 80px;
+    background       : url('./img/AnyFont-Ribbon-Right.png') no-repeat;
+    background-size  : contain;
+    width            : 10%;
+    float            : left;
+    /!* display: list-item; *!/
+    min-height       : 80px;
+    background-color : deeppink;
+
 }
+*/
 
 body
 {
@@ -26,26 +30,25 @@ body
 
 .textRibbon
 {
-}
+    background            : url('./img/AnyFont-Ribbon-Right.png') no-repeat;
+    background-size       : contain;
+    background-position-x : 100%;
 
-#widget-container
-{
-    float : left;
-    width : 100%;
 }
 
 #textBox
 {
-    float : left;
+    float      : left;
     /*width    : calc(100% - 57px);*/
-    width : 90%;
+    width      : 90%;
+    min-height : 80px;
+
 }
 
 @media all and (max-height : 200px)
 {
-    #ribbon
+    .textRibbon
     {
         background      : url('./img/AnyFont-Ribbon-Straight.png') no-repeat;
-        background-size : contain;
     }
 }
