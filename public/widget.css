@@ -38,22 +38,26 @@ body
 
 #textBox
 {
-    float      : left;
+    /*float      : left;*/
     /*width    : calc(100% - 57px);*/
-    width      : 90%;
+    width      : 85%;
     min-height : 80px;
 
+}
+
+#widget-container
+{
+    width : 100%;
 }
 
 @media all and (max-height : 200px)
 {
     .textRibbon
     {
-        background      : url('./img/AnyFont-Ribbon-Straight.png') no-repeat;
+        background            : url('./img/AnyFont-Ribbon-Straight.png') no-repeat;
         background-size       : contain;
         background-position-x : 100%;
-        min-height: 50px !important;
-
+        min-height            : 50px !important;
 
     }
 }
