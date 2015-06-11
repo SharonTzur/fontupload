@@ -33,9 +33,9 @@
 		        ejs = false;
 
 
-        		var instanceId = 22,
-        		    compId     = 22,
-				        SERVER_URL = 'http://localhost:8080';
+        		var instanceId = 100,
+        		    compId     = 100,
+				        SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 //        var instanceId = Wix.Utils.getInstanceId(),
 //                compId = Wix.Utils.getCompId();
 
