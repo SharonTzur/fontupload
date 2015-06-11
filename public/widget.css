@@ -50,5 +50,10 @@ body
     .textRibbon
     {
         background      : url('./img/AnyFont-Ribbon-Straight.png') no-repeat;
+        background-size       : contain;
+        background-position-x : 100%;
+        min-height: 50px !important;
+
+
     }
 }
