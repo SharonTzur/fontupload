@@ -102,6 +102,15 @@ var upload = {
                         uploadedItems[name].el.slideDown();
                         var jqXHR = data.submit().done(function (e, data)
                         {
+                            Wix.UI.create({ctrl: 'Popup',
+                                options: {
+                                    modal:false,
+                                    content : name + ' was uploaded',
+                                    buttonSet: 'okCancel',
+                                    fixed:true,
+                                    title:'Modal'
+                                }});
+
                             q.sendParse(e.data, e.name, function ()
                             {
                                 q.loadAndUpdateDropdown(uploadedItems[e.origfile].index, {
@@ -111,21 +120,15 @@ var upload = {
                                 }, q, function ()
                                 {
                                     uploadProgress.inc(uploadedItems[e.origfile].el, 1.3333);
-                                    $('.fontdiv[data-allfontsidx="' + uploadedItems[name].index + '"] .textPreview .text').fadeIn();
+                                    uploadedItems[e.origfile].el.find('.loading').fadeIn();
+                                    //uploadedItems[e.origi]
+                                    //$('.fontdiv[data-allfontsidx="' + uploadedItems[name].index + '"] .textPreview .text').fadeIn();
                                     restInput();
                                 });
 
                             });
 
                             console.log(e, data);
-                            Wix.UI.create({ctrl: 'Popup',
-                                options: {
-                                    modal:false,
-                                    content : name + ' was uploaded',
-                                    buttonSet: 'okCancel',
-                                    fixed:true,
-                                    title:'Modal'
-                                }});
 
 
                         }).fail(function (e, data)

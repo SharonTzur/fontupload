@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+
 	<meta charset="UTF-8">
 	<title></title>
 	<style>
@@ -11,7 +17,6 @@
 			float  : left;
 		}
 	</style>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
 
 	<script>
 		$(document).ready(function ()
@@ -23,17 +28,32 @@
 						var iframe = $('<iframe src="' + 'widget.html' + '" ></iframe>');
 						$holder.append(iframe);
 					}
-			)
+			);
+
+			$(function () {
+				$(".resizable").resizable({
+					animate: false,
+					animateEasing: 'swing',
+					imateDuration: 500
+				});
+			});
+
 		});
 	</script>
+
+	<link href="widget.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div style="width: 100%">
 	<div style="display: inline-block">
-		<iframe style="" src="settings.html"></iframe>
+		<iframe id="settingsiframe" style="" src="settings.html"></iframe>
 	</div>
 	<div id='holder' style="display: inline-block;">
-		<iframe src="widget.html"></iframe>
+		<div class="resizable">
+		<iframe id='widgetiframe' src="widget.html"></iframe>
+
+		</div>
+
 	</div>
 	<br> <input type="button" id="refButton" value="Refresh Widget">
 </div>

@@ -9,40 +9,22 @@
     margin : 0;
 }
 
-/*
-#ribbon
-{
-    background       : url('./img/AnyFont-Ribbon-Right.png') no-repeat;
-    background-size  : contain;
-    width            : 10%;
-    float            : left;
-    /!* display: list-item; *!/
-    min-height       : 80px;
-    background-color : deeppink;
-
-}
-*/
 
 body
 {
     /* position: absolute; */
 }
 
-.textRibbon
+#ribbon-container
 {
-    background            : url('./img/AnyFont-Ribbon-Right.png') no-repeat;
+    background-image      : url('./img/AnyFont-Ribbon-Right.png');
     background-size       : contain;
     background-position-x : 100%;
-
 }
 
 #textBox
 {
-    /*float      : left;*/
-    /*width    : calc(100% - 57px);*/
-    width      : 85%;
-    min-height : 80px;
-    max-width  : calc(100% - 90px);
+    width: calc(100% - 90px);
 
 }
 
@@ -51,14 +33,48 @@ body
     width : 100%;
 }
 
-@media all and (max-height : 200px)
+#ribbon-container
 {
-    .textRibbon
-    {
-        background            : url('./img/AnyFont-Ribbon-Straight.png') no-repeat;
-        background-size       : 35%;
-        background-position-x : 100%;
-        min-height            : 50px !important;
+    height: 100%;
+    position: absolute;
+    width: 50%;
+    right: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    max-width: 90px;
+}
 
+@media all and (max-height : 100px)
+{
+    #ribbon-container
+    {
+        background-image : url('./img/AnyFont-Ribbon-Straight.png');
+        max-width: 84px;
     }
 }
+
+@media all and (max-width : 450px)
+{
+    #ribbon-container
+    {
+        background-image : url('./img/AnyFont-Ribbon-Straight.png');
+        max-width: 84px;
+    }
+}
+
+.ui-resizable-helper {
+    border: 1px dotted gray;
+}
+.resizable {
+    display: block;
+    width: 400px;
+    height: 400px;
+    padding: 30px;
+    border: 2px solid gray;
+    overflow: hidden;
+    position: relative;
+}
+iframe {
+}
+
+
