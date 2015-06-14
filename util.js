@@ -47,7 +47,7 @@ module.exports = {
             return true;
         else
         {
-            console.log(newSignature.substring(0, newSignature.length - 1) + ' not equal ' +signature.replace(/_/g,'/').replace(/-/g, '+') )
+            console.log(newSignature.substring(0, newSignature.length - 1) + ' not equal ' +signature.replace(/_/g,'/').replace(/-/g, '+') );
             return false;
         }
 

@@ -14,7 +14,6 @@ module.exports = {
 
     wix: {},
 
-
     init: function (mongoose) {
         var self = this;
 
