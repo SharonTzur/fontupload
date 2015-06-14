@@ -26,6 +26,8 @@ router.get('/', function (req, res) {
             //var data = data._doc;
             var code = data.code;
             delete data.code;
+            res.sendFile(file + '.html');
+/*
             res.render(file + '.ejs', {
                 compId    : req.query.origCompId || req.query.compId ,
                 instanceId: req.query.instanceId,
@@ -35,6 +37,7 @@ router.get('/', function (req, res) {
                 server: 'http://fontupload.herokuapp.com'
                 //server: 'http://84.109.234.163:8080'
             })
+*/
         });
     }
     else
