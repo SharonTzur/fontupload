@@ -32,8 +32,8 @@ router.get('/', function (req, res) {
                 data      : JSON.stringify(data), //.replace(/\\"/g, "\\'")
                 code: code,
                 paid: data.paid,
-                //server: 'http://fontupload.herokuapp.com'
-                server: 'http://84.109.234.163:8080'
+                server: 'http://fontupload.herokuapp.com'
+                //server: 'http://84.109.234.163:8080'
             })
         });
     }
