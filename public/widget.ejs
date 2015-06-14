@@ -37,10 +37,19 @@
 
         var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 
-        //        var instanceId = 200,
-        //                compId = 200;
-        var instanceId = Wix.Utils.getInstanceId(),
-                compId = Wix.Utils.getCompId();
+        try
+        {
+            instanceId = Wix.Utils.getInstanceId();
+            compId = Wix.Utils.getOrigCompId();
+
+        }
+        catch (e)
+        {
+            console.log('error :');
+            console.log(e);
+            instanceId = 203;
+            compId = 201;
+        }
 
 
         $(document).ready(function ()

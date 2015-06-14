@@ -24,10 +24,24 @@
 
 	<script src="utils.js"></script>
 	<script>
-//		var instanceId = Wix.Utils.getInstanceId(),
-//				compId     = Wix.Utils.getOrigCompId();
-				var instanceId = 203,
-						compId = 201;
+		var instanceId,
+				compId;
+
+		try
+		{
+			instanceId = Wix.Utils.getInstanceId();
+			compId = Wix.Utils.getOrigCompId();
+
+		}
+		catch (e)
+		{
+			console.log('error :');
+			console.log(e);
+			instanceId = 203;
+			compId = 201;
+		}
+
+
 		var ejs = false;
 
 		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
@@ -128,27 +142,28 @@
 		<div class="logo">
 			<div class="logo-image"></div>
 		</div>
-<div id="intro-text">
-	<div style="margin-bottom: 5px;"><strong>Welcome to AnyFont !<br></strong></div>
-	<ul>
-		<li>
-			Create beautiful title and paragraph typography.
-		</li>
-		<li>
-		Select from over 650 fonts and 1200 font variants.
-		</li>
-		<li>
-			Use the font uploader to upload your own font file.
-		</li>
-		<li>
-			Use multiple fonts and styles in your title or paragraph.
-		</li>
-	</ul>
-		<br>
+		<div id="intro-text">
+			<div style="margin-bottom: 5px;"><strong>Welcome to AnyFont !<br></strong></div>
+			<ul>
+				<li>
+					Create beautiful title and paragraph typography.
+				</li>
+				<li>
+					Select from over 650 fonts and 1200 font variants.
+				</li>
+				<li>
+					Use the font uploader to upload your own font file.
+				</li>
+				<li>
+					Use multiple fonts and styles in your title or paragraph.
+				</li>
+			</ul>
+			<br>
 
-		<br>
-		<button id='upgrade-button' class="uilib-btn btn-upgrade">Upgrade this App</button>
-</div>	</header>
+			<br>
+			<button id='upgrade-button' class="uilib-btn btn-upgrade">Upgrade this App</button>
+		</div>
+	</header>
 
 	<div id='loadingIndicator' style="">
 		<div id="loading-logo"></div>
@@ -166,7 +181,7 @@
 			<li data-tab="editText">
 				<div>Edit Text</div>
 			</li>
-			<li  data-tab="selectFont">
+			<li data-tab="selectFont">
 				<div>Browse Fonts</div>
 			</li>
 			<li data-tab="upload">
@@ -175,14 +190,14 @@
 
 		</ul>
 
-		<div  class="tab-content">
+		<div class="tab-content">
 			<div data-tab="editText" class="tab-pane">
 				<textarea id="redactor" name="content"></textarea>
 			</div>
 			<div id="selectFont" data-tab="selectFont" class="tab-pane">
 
 				<div id="font-container-header">
-				Categories
+					Categories
 					<div class="ui buttons">
 						<div data-cat='All' class="compact ui toggle button mini catButton">
 							All
@@ -215,7 +230,8 @@
 
 								<div class="ui search" id="searchFont">
 									<div class="ui icon input">
-										<input class="prompt" type="text" placeholder="Search fonts"> <i class="search icon"></i>
+										<input class="prompt" type="text" placeholder="Search fonts"> <i
+											class="search icon"></i>
 									</div>
 								</div>
 
@@ -307,14 +323,10 @@
 					<div id="fontUpload" class="box">
 						<div class="upload-header"> Upload Font Files</div>
 						<div class="upload-font-form-container">
-							<form id="upload" method="post"
-							      enctype="multipart/form-data">
+							<form id="upload" method="post" enctype="multipart/form-data">
 								<div class="drop">
-									<div class="upload-text">You can upload your own font file.
-										<br>
-										<strong style="line-height: 25px;">
-											Drag &amp; Drop Your files below or
-										</strong>
+									<div class="upload-text">You can upload your own font file. <br> <strong
+											style="line-height: 25px;"> Drag &amp; Drop Your files below or </strong>
 
 										<a>Browse</a> <input id="fileInput" type="file" name="upl" multiple
 										                     style="display: none;"/>

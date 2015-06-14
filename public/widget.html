@@ -34,18 +34,27 @@
 		//        var SERVER_URL = 'http://84.109.234.163:8080';
 		var loadedFonts = [],
 				ejs = false;
+		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 
+		try
+		{
+			instanceId = Wix.Utils.getInstanceId();
+			compId = Wix.Utils.getOrigCompId();
 
-		var instanceId = 200,
-				compId = 200,
-				SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
-		//        var instanceId = Wix.Utils.getInstanceId(),
-		//                compId = Wix.Utils.getCompId();
+		}
+		catch (e)
+		{
+			console.log('error :');
+			console.log(e);
+			instanceId = 203;
+			compId = 201;
+		}
 
 
 		$(document).ready(function ()
 		{
-			$('.widget-container').resize(function(){
+			$('.widget-container').resize(function ()
+			{
 				alert('rez');
 				debugger;
 			});
