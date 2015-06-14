@@ -37,8 +37,8 @@ function load(data) {
             type   : "POST",
             url    : SERVER_URL + "/load/",
             data   : {
-                instanceId: instanceId,
-                compId    : compId
+                instanceId: instanceId || Wix.Utils.getIntanceId(),
+                compId    : compId || Wix.Utils.getCompId()
             },
             success: function (response) {
                 $('#textBox').html(response.code);

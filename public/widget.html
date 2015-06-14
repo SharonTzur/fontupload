@@ -43,25 +43,20 @@
 		{
 			instanceId = Wix.Utils.getInstanceId();
 			compId = Wix.Utils.getCompId();
-			ejs = true;
 
 		}
 		catch (e)
 		{
 			instanceId = 214;
 			compId = 202;
-			ejs = false;
 		}
+		ejs = false;
 
 		console.info('instanceId');
 		console.info(instanceId);
 
 		console.info('compId');
 		console.info(compId);
-
-		console.info('ejs');
-		console.info(ejs);
-
 
 		$(document).ready(function ()
 		{
@@ -74,7 +69,7 @@
 <body id="widgetBody">
 <div id="widget-container" class="widget-container">
 	<div id="ribbon-container"></div>
-	<div class='textBox' id='textBox'><%- code %></div>
+	<div class='textBox' id='textBox'></div>
 	<!--<div id="ribbon" style="display: none;"></div>-->
 </div>
 </body>
