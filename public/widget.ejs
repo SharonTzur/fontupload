@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        (function ()
+        {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                    '://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+
     <!--Wix-->
     <script type="text/javascript" src="http://sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
     <!--jQuery -->
@@ -9,46 +23,44 @@
     <script src="utils.js"></script>
     <script src="fonts.js"></script>
     <script src="upload.js"></script>
+
     <script src="globals.js"></script>
     <!--CSS -->
     <link rel="stylesheet" type="text/css" href="widget.css">
-    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
     <script src="widget.js"></script>
+
     <script>
 
-        //        var SERVER_URL = 'http://84.109.234.163:3020';
-        var loadedFonts = [];
+        //        var SERVER_URL = 'http://84.109.234.163:8080';
+        var loadedFonts = [],
+                ejs = false;
 
+        var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 
-        //		var instanceId = 'Local-InstnaceId-rotem931',
-        //		    compId     = 'Local-compId3-rotem931';
-        //        var instanceId = Wix.Utils.getInstanceId(),
-        //                compId = Wix.Utils.getCompId();
-        var instanceId = '<%= instanceId %>',
-                compId = '<%= compId %>',
-                paid = '<%= paid %>',
-                SERVER_URL = '<%= server %>',
-                ejs = true;
+        //        var instanceId = 200,
+        //                compId = 200;
+        var instanceId = Wix.Utils.getInstanceId(),
+                compId = Wix.Utils.getCompId();
 
 
         $(document).ready(function ()
         {
-
+            $('.widget-container').resize(function ()
+            {
+                alert('rez');
+                debugger;
+            });
             buildAllFontsArray();
-            var data = JSON.parse('<%- data %>');
-            data.code = $('#textBox').html();
-            data.paid = paid == 'true';
-            load(data);
+            load();
         });
     </script>
 
 </head>
 <body id="widgetBody">
-    <div id="widget-container2">
-        <div id="widget-container1">
-            <div class='textBox' id='textBox'><%- code %></div>
-            <div id="ribbon" style="display: none;"></div>
-        </div>
-    </div>
+<div id="widget-container" class="widget-container">
+    <div id="ribbon-container"></div>
+    <div class='textBox' id='textBox'><%- code %></div>
+    <!--<div id="ribbon" style="display: none;"></div>-->
+</div>
 </body>
 </html>
