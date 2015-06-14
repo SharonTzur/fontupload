@@ -34,6 +34,7 @@
 			compId = Wix.Utils.getOrigCompId();
 			ejs = true;
 
+
 		}
 		catch (e)
 		{
@@ -41,16 +42,6 @@
 			compId = 201;
 			ejs = false;
 		}
-
-		console.info('instanceId');
-		console.info(instanceId);
-
-		console.info('compId');
-		console.info(compId);
-
-		console.info('ejs');
-		console.info(ejs);
-
 
 		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 

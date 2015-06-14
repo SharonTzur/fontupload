@@ -11,6 +11,7 @@ function showRibbon () {
 function load(data) {
     var successFunc = function (data, status, jqXHR) {
         {
+            console.info('data.paid:' + data.paid);
             ribbonContainer = $('#ribbon-container');
             ribbon = $('#ribbon');
             textBox = $('#textBox');

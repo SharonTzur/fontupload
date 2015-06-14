@@ -10,7 +10,9 @@ module.exports = {
     S3_BUCKET: process.env.S3_BUCKET,
     uristring: process.env.MONGOLAB_URI,
 
-    trialPeriod : 1000,
+    //trialPeriod : 1209600000,     //14 days
+    //trialPeriod : 2592000000,       //30 days
+    trialPeriod : 600000,           //10 minutes
 
     wix: {},
 
