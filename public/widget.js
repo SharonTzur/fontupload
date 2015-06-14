@@ -2,17 +2,17 @@
  * Created by TV on 5/6/2015.
  */
 var ribbon = null;
-var widgetContainer = null;
+var ribbonContainer = null;
 var textBox = null;
 function showRibbon () {
     ribbon.show();
-    widgetContainer.addClass('textRibbon');
+    ribbonContainer.addClass('textRibbon');
 }
 function load(data) {
 
     var successFunc = function (data, status, jqXHR) {
         {
-            widgetContainer = $('#widget-container');
+            ribbonContainer = $('#ribbon-container');
             ribbon = $('#ribbon');
             textBox = $('#textBox');
             console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));

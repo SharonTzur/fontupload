@@ -9,13 +9,12 @@
     margin : 0;
 }
 
-
 body
 {
     /* position: absolute; */
 }
 
-#ribbon-container
+#ribbon-container.textRibbon
 {
     background-image      : url('./img/AnyFont-Ribbon-Right.png');
     background-size       : contain;
@@ -24,8 +23,7 @@ body
 
 #textBox
 {
-    width: calc(100% - 90px);
-
+    width : calc(100% - 90px);
 }
 
 #widget-container
@@ -35,46 +33,51 @@ body
 
 #ribbon-container
 {
-    height: 100%;
-    position: absolute;
-    width: 50%;
-    right: 0;
-    background-size: contain;
-    background-repeat: no-repeat;
-    max-width: 90px;
+    height            : 100%;
+    position          : absolute;
+    width             : 50%;
+    right             : 0;
+    background-size   : contain;
+    background-repeat : no-repeat;
+    max-width         : 90px;
 }
 
 @media all and (max-height : 100px)
 {
-    #ribbon-container
+    #ribbon-container.textRibbon
     {
         background-image : url('./img/AnyFont-Ribbon-Straight.png');
-        max-width: 84px;
+        max-width        : 84px;
     }
 }
 
 @media all and (max-width : 450px)
 {
-    #ribbon-container
+    #ribbon-container.textRibbon
     {
         background-image : url('./img/AnyFont-Ribbon-Straight.png');
-        max-width: 84px;
+        max-width        : 84px;
     }
 }
 
-.ui-resizable-helper {
-    border: 1px dotted gray;
+.ui-resizable-helper
+{
+    border : 1px dotted gray;
 }
-.resizable {
-    display: block;
-    width: 400px;
-    height: 400px;
-    padding: 30px;
-    border: 2px solid gray;
-    overflow: hidden;
-    position: relative;
+
+.resizable
+{
+    display  : block;
+    width    : 400px;
+    height   : 400px;
+    padding  : 30px;
+    border   : 2px solid gray;
+    overflow : hidden;
+    position : relative;
 }
-iframe {
+
+iframe
+{
 }
 
 
