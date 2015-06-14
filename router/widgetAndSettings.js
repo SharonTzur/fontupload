@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
             //var data = data._doc;
             var code = data.code;
             delete data.code;
-            res.sendFile(file + '.html');
+            res.send(file + '.html');
 /*
             res.render(file + '.ejs', {
                 compId    : req.query.origCompId || req.query.compId ,
