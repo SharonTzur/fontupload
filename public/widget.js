@@ -9,7 +9,6 @@ function showRibbon () {
     ribbonContainer.addClass('textRibbon');
 }
 function load(data) {
-
     var successFunc = function (data, status, jqXHR) {
         {
             ribbonContainer = $('#ribbon-container');
