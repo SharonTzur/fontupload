@@ -32,22 +32,35 @@
     <script>
 
         //        var SERVER_URL = 'http://84.109.234.163:8080';
-        var loadedFonts = [],
-                ejs = false;
-
+        var loadedFonts = [];
         var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
+
+        var instanceId,
+                compId,
+                ejs;
 
         try
         {
             instanceId = Wix.Utils.getInstanceId();
             compId = Wix.Utils.getOrigCompId();
+            ejs = true;
 
         }
         catch (e)
         {
             instanceId = 203;
             compId = 201;
+            ejs = false;
         }
+
+        console.info('instanceId');
+        console.info(instanceId);
+
+        console.info('compId');
+        console.info(compId);
+
+        console.info('ejs');
+        console.info(ejs);
 
 
         $(document).ready(function ()

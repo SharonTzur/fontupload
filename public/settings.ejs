@@ -25,22 +25,32 @@
 	<script src="utils.js"></script>
 	<script>
 		var instanceId,
-				compId;
+				compId,
+				ejs;
 
 		try
 		{
 			instanceId = Wix.Utils.getInstanceId();
 			compId = Wix.Utils.getOrigCompId();
+			ejs = true;
 
 		}
 		catch (e)
 		{
 			instanceId = 203;
 			compId = 201;
+			ejs = false;
 		}
 
+		console.info('instanceId');
+		console.info(instanceId);
 
-		var ejs = false;
+		console.info('compId');
+		console.info(compId);
+
+		console.info('ejs');
+		console.info(ejs);
+
 
 		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 
