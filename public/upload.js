@@ -77,8 +77,17 @@ var upload = {
                     // Automatically upload the file once it is added to the queue
                     if (wasUploaded(name))
                     {
-                        console.log('was uploaded');
-                        alert(name + 'was uploaded');
+                        //console.log('was already uploaded');
+                        //alert(name + 'was uploaded');
+
+                        Wix.UI.create({ctrl: 'Popup',
+                            options: {
+                                modal:false,
+                                content : name + ' was uploaded',
+                                buttonSet: 'okCancel',
+                                fixed:true,
+                                title:'Modal'
+                            }});
                         restInput();
                         return;
                     }
@@ -102,6 +111,7 @@ var upload = {
                         uploadedItems[name].el.slideDown();
                         var jqXHR = data.submit().done(function (e, data)
                         {
+                            alert('upload ok');
                             Wix.UI.create({ctrl: 'Popup',
                                 options: {
                                     modal:false,
