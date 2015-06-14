@@ -27,6 +27,7 @@
         var instanceId = '<%= instanceId %>',
                 compId = '<%= compId %>',
                 paid = '<%= paid %>',
+                code = '<%= code %>',
                 SERVER_URL = '<%= server %>',
                 ejs = true;
 
@@ -41,7 +42,7 @@
 
             buildAllFontsArray();
             var data = JSON.parse('<%- data %>');
-            data.code = $('#textBox').html();
+            data.code = code;
             data.paid = paid == 'true';
             load(data);
         });
