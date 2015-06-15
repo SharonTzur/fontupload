@@ -1,5 +1,21 @@
 //region General
 
+try
+{
+    instanceId = Wix.Utils.getInstanceId();
+    compId = Wix.Utils.getOrigCompId();
+}
+catch (e)
+{
+    instanceId = 218;
+    compId = 203;
+}
+ejs = false;
+console.info('instanceId');
+console.info(instanceId);
+
+console.info('compId');
+console.info(compId);
 
 
 //endregion General
@@ -11913,7 +11929,8 @@ var
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,
     fontsCompletelyLoadedIdx  = [],
-    fontListHeight;
+    trialTime,
+    isTrial;
 
 //endregion Fonts
 

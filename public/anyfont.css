@@ -1557,3 +1557,16 @@ header#top-header.loading
     text-align     : center;
 
 }
+
+#last-item
+{
+    font-weight : bold;
+    display : none;
+}
+
+#last-item a
+{
+    color : #0077DD;
+    text-decoration: underline;
+}
+

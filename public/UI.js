@@ -10,7 +10,7 @@ function onCatButtonPressed(e)
 {
     Filters.clearFilters();
 
-        if (e!='keyUp')
+    if (e != 'keyUp')
         $('#searchFont').find('input').val('');
 
     var $catButtons = $('.catButton');
@@ -45,6 +45,53 @@ function refreshUI()
         refreshWidget();
     });
 
+    if (!widgetSettings.paid)
+    {
+
+        if (widgetSettings.isTrial)
+        {
+            var daysLeft = Math.ceil(trialTime / (24 * 60 * 60 * 1000));
+            $('#last-item').show().html('Trial ends in ' + daysLeft + ' days. <a id="upgrade-link">Upgrade now</a>');
+        }
+        else
+        {
+            $('#last-item').show().html('Trial ends in ' + daysLeft + ' days. <a id="upgrade-link">Upgrade now</a>');
+        }
+    }
+
+    function bindUpgradeButtons()
+    {
+        $('#upgrade-button, #upgrade-link').click(function (e)
+        {
+            console.log('upgrade');
+            $.ajax({
+                url    : SERVER_URL + '/test/subscribe',
+                data   : {instanceId: instanceId},
+                success: function (response)
+                {
+                    console.log(response);
+                }
+            });
+            //console.log('upgrade');
+            Wix.Settings.openBillingPage();
+        });
+        $($('button.btn-upgrade')[1]).click(function (e)
+        {
+            console.log('downgrade');
+            $.ajax({
+                url    : SERVER_URL + '/test/unsubscribe',
+                data   : {instanceId: instanceId},
+                success: function (response)
+                {
+                    console.log(response);
+                }
+            });
+            //console.log('upgrade');
+            Wix.Settings.openBillingPage();
+        });
+    }
+
+    bindUpgradeButtons();
     $('.font-selected').removeClass('font-selected');
     var fontElement = document.getElementById('font-' + widgetSettings.family);
     $(fontElement).addClass('font-selected');

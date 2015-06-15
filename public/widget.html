@@ -39,25 +39,6 @@
 				compId,
 				ejs;
 
-		try
-		{
-			instanceId = Wix.Utils.getInstanceId();
-			compId = Wix.Utils.getCompId();
-
-		}
-		catch (e)
-		{
-			instanceId = 214;
-			compId = 202;
-		}
-		ejs = false;
-
-		console.info('instanceId');
-		console.info(instanceId);
-
-		console.info('compId');
-		console.info(compId);
-
 		$(document).ready(function ()
 		{
 			buildAllFontsArray();

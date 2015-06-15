@@ -112,12 +112,13 @@ module.exports = {
             }
         }
         var code = cpid ? cpid.code : db.defaultCode;
-        debugger;
         return {
             code: code,
             uploadedFonts: inst.uploadedFonts,
             _id: inst._id,
-            paid: (inst.isPaid) ? true : (inst.created.getTime() + globals.trialPeriod) > Date.now()
+            paid: (inst.isPaid),
+            isTrial: (inst.created.getTime() + globals.trialPeriod) > Date.now(),
+            trialTime : inst.created.getTime() + globals.trialPeriod - Date.now()
         };
     },
 

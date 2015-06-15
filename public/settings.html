@@ -29,18 +29,6 @@
 				compId,
 				ejs;
 
-		try
-		{
-			instanceId = Wix.Utils.getInstanceId();
-			compId = Wix.Utils.getOrigCompId();
-
-		}
-		catch (e)
-		{
-			instanceId = 203;
-			compId = 201;
-		}
-		ejs = false;
 
 		console.info('instanceId');
 		console.info(instanceId);
@@ -162,8 +150,7 @@
 				<li>
 					Use the font uploader to upload your own font file.
 				</li>
-				<li>
-					Use multiple fonts and styles in your title or paragraph.
+				<li id="last-item">
 				</li>
 			</ul>
 			<br>
