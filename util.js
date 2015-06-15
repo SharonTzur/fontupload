@@ -112,6 +112,7 @@ module.exports = {
             }
         }
         var code = cpid ? cpid.code : db.defaultCode;
+        debugger;
         return {
             code: code,
             uploadedFonts: inst.uploadedFonts,
