@@ -12,13 +12,15 @@ function load(data) {
     var successFunc = function (data, status, jqXHR) {
         {
             console.info('data.paid:' + data.paid);
+            console.info('data.trial:' + data.isTrial);
+            console.info('data.trialTime:' + data.trialTime);
             ribbonContainer = $('#ribbon-container');
             ribbon = $('#ribbon');
             textBox = $('#textBox');
             console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));
 //					refreshLocalWidget(data, $('#textBox'));
 //					refreshLocalWidget(data, $('.redactor-editor'));
-            if (!data.paid)
+            if (!data.paid && !data.isTrial)
                 showRibbon();
             gotCode(data.code);
             if (data.uploadedFonts)

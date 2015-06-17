@@ -58,6 +58,10 @@ function refreshUI()
             $('#last-item').show().html('Trial ends in ' + daysLeft + ' days. <a id="upgrade-link">Upgrade now</a>');
         }
     }
+    else
+    {
+        $('#last-item').show().addClass('paid').html('Premium Features Enabled.');
+    }
 
     function bindUpgradeButtons()
     {

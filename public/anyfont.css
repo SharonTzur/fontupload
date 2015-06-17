@@ -1558,6 +1558,12 @@ header#top-header.loading
 
 }
 
+#last-item.paid
+{
+    color : #3B83C0;
+}
+
+
 #last-item
 {
     font-weight : bold;
@@ -1566,7 +1572,7 @@ header#top-header.loading
 
 #last-item a
 {
-    color : #0077DD;
+    color : #3B83C0;
     text-decoration: underline;
 }
 
