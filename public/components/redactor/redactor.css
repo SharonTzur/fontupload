@@ -104,9 +104,9 @@ body .redactor-box-fullscreen {
   outline: none;
   white-space: normal;
   border: 1px solid #eee;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  /*font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;*/
   font-size: 14px;
-  line-height: 1.6em;
+  /*line-height: 1.6em;*/
 }
 .redactor-editor:focus {
   outline: none;
@@ -784,7 +784,7 @@ body .redactor-box-fullscreen {
 .redactor-editor blockquote,
 .redactor-editor pre {
   font-size: 14px;
-  line-height: 1.6em;
+  /*line-height: 1.6em;*/
 }
 .redactor-editor a {
   color: #15c;
@@ -811,7 +811,7 @@ body .redactor-box-fullscreen {
 .redactor-editor blockquote,
 .redactor-editor pre {
   margin: 0;
-  margin-bottom: 15px;
+  /*margin-bottom: 15px;*/
   border: none;
   background: none;
   box-shadow: none;
