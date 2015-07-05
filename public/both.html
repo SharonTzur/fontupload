@@ -23,7 +23,7 @@
 		{
 			$('#refButton').click(function ()
 					{
-						var $holder = $("#holder");
+						var $holder = $("#holder").find('.resizable');
 						$holder.find("iframe").remove();
 						var iframe = $('<iframe src="' + 'widget.html' + '" ></iframe>');
 						$holder.append(iframe);
