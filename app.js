@@ -71,7 +71,7 @@ mongodb.once('open', function () {
     db.init(this.base);
 });
 
-app.post('gems/app', function(req, res){
+app.post('gemsapp', function(req, res){
     res.send('Hello');
     //res.sendFile('./public/gems/index.html')
 });
