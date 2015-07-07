@@ -48,9 +48,6 @@ app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
-app.post('gems/app', function(req, res){
-    res.send('hello world of FB');
-});
 
 app.set('port', process.env.PORT || 8080);
 
@@ -74,3 +71,6 @@ mongodb.once('open', function () {
     db.init(this.base);
 });
 
+app.post('gems/app', function(req, res){
+    res.send('hello world');
+});
