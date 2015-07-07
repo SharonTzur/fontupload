@@ -82,3 +82,18 @@ app.post('/gemsapp', function(req, res){
     //res.send('Hello');
     res.sendFile('./public/gems/index.html',options)
 });
+app.get('/gemsapp', function(req, res){
+
+
+    var options = {
+        root: __dirname + '/',
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    //res.send('Hello');
+    res.sendFile('./public/gems/index.html',options)
+});
