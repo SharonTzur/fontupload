@@ -224,9 +224,8 @@
             createDropdownItem: function (index, fontFamily)
             {
                 var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + fontFamily + '</div>');
-
                 return $('<div class="item original" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                fontFamily +
+                    fontFamily +
                 '</div>').prepend(fontFamilyLabel);
 
             },

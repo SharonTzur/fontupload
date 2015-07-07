@@ -1,7 +1,7 @@
 
 #textBox p
 {
-    margin : 0;
+    /*margin : 0;*/
 }
 
 #widgetBody
@@ -80,4 +80,10 @@ iframe
 {
 }
 
-
+.textBox p
+{
+    -webkit-margin-before : 0em;
+    -webkit-margin-after  : 0em;
+    /*-webkit-margin-start  : 0px;*/
+    /*-webkit-margin-end    : 0px;*/
+}

@@ -7,15 +7,15 @@ try
 }
 catch (e)
 {
-    instanceId = 225;
+    instanceId = 'demo15';
     compId = 211;
 }
 ejs = false;
-console.info('instanceId');
-console.info(instanceId);
-
-console.info('compId');
-console.info(compId);
+//console.info('instanceId');
+//console.info(instanceId);
+//
+//console.info('compId');
+//console.info(compId);
 
 
 //endregion General
@@ -11923,8 +11923,8 @@ var
     lastDisplayedIndex        = 0,
     lastLoadedIndex           = 0,
     currentViewVariantIndexes = null,
-    fontsToAddOnScroll        = 30,
-    initiallyLoadedFonts      = 30,
+    fontsToAddOnScroll        = 80,
+    initiallyLoadedFonts      = 80,
     //fontsToAddOnScroll        = 200,
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,

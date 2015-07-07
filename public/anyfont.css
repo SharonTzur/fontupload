@@ -60,7 +60,7 @@ h3
 
 [wix-ctrl]
 {
-    font-family : 'Exo' !important;
+    /*font-family : 'Exo' !important;*/
 }
 
 header .logo
@@ -1563,16 +1563,24 @@ header#top-header.loading
     color : #3B83C0;
 }
 
-
 #last-item
 {
     font-weight : bold;
-    display : none;
+    display     : none;
 }
 
 #last-item a
 {
-    color : #3B83C0;
-    text-decoration: underline;
+    color           : #3B83C0;
+    text-decoration : underline;
 }
 
+.redactor-editor p
+{
+    /*-webkit-margin-before : 0em;*/
+    /*-webkit-margin-after  : 1em;*/
+    /*-webkit-margin-start  : 0px;*/
+    /*-webkit-margin-end    : 0px;*/
+    /*line-height           : 0;*/
+    /*margin: 0;*/
+}

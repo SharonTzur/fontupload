@@ -17,7 +17,7 @@ function load(data) {
             ribbonContainer = $('#ribbon-container');
             ribbon = $('#ribbon');
             textBox = $('#textBox');
-            console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));
+            //console.log('WIDGET: Loaded Data: ' + JSON.stringify(data));
 //					refreshLocalWidget(data, $('#textBox'));
 //					refreshLocalWidget(data, $('.redactor-editor'));
             if (!data.paid && !data.isTrial)

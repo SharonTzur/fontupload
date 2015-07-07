@@ -36,27 +36,53 @@
             {
                 var size = ev.currentTarget.value;
                 this.selection.restore();
-                this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
+                //+ 'line-height: ' + size + 'px;');
+                //this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
+                var block = this.selection.getBlock();
+                //block.style.lineHeight = (+size + 1) + 'px';
+
+                if (this.selection.getText() == block.innerText)
+                {
+                    $(block).css('font-size', size+'px');
+                    $(block).find('[rel^="font-size"]').unwrap();
+                    $(block).find('[data-redactor-style^="font-size"]').unwrap();
+                }
+
+                this.inline.format('span', 'style', 'font-size: ' + size + 'px;');
+
 
             },
 
             incrementFontSize: function (ev)
             {
-                var size;
-                if (ev.data.isIncrement)
-                {
-                    size = Number(this.fontsizewidget.input.val()) + 1;
-                } else
-                {
-                    size = Math.max(Number(this.fontsizewidget.input.val()) - 1,0);
-                }
+                /*
+                 var size;
+                 if (ev.data.isIncrement)
+                 {
+                 size = Number(this.fontsizewidget.input.val()) + 1;
+                 } else
+                 {
+                 size = Math.max(Number(this.fontsizewidget.input.val()) - 1,0);
+                 }
 
-                this.fontsizewidget.input.val(size);
-                this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
+                 this.fontsizewidget.input.val(size);
+
+                 var blocks = this.selection.getBlocks();
+
+                 for (var i = 0; i < blocks.length; i++)
+                 {
+                 var block = blocks[i];
+                 block.style.fontSize = '';
+                 block.style.lineHeight = '';
+                 }
+
+                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
+                 */
             },
 
-            updateInput : function (value) {
-                this.fontsizewidget.input.val(parseInt( value));
+            updateInput: function (value)
+            {
+                this.fontsizewidget.input.val(parseInt(value));
             },
 
             reset: function ()

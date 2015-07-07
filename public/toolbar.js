@@ -23,7 +23,7 @@ var $redactor,
 
                             $redactor.$editor.children().css('font-family', (font == 'Select Font') ? '' : font)
                                 .css('font-size', size + 'px')
-                                .css('line-height', size + 'px')
+                                //.css('line-height', size + 'px')
                                 .css('letter-spacing:', letterSpacing + 'px');
 
                         }
