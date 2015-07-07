@@ -44,10 +44,6 @@ r.route(app, ['upload', 'load', 'save', 'test', 'webhook',
 app.set('views', 'public');
 app.set('view engine', 'ejs');
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
-
 
 app.set('port', process.env.PORT || 8080);
 
@@ -71,7 +67,18 @@ mongodb.once('open', function () {
     db.init(this.base);
 });
 
-app.post('gemsapp', function(req, res){
-    res.send('Hello');
-    //res.sendFile('./public/gems/index.html')
+app.post('/gemsapp', function(req, res){
+
+
+    var options = {
+        root: __dirname + '/',
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    //res.send('Hello');
+    res.sendFile('./public/gems/index.html',options)
 });
