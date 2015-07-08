@@ -21,7 +21,10 @@
 
 		WebFont.load({
 			google: {
-				families: ["Julius Sans One"]
+				families: [
+					"Roboto:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i",
+//					"Ubuntu:300,400,500,700,300i,400i,500i,700i"
+				]
 			}
 		});
 	});
@@ -35,118 +38,7 @@
 	<meta charset="UTF-8">
 	<title>GetGems FB Canvas</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<style>
-		.store
-		{
-			width             : 302px;
-			height            : 111px;
-			background-repeat : no-repeat;
-			background-size   : 300px;
-			margin            : auto;
-		}
-
-		body
-		{
-			background-image : url('../gems/bg.jpg');
-			font-family      : 'Julius Sans One', sans-serif;
-			background-repeat: repeat;
-
-		}
-
-		#header.transparent
-		{
-			background-color : transparent;
-		}
-
-		#header
-		{
-			position                    : absolute;
-			top                         : 60px;
-			left                        : 0px;
-			z-index                     : 99;
-			width                       : 100%;
-			border-bottom               : 1px solid #ECECEC;
-			background-color            : #FFFFFF;
-			line-height                 : 0;
-			-webkit-backface-visibility : hidden;
-			-ms-backface-visibility     : hidden;
-			backface-visibility         : hidden;
-			-webkit-transition          : background-color .25s ease, height .25s ease;
-			transition                  : background-color .25s ease, height .25s ease;
-			height                      : 100px;
-		}
-
-		.transparent #logo
-		{
-			font-size : 44px;
-		}
-
-		#logo
-		{
-			margin-bottom      : 0;
-			font-family        : 'Julius Sans One', sans-serif;
-			-webkit-transition : font-size .25s ease;
-			transition         : font-size .25s ease;
-		}
-
-		#logo a
-		{
-			position    : relative;
-			margin-left : 41px;
-			font-weight : 200;
-
-		}
-
-		#logo div
-		{
-			width           : 65px;
-			height          : 54px;
-			display         : inline-block;
-			position        : absolute;
-			top             : -5px;
-			margin-left     : -71px;
-			background      : url(../gems/gems-logo-red.png) no-repeat;
-			background-size : 64px;
-		}
-
-		#logo a
-		{
-			color           : white;
-			text-decoration : none;
-
-		}
-
-		#logo
-		{
-			position : absolute;
-			left     : 50px;
-			top      : 32px;
-		}
-
-		h1
-		{
-			width       : 100%;
-			text-align  : center;
-			color       : white;
-			font-weight : 100;
-			font-size : 50px;
-		}
-
-
-		.parallax-overlay {
-			position: absolute;
-			z-index: -1;
-			left: 0;
-			top: 0;
-			margin: 0 auto;
-			width: 100%;
-			height: 100%;
-			background-image: url("../gems/overlay-pattern.png");
-			/* background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent); */
-			background-repeat: repeat;
-		}
-
-	</style>
+	<link href="gems.css" rel="stylesheet" type="text/css">
 	<script>
 		window.fbAsyncInit = function ()
 		{
@@ -211,36 +103,37 @@
 	</script>
 
 </head>
-<body>
-<div class="parallax-overlay"></div>
+<body class="grad">
+<!--<div class="parallax-overlay"></div>-->
 <!--<h1 id="fb-welcome"></h1>-->
-<header id="header" class="transparent">
-	<div class="header-in">
-		<div id="logo"><a href="/">
-			<div></div>
-			GetGems</a></div>
-		<a id="responsive-nav-button" class="responsive-nav-button" href="http://www.getgems.org"></a>
 
+<div class="text-area">
+
+	<div class="small-title-wrapper">
+		<div class="gems-logo"></div>
+
+		<div class="small-title">get<span>gems.</span> Telegram with payment and rewards</div>
 	</div>
+	<div class="divider"></div>
+	<div class="large-title">
+		GET REWARDED FOR BEING SOCIAL
+	</div>
+	<div class="store-links">
+		<a href="https://itunes.apple.com/app/id942306232" target="_blank">
+			<div class="store-link" style="background-image: url('../gems/app-store-black.svg')"></div>
+		</a>
 
-</header>
-<div>
+		<a href="https://play.google.com/store/apps/details?id=org.getgemsmessenger.app" target="_blank">
+			<div class="store-link"
+			     style="width: 157px; background-image: url('../gems/google-play-white.png')"></div>
+		</a>
+	</div>
 </div>
-<div style="margin-top:20%">
-	<h1>
-		messaging that pays
-	</h1>
 
-	<a href="https://itunes.apple.com/app/id942306232" target="_blank">
-		<div class="store" style="background-image: url('../gems/app-store-black.svg')"></div>
 
-	</a>
+<div class="wide gems"></div>
+<div class="wide people"></div>
 
-	<a href="https://play.google.com/store/apps/details?id=org.getgemsmessenger.app" target="_blank">
-		<div class="store" style="background-image: url('../gems/google-play-white.png')"></div>
-
-	</a>
-</div>
 
 </body>
 </html>
