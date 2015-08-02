@@ -52,7 +52,7 @@ var $redactor,
 
                             self.$editor.blur(function ()
                             {
-                                $redactor.selection.removeMarkers();
+                                //$redactor.selection.removeMarkers();
                                 $redactor.selection.save();
                             });
                             $('.redactor-editor').css('max-height', '480px');

@@ -1426,6 +1426,11 @@ button.btn-upgrade
     max-height : 480px;
 
 }
+.redactor-editor span
+{
+    /*vertical-align: middle;*/
+
+}
 
 .ui.positive.button.fontdiv.textPreview.loadMoreButton
 {

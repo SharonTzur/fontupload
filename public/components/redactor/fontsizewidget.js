@@ -36,6 +36,7 @@
             {
                 var size = ev.currentTarget.value;
                 this.selection.restore();
+                this.buffer.set();
                 //+ 'line-height: ' + size + 'px;');
                 //this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
                 var block = this.selection.getBlock();
@@ -43,11 +44,12 @@
 
                 if (this.selection.getText() == block.innerText)
                 {
-                    $(block).css('font-size', size+'px');
-                    $(block).find('[rel^="font-size"]').unwrap();
-                    $(block).find('[data-redactor-style^="font-size"]').unwrap();
+                    $(block).css('font-size', size + 'px');
+                    $(block).find('[rel^="font-size"]').css('font-size','');
+                    $(block).find('[data-redactor-style^="font-size"]:last').css('font-size','');
                 }
 
+                //$(block).find("[data-redactor-style^='font-size']").css('font-size','');
                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;');
 
 
@@ -55,29 +57,30 @@
 
             incrementFontSize: function (ev)
             {
-                /*
-                 var size;
-                 if (ev.data.isIncrement)
-                 {
-                 size = Number(this.fontsizewidget.input.val()) + 1;
-                 } else
-                 {
-                 size = Math.max(Number(this.fontsizewidget.input.val()) - 1,0);
-                 }
+                var size;
+                if (ev.data.isIncrement)
+                {
+                    size = Number(this.fontsizewidget.input.val()) + 1;
+                } else
+                {
+                    size = Math.max(Number(this.fontsizewidget.input.val()) - 1, 0);
+                }
 
-                 this.fontsizewidget.input.val(size);
+                this.fontsizewidget.input.val(size);
 
-                 var blocks = this.selection.getBlocks();
+                var blocks = this.selection.getBlocks();
 
-                 for (var i = 0; i < blocks.length; i++)
-                 {
-                 var block = blocks[i];
-                 block.style.fontSize = '';
-                 block.style.lineHeight = '';
-                 }
+                for (var i = 0; i < blocks.length; i++)
+                {
+                    var block = blocks[i];
+                    if (block)
+                    {
+                        block.style.fontSize = '';
+                        block.style.lineHeight = '';
+                    }
+                }
 
-                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
-                 */
+                this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
             },
 
             updateInput: function (value)

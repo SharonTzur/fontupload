@@ -20,6 +20,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             },
             set: function(value, key)
             {
+                debugger;
                 this.selection.restore();
                 this.inline.format('span', 'style', 'color: ' + value.cssColor + ';');
             },

@@ -23,13 +23,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             {
                 this.selection.restore();
                 this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';');
-
-/*
-                if (this.selection.getHtml())
-                    this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';');
-                else
-                    this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';display:inline-block;');
-*/
+                debugger;
             },
             updateFontColor: function (value) {
                 if (value != "rgba(0, 0, 0, 0)")

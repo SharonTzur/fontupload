@@ -39,11 +39,6 @@ function refreshUI()
         }
     }
 
-    Wix.UI.onChange('fontWeight', function (value, key)
-    {
-        widgetSettings['weight'] = value.value;
-        refreshWidget();
-    });
 
     if (!widgetSettings.paid)
     {
