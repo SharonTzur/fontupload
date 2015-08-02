@@ -7,7 +7,7 @@ try
 }
 catch (e)
 {
-    instanceId = 'demo27';
+    instanceId = 'demo28';
     compId = 211;
 }
 ejs = false;
@@ -11923,8 +11923,8 @@ var
     lastDisplayedIndex        = 0,
     lastLoadedIndex           = 0,
     currentViewVariantIndexes = null,
-    fontsToAddOnScroll        = 80,
-    initiallyLoadedFonts      = 80,
+    fontsToAddOnScroll        = 1,
+    initiallyLoadedFonts      = 1,
     //fontsToAddOnScroll        = 200,
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,

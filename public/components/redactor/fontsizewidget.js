@@ -67,20 +67,11 @@
                 }
 
                 this.fontsizewidget.input.val(size);
+                ev.currentTarget = {};
+                ev.currentTarget.value = size;
+                this.fontsizewidget.changeFontSizeInput(ev);
 
-                var blocks = this.selection.getBlocks();
-
-                for (var i = 0; i < blocks.length; i++)
-                {
-                    var block = blocks[i];
-                    if (block)
-                    {
-                        block.style.fontSize = '';
-                        block.style.lineHeight = '';
-                    }
-                }
-
-                this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
+                //this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
             },
 
             updateInput: function (value)
