@@ -3,23 +3,6 @@
 <head>
 	<script>
 		//Load WebFont Loader
-		(function ()
-		{
-			var wf = document.createElement('script');
-
-			wf.src = ('') +
-					'lib/webfont.js';
-
-			/*
-			wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-					'://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
-			*/
-			wf.type = 'text/javascript';
-			wf.async = 'true';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(wf, s);
-
-		})();
 
 	</script>
 
@@ -37,14 +20,14 @@
 
 
 		/*console.info('instanceId');
-		console.info(instanceId);
+		 console.info(instanceId);
 
-		console.info('compId');
-		console.info(compId);
+		 console.info('compId');
+		 console.info(compId);
 
-		console.info('ejs');
-		console.info(ejs);
-*/
+		 console.info('ejs');
+		 console.info(ejs);
+		 */
 
 		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 
@@ -64,8 +47,11 @@
 	<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>-->
 	<script src="lib/jquery-ui.min.js"></script>
 	<script src="lib/jquery.form.min.js"></script>
-	<link rel="stylesheet"
-	      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+
+	<!--
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+-->
+	<link rel="stylesheet" href="lib/jquery-ui.min.css"/>
 
 	<!--Selectize-->
 	<script src="components/selectize.min.js"></script>
@@ -108,36 +94,6 @@
 	<link rel="stylesheet" type="text/css" href="anyfont.css">
 
 
-	<script>
-
-		$(document).ready(function ()
-		{
-
-			WebFont.load({
-				google: {
-					families: ["Exo:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"]
-				}
-			});
-
-			fontContainer = $('[data-tab="selectFont"] .fontContainer');
-			viewPortHeight = $(fontContainer).outerHeight();
-			Filters.init();
-			try
-			{
-				Wix.UI.initialize({});
-			}
-			catch (ex)
-			{
-				console.warn(ex.message);
-			}
-			initSemanticUI();
-			loadSettings();
-			buildAllFontsArray();
-			upload.init();
-		});
-
-	</script>
-
 </head>
 <body wix-ui id="settings">
 <script type="text/javascript"></script>
@@ -179,6 +135,62 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		/*
+		 (function ()
+		 {
+		 var wf = document.createElement('script');
+
+		 wf.src = ('') +
+		 'lib/webfont.js';
+
+		 /!*
+		 wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+		 '://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
+		 *!/
+		 wf.type = 'text/javascript';
+		 wf.async = 'true';
+		 var s = document.getElementsByTagName('script')[0];
+		 s.parentNode.insertBefore(wf, s);
+
+		 })();
+		 */
+		var loader = new ScriptLoader();
+
+		loader.require([
+					"lib/webfont.js"
+				],
+				function ()
+				{
+					WebFont.load({
+						google: {
+							families: ["Exo:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"]
+						}
+					});
+
+				});
+
+		$(document).ready(function ()
+		{
+			fontContainer = $('[data-tab="selectFont"] .fontContainer');
+			viewPortHeight = $(fontContainer).outerHeight();
+			Filters.init();
+			try
+			{
+				Wix.UI.initialize({});
+			}
+			catch (ex)
+			{
+				console.warn(ex.message);
+			}
+			initSemanticUI();
+			loadSettings();
+			buildAllFontsArray();
+			upload.init();
+		});
+
+	</script>
+
 
 	<div class="showme" wix-ctrl="Tabs" wix-options="{value:0}" style="margin-bottom: 10px; display: none;">
 		<ul>
