@@ -7,7 +7,7 @@
             current: null,
             menu   : null,
 
-            init   : function ()
+            init: function ()
             {
                 var searchDivStr =
                         '<div id="dropdownSearchFontsInput" class="ui icon search input">' +
@@ -30,7 +30,7 @@
                     .dropdown('setting', 'transition', 'slide down')
                     .dropdown({
                         onChange: this.fontfacedropdown.onDropdownClick,
-                        onHide : this.fontfacedropdown.resetSearch
+                        onHide  : this.fontfacedropdown.resetSearch
                     }
                 )
                     .popup('setting', 'content', 'Search and select fonts');
@@ -58,7 +58,7 @@
                         .hide());
 
                 $(dropdown).children('.menu').append(items);
-                $(dropdown).find('input').bind('keyup', $.proxy(q.search, this ));
+                $(dropdown).find('input').bind('keyup', $.proxy(q.search, this));
                 var $toolbar = $('ul#redactor-toolbar-0');
                 $toolbar.append(dropdown);
                 q.menu = $(dropdown).children('.menu');
@@ -78,11 +78,11 @@
                     {
                         var families = [];
                         var hiddens = menu.children('.item.my-hidden').not('.filtered');
-                        menu.children('.filtered').css('display','');
+                        menu.children('.filtered').css('display', '');
                         hiddens.each(function (i, el)
                         {
                             // only push fonts that werent loaded
-                            if (fontsCompletelyLoadedIdx.indexOf( Number($(el).attr('data-value'))) == -1  &&
+                            if (fontsCompletelyLoadedIdx.indexOf(Number($(el).attr('data-value'))) == -1 &&
                                 loadedFamilies.indexOf($(el).children().text()) == -1)
                                 families.push($(el).children().text());
                             $(el).removeClass('my-hidden')
@@ -96,10 +96,11 @@
                     this.fontfacedropdown.resetSearch();
             },
 
-            resetSearch:                             function (e) {
+            resetSearch: function (e)
+            {
                 var menu = $redactor.fontfacedropdown.menu;
                 menu.children('.filtered').removeClass('filtered');
-                menu.children('.original').css('display','');
+                menu.children('.original').css('display', '');
                 menu.children('.item').not('.original').hide().removeClass('my-hidden').addClass('my-hidden');
                 $('#fontfamilydropdown input').val('');
                 $('#fontfamilydropdown .header').show();
@@ -150,12 +151,15 @@
                 })[0];
                 loadAllFontVariants(fontObj, null, null, null, value);
                 $redactor.selection.restore();
-                if (text.indexOf(' ') != -1)
-                    text = "'" + text + "'";
-                $redactor.inline.format('span', 'style', 'font-family:' + text + ';');
-                $redactor.selection.removeMarkers();
-                q.changeDropdownFont(text, value, $selectedItem);
 
+                if (text.indexOf('\'') == -1 || text.indexOf('\"') == -1)
+                {
+                    text = "'" + text + "'";
+                }
+                this.inline.removeStyleRule('font-family');
+                $redactor.inline.format('span', 'style', 'font-family:' + text + ';');
+                $(this).find('span.redactor-selection-marker').remove();
+                q.changeDropdownFont(text, value, $selectedItem);
             },
 
             changeDropdownFont: function (font, value, $selectedItem)
@@ -226,32 +230,32 @@
                 var fontFamilyLabel = $('<div class="fontfamilydropdownlabel">' + fontFamily + '</div>');
                 return $('<div class="item original" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
                     fontFamily +
-                '</div>').prepend(fontFamilyLabel);
+                    '</div>').prepend(fontFamilyLabel);
 
             },
-
 
             createSelectedDropdownItem: function (index, fontFamily)
             {
                 return $('<div class="item selected-fonts" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                fontFamily +
-                '</div>');
+                    fontFamily +
+                    '</div>');
             },
 
             createHeader: function (text)
             {
                 return $('<div class="header" data-value="header" style="font-family:"exo">' +
-                text + '</div>');
+                    text + '</div>');
             },
 
             dividers: 0,
 
-            createLoadMoreButton : function() {
+            createLoadMoreButton: function ()
+            {
                 return $(
                     '<div class="header" data-value="header" style="font-family:"exo">' +
-                        '<div class="ui primary button">' +
-                            '<i class="refresh icon"></i> Load More Fonts...' +
-                        '</div>' +
+                    '<div class="ui primary button">' +
+                    '<i class="refresh icon"></i> Load More Fonts...' +
+                    '</div>' +
                     '</div>');
             },
 
@@ -263,8 +267,8 @@
             createCustomDropdownItem: function (index, fontFamily, text)
             {
                 return $('<div class="item" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
-                text +
-                '</div>');
+                    text +
+                    '</div>');
             }
 
         };

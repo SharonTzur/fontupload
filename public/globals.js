@@ -8,7 +8,7 @@ try
 catch (e)
 {
     instanceId = 'demo28';
-    compId = 211;
+    compId = 238;
 }
 ejs = false;
 //console.info('instanceId');
@@ -11923,8 +11923,8 @@ var
     lastDisplayedIndex        = 0,
     lastLoadedIndex           = 0,
     currentViewVariantIndexes = null,
-    fontsToAddOnScroll        = 1,
-    initiallyLoadedFonts      = 1,
+    fontsToAddOnScroll        = 50,
+    initiallyLoadedFonts      = 50,
     //fontsToAddOnScroll        = 200,
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,

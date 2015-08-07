@@ -6,8 +6,14 @@
 		(function ()
 		{
 			var wf = document.createElement('script');
+
+			wf.src = ('') +
+					'lib/webfont.js';
+
+			/*
 			wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
 					'://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
+			*/
 			wf.type = 'text/javascript';
 			wf.async = 'true';
 			var s = document.getElementsByTagName('script')[0];
@@ -53,9 +59,11 @@
 	<!--<script src="lib/webfont.js"></script>-->
 
 	<!--JQuery-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>-->
+	<script src="lib/jquery.min.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>-->
+	<script src="lib/jquery-ui.min.js"></script>
+	<script src="lib/jquery.form.min.js"></script>
 	<link rel="stylesheet"
 	      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
 
@@ -146,10 +154,10 @@
 					Create beautiful title and paragraph typography.
 				</li>
 				<li>
-					Select from over 650 fonts and 1200 font variants.
+					Select from 650+ fonts and 1200+ font variants.
 				</li>
 				<li>
-					Use the font uploader to upload your own font file.
+					Upload your own font files.
 				</li>
 				<li id="last-item">
 				</li>
@@ -321,7 +329,7 @@
 						<div class="upload-font-form-container">
 							<form id="upload" method="post" enctype="multipart/form-data">
 								<div class="drop">
-									<div class="upload-text">You can upload your own font file. <br> <strong
+									<div class="upload-text">You can upload your own font files. <br> <strong
 											style="line-height: 25px;"> Drag &amp; Drop Your files below or </strong>
 
 										<a>Browse</a> <input id="fileInput" type="file" name="upl" multiple
@@ -348,12 +356,14 @@
 </html>
 
 <!--Underscore-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>-->
+<script src="lib/underscore-min.js"></script>
+
 
 <!--WIX UI Lib-->
 <script src="lib/ui-lib.min.js"></script>
 <script src="lib/jquery.fileupload.js"></script>
 <script src="lib/s3upload.js"></script>
 
-<!--nouislider-->
-<script src="components/semantic/semantic.js"></script>
+<script src="components/semantic/semantic.min.js"></script>

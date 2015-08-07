@@ -20,9 +20,12 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             },
             set: function(value, key)
             {
-                debugger;
                 this.selection.restore();
+                this.inline.removeStyleRule('color');
+
                 this.inline.format('span', 'style', 'color: ' + value.cssColor + ';');
+                $(this).find('span.redactor-selection-marker').remove();
+
             },
             updateFontColor: function (value) {
                 this.fontColor.background.css('background', value)

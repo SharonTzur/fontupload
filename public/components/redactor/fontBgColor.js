@@ -22,8 +22,10 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             set: function(value, key)
             {
                 this.selection.restore();
+                this.inline.removeStyleRule('background-color');
                 this.inline.format('span', 'style', 'background-color: ' + value.cssColor + ';');
-                debugger;
+                $(this).find('span.redactor-selection-marker').remove();
+
             },
             updateFontColor: function (value) {
                 if (value != "rgba(0, 0, 0, 0)")

@@ -6,7 +6,7 @@ var $redactor,
         {
             $('#redactor').redactor(
                 {
-                    plugins       : ['fullscreen', 'advanced', 'textdirection', 'undo', 'fontsizewidget', 'letterspacingwidget', 'fontfacedropdown', 'fontWeightDropdown', 'fontItalic','fontBold' ,'fontColor', 'fontBgColor'],
+                    plugins       : ['fontsize', 'fullscreen', 'advanced', 'textdirection', 'undo', 'fontsizewidget', 'letterspacingwidget', 'fontfacedropdown', 'fontWeightDropdown', 'fontItalic','fontBold' ,'fontColor', 'fontBgColor'],
 
                     changeCallback: function ()
                     {
@@ -52,8 +52,8 @@ var $redactor,
 
                             self.$editor.blur(function ()
                             {
-                                //$redactor.selection.removeMarkers();
                                 $redactor.selection.save();
+
                             });
                             $('.redactor-editor').css('max-height', '480px');
                             $('ul#redactor-toolbar-0 .re-fullscreen').click(function () {

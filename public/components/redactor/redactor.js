@@ -3752,10 +3752,10 @@
                         { tag = "span" ; type = "style"; value = toolBarIcon.hasClass('redactor-act') ?   "font-weight:normal;" :"font-weight:Bold;"}
 
                     if (!this.selection.getHtml()) {
-                        this.inline.nonIsSelected(tag, type, value, toolBarIcon);
-                        widgetSettings.code =  $redactor.$editor.html();
-                        refreshWidget();
-						this.selection.removeMarkers();
+                        //this.inline.nonIsSelected(tag, type, value, toolBarIcon);
+                        //widgetSettings.code =  $redactor.$editor.html();
+                        //refreshWidget();
+                        //this.selection.removeMarkers();
 					}
                     else
                     {
