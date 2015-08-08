@@ -7,8 +7,8 @@ try
 }
 catch (e)
 {
-    instanceId = 'demo28';
-    compId = 238;
+    instanceId = 'wixdemo';
+    compId = 11;
 }
 ejs = false;
 //console.info('instanceId');
@@ -11923,8 +11923,8 @@ var
     lastDisplayedIndex        = 0,
     lastLoadedIndex           = 0,
     currentViewVariantIndexes = null,
-    fontsToAddOnScroll        = 30,
-    initiallyLoadedFonts      = 30,
+    fontsToAddOnScroll        = 3,
+    initiallyLoadedFonts      = 3,
     //fontsToAddOnScroll        = 200,
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,

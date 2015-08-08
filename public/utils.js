@@ -27,9 +27,17 @@ function refreshLocalWidget(settings, $el)
      */
 }
 
-var ScriptLoader = function ()
+function removeMarkers()
 {
-};
+    var markers = $(document).find('span.redactor-selection-marker');
+    if (markers.length > 0)
+    {
+        console.log('removed ' + markers.length + ' markers');
+        markers.remove();
+    }
+}
+
+var ScriptLoader = function () {};
 ScriptLoader.prototype = {
     require    : function (scripts, callback)
     {

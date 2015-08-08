@@ -6,7 +6,9 @@ var $redactor,
         {
             $('#redactor').redactor(
                 {
-                    plugins       : ['fontsize', 'fullscreen', 'advanced', 'textdirection', 'undo', 'fontsizewidget', 'letterspacingwidget', 'fontfacedropdown', 'fontWeightDropdown', 'fontItalic','fontBold' ,'fontColor', 'fontBgColor'],
+                    plugins       : ['fontsize', 'fullscreen', 'advanced', 'textdirection', 'undo',
+                        'fontsizewidget',
+                        'letterspacingwidget', 'fontfacedropdown', 'fontWeightDropdown', 'fontItalic','fontBold' ,'fontColor', 'fontBgColor'],
 
                     changeCallback: function ()
                     {
@@ -25,7 +27,6 @@ var $redactor,
                                 .css('font-size', size + 'px')
                                 //.css('line-height', size + 'px')
                                 .css('letter-spacing:', letterSpacing + 'px');
-
                         }
 
                         widgetSettings.code = this.code.get();
@@ -53,7 +54,6 @@ var $redactor,
                             self.$editor.blur(function ()
                             {
                                 $redactor.selection.save();
-
                             });
                             $('.redactor-editor').css('max-height', '480px');
                             $('ul#redactor-toolbar-0 .re-fullscreen').click(function () {

@@ -26,33 +26,20 @@
                 increase.click({isIncrement: true}, that.fontsizewidget.incrementFontSize);
                 decrease.click({isIncrement: false}, that.fontsizewidget.incrementFontSize);
 
-                this.fontsizewidget.input.change(that.fontsizewidget.changeFontSizeInput);
+                this.fontsizewidget.input.change(that.fontsizewidget.changeFontSizeCSS);
                 var $toolbar = $('ul#redactor-toolbar-0');
                 $toolbar.append(comp);
 
             },
 
-            changeFontSizeInput: function (ev)
+            changeFontSizeCSS: function (ev)
             {
                 var size = ev.currentTarget.value;
                 this.selection.restore();
                 this.buffer.set();
-                //+ 'line-height: ' + size + 'px;');
-                //this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
-                var block = this.selection.getBlock();
-                //block.style.lineHeight = (+size + 1) + 'px';
-
-                if (this.selection.getText() == block.innerText)
-                {
-                    $(block).css('font-size', size + 'px');
-                    $(block).find('[rel^="font-size"]').css('font-size','');
-                    $(block).find('[data-redactor-style^="font-size"]:last').css('font-size','');
-                }
-
-                //$(block).find("[data-redactor-style^='font-size']").css('font-size','');
+                //this.inline.removeStyleRule('font-size');
                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;');
-
-
+                removeMarkers();
             },
 
             incrementFontSize: function (ev)
@@ -61,17 +48,19 @@
                 if (ev.data.isIncrement)
                 {
                     size = Number(this.fontsizewidget.input.val()) + 1;
-                } else
+                }
+                else
                 {
                     size = Math.max(Number(this.fontsizewidget.input.val()) - 1, 0);
                 }
+                console.log('this.fontsizewidget.input.val()');
+                console.log(this.fontsizewidget.input.val());
 
                 this.fontsizewidget.input.val(size);
                 ev.currentTarget = {};
                 ev.currentTarget.value = size;
-                this.fontsizewidget.changeFontSizeInput(ev);
+                this.fontsizewidget.changeFontSizeCSS(ev);
 
-                //this.inline.format('span', 'style', 'font-size: ' + size + 'px;' + 'line-height: ' + size + 'px;');
             },
 
             updateInput: function (value)

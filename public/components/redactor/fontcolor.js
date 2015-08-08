@@ -24,8 +24,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
                 this.inline.removeStyleRule('color');
 
                 this.inline.format('span', 'style', 'color: ' + value.cssColor + ';');
-                $(this).find('span.redactor-selection-marker').remove();
-
+                removeMarkers();
             },
             updateFontColor: function (value) {
                 this.fontColor.background.css('background', value)

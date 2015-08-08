@@ -26,12 +26,12 @@
                 increase.click({isIncrement: true}, that.letterspacingwidget.incrementFontSize);
                 decrease.click({isIncrement: false}, that.letterspacingwidget.incrementFontSize);
 
-                this.letterspacingwidget.input.change(that.letterspacingwidget.changeFontSizeInput);
+                this.letterspacingwidget.input.change(that.letterspacingwidget.changeFontSizeCSS);
                 var $toolbar = $('ul#redactor-toolbar-0');
                 $toolbar.append(comp);
             },
 
-            changeFontSizeInput: function (ev)
+            changeFontSizeCSS: function (ev)
             {
                 var size = ev.currentTarget.value;
                 this.selection.restore();

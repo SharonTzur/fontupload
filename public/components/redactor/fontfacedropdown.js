@@ -149,16 +149,19 @@
                 {
                     return obj.family == text;
                 })[0];
-                loadAllFontVariants(fontObj, null, null, null, value);
-                $redactor.selection.restore();
-
                 if (text.indexOf('\'') == -1 || text.indexOf('\"') == -1)
                 {
                     text = "'" + text + "'";
                 }
+                loadAllFontVariants(fontObj, null, null, null, value);
+
+
+                $redactor.selection.restore();
+
                 this.inline.removeStyleRule('font-family');
                 $redactor.inline.format('span', 'style', 'font-family:' + text + ';');
-                $(this).find('span.redactor-selection-marker').remove();
+
+                removeMarkers();
                 q.changeDropdownFont(text, value, $selectedItem);
             },
 

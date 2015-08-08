@@ -20,14 +20,14 @@
 
 
 		/*console.info('instanceId');
-		 console.info(instanceId);
+		console.info(instanceId);
 
-		 console.info('compId');
-		 console.info(compId);
+		console.info('compId');
+		console.info(compId);
 
-		 console.info('ejs');
-		 console.info(ejs);
-		 */
+		console.info('ejs');
+		console.info(ejs);
+*/
 
 		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
 
@@ -136,42 +136,32 @@
 		</div>
 	</div>
 	<script>
-		/*
-		 (function ()
-		 {
-		 var wf = document.createElement('script');
+		(function ()
+		{
+			var wf = document.createElement('script');
 
-		 wf.src = ('') +
-		 'lib/webfont.js';
+			wf.src = ('') +
+					'lib/webfont.js';
 
-		 /!*
-		 wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-		 '://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
-		 *!/
-		 wf.type = 'text/javascript';
-		 wf.async = 'true';
-		 var s = document.getElementsByTagName('script')[0];
-		 s.parentNode.insertBefore(wf, s);
+			/*
+			 wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+			 '://ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js';
+			 */
+			wf.type = 'text/javascript';
+			wf.async = 'true';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(wf, s);
 
-		 })();
-		 */
-		var loader = new ScriptLoader();
-
-		loader.require([
-					"lib/webfont.js"
-				],
-				function ()
-				{
-					WebFont.load({
-						google: {
-							families: ["Exo:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"]
-						}
-					});
-
-				});
+		})();
 
 		$(document).ready(function ()
 		{
+			WebFont.load({
+				google: {
+					families: ["Exo:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"]
+				}
+			});
+
 			fontContainer = $('[data-tab="selectFont"] .fontContainer');
 			viewPortHeight = $(fontContainer).outerHeight();
 			Filters.init();
