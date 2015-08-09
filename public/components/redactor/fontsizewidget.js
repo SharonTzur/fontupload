@@ -35,10 +35,12 @@
             changeFontSizeCSS: function (ev)
             {
                 var size = ev.currentTarget.value;
-                this.selection.restore();
                 this.buffer.set();
+                this.selection.restore();
                 //this.inline.removeStyleRule('font-size');
                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;');
+                this.buffer.set();
+
                 removeMarkers();
             },
 

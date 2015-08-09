@@ -58,18 +58,8 @@ function loadSettings(data)
             {
                 loadAllFontVariants(fontObjArray.fontsObj[i], null, null, null, null, fontObjArray.idx[i]);
             }
-            /*
-             if (fontObjArray)
-             $.each(fontObjArray.fontObj, function (i, fontObj) {
-             loadAllFontVariants(fontObj)
-             });
-             */
         }
     };
-    /*if (ejs)
-     successFunc(data);
-     else
-     */
     $.ajax({
         type   : "POST",
         url    : SERVER_URL + "/load/",

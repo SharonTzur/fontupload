@@ -75,8 +75,8 @@ function refreshFontList()
 function displayFontsInBrowser(callback)
 {
     var
-        fonts = [],
-        remainingFonts = currentViewFonts.length - currentViewDisplayed,
+        fonts                  = [],
+        remainingFonts         = currentViewFonts.length - currentViewDisplayed,
         numberOfFontsToDisplay = Math.min(remainingFonts, fontsToAddOnScroll),
         text,
         variant,
@@ -115,11 +115,11 @@ function displayFontsInBrowser(callback)
         }
         if (Filters.filterOptions.isVariantMode && currentViewFonts[i].str[currentViewFonts[i].str.length - 1] === 'i') style += 'font-style:italic;';
         var $fontDiv = $('<div class="fontdiv noselect " data-family="' + family + '" data-allfontsidx="' + allFontsIdx + '" style="' + style + '">' +
-        '</div>');
+            '</div>');
         var label = $('<a class="ui ribbon label" data-variant="' + variant + '">' + (currentViewFonts[i].name || family) + '</a>');
         $fontDiv.append(label);
         var $textPreview = $('' +
-        '<div class="textPreview font-unselected" data-variant="' + variant + '" data-allfontsidx="' + allFontsIdx + '" data-family="' + family + '"></div>');
+            '<div class="textPreview font-unselected" data-variant="' + variant + '" data-allfontsidx="' + allFontsIdx + '" data-family="' + family + '"></div>');
         var $text = $('<div class="text ' + loadingClass + '" data-variant="' + variant + '">' + text + '</div>');
         $textPreview.append($text);
 
@@ -141,10 +141,10 @@ function displayFontsInBrowser(callback)
             else
             {
                 me.addClass('open');
-                var idx = me.data('allfontsidx'),
-                    allVars = allFonts[idx].variants,
+                var idx        = me.data('allfontsidx'),
+                    allVars    = allFonts[idx].variants,
                     fontFamily = me.data('family'),
-                    $loader = $('<div class="ui active loader fontVariantLoader" style="height:100px"></div>'),
+                    $loader    = $('<div class="ui active loader fontVariantLoader" style="height:100px"></div>'),
                     line,
                     $variantContainer,
                     $variantSelectButton,
@@ -182,7 +182,7 @@ function displayFontsInBrowser(callback)
                             title = $('<div class="variantSelectArea variantPreviewTitle">' + ' ' + getFontVariantDisplayName(fontWeight) + ' ' + fontStyleDisplayName + '</div>');
                             $variantSelectButton = $('<div class="variantSelectArea fontSelectButton variantSelectButton">select</div>');
                             line = $('<div class="variantSelectArea variantPreviewLine">' + text + '</div>')
-                            .attr('style', 'font-family: \'' + fontFamily + '\' !important')
+                                .attr('style', 'font-family: \'' + fontFamily + '\' !important')
                                 .css('font-style', fontStyle)
                                 .css('font-weight', fontWeight);
                             $variantPreview.append($variantContainer.append(title, line, $variantSelectButton));
@@ -207,7 +207,7 @@ function displayFontsInBrowser(callback)
 
         var $browseVariants = $('<div class="magnify browseVariants" style="" data-allfontsidx="' + allFontsIdx + '" id="browseVariants-' + family + '"></div>')
             .click($.proxy(toggleFontVariantPreview, $textPreview));
-            //.mouseover($.proxy(toggleFontVariantPreview, $textPreview));
+        //.mouseover($.proxy(toggleFontVariantPreview, $textPreview));
 
         $textPreview.append($browseVariants)
             .click(onFontSelected);
@@ -266,8 +266,8 @@ function loadFonts(callback, scope)
         }
     }
 
-    var strings = [],
-        remainingFonts = currentViewFonts.length - currentViewLoaded,
+    var strings             = [],
+        remainingFonts      = currentViewFonts.length - currentViewLoaded,
         numberOfFontsToLoad = Math.min(remainingFonts, fontsToAddOnScroll);
 
     for (var i = lastLoadedIndex; i < lastLoadedIndex + numberOfFontsToLoad; i++)
@@ -356,10 +356,10 @@ function loadFontArray(strings, activeCallback, fontactiveCallback, fontinactive
 function onFontVariantSelected()
 {
     upload.removeAllSelction();
-    var me = $(this),
+    var me     = $(this),
         family = me.data('family'),
         weight = me.data('weight'),
-        style = me.data('style');
+        style  = me.data('style');
 
     widgetSettings.font = $.grep(allFonts, function (obj)
     {
@@ -389,8 +389,8 @@ function onFontSelected(e)
 {
     upload.removeAllSelction();
     var style = 'normal',
-        me = $(this),
-        idx = $(this).data('allfontsidx');
+        me    = $(this),
+        idx   = $(this).data('allfontsidx');
     if ($(e.target).hasClass('browseVariants') || $(e.target).hasClass('variantSelectArea'))
         return;
     $('.textPreview').removeClass('font-selected');
@@ -439,8 +439,9 @@ function onFontSelected(e)
 
 function loadAllFontVariants(fontObj, callback, scope, activeCallback, activeScope, idx)
 {
-    if (fontObj.str == 'Uploaded') {
-        upload.fontContainer.children('[data-allfontsidx="' + idx+ '"]');
+    if (fontObj.str == 'Uploaded')
+    {
+        upload.fontContainer.children('[data-allfontsidx="' + idx + '"]');
         //upload
 
         return;
@@ -531,9 +532,9 @@ function checkCodeForFonts($codeRecieved, loadedFonts)
         if (font && loadedFonts.indexOf(font) == -1)
             arr.push(replaceAll(font, "'", ""));
     };
-    var fonts = [],
-        indexes = [],
-        fontObjs = [],
+    var fonts           = [],
+        indexes         = [],
+        fontObjs        = [],
         otherFontsSpans = $codeRecieved.find('span');
 
     myPush(fonts, $codeRecieved.css('font-family'));
@@ -554,24 +555,35 @@ function checkCodeForFonts($codeRecieved, loadedFonts)
     {
         var tmpIndex = getAllFontsIdxByFamily(fonts[i]);
         //if (tmpIndex > initiallyLoadedFonts)
-            indexes.push(tmpIndex);
+        indexes.push(tmpIndex);
     }
     //indexes = (!indexes[0]) ? false : indexes;
 
-        var dropDown = $('#fontfamilydropdown .menu');
-    if (indexes && dropDown[0])
+    var dropdownMenu = $('#fontfamilydropdown .menu'),
+        q        = $redactor.fontfacedropdown,
+        recentFontsHeader;
+
+    if (!dropdownMenu.find('.recent-fonts-header').length)
+    {
+        recentFontsHeader = q.createHeader('Recent Fonts:', 'recent-fonts-header');
+        dropdownMenu.append(recentFontsHeader);
+    }
+    else
+    {
+        recentFontsHeader = dropdownMenu.find('.recent-fonts-header');
+    }
+    dropdownMenu.prepend(q.createDivder());
+
+    if (indexes && dropdownMenu[0])
     {
         var q = $redactor.fontfacedropdown;
-
-        var $dropdownSearchFontsInput = $('#dropdownSearchFontsInput');
         for (i = 0; i < indexes.length; i++)
-            {
-                $dropdownSearchFontsInput.after( q.createDropdownItem(indexes[i], allFonts[indexes[i]].family).addClass('recent'));
-            }
-        $dropdownSearchFontsInput.after(q.createDivder());
-        $dropdownSearchFontsInput.after(q.createHeader('Recent Fonts:'));
+        {
+            dropdownMenu.prepend(q.createDropdownItem(indexes[i], allFonts[indexes[i]].family).addClass('recent'));
+        }
+        dropdownMenu.prepend(recentFontsHeader);
     }
 
-    return {idx :indexes, fontsObj: fontObjs, fontsName: fonts};
+    return {idx: indexes, fontsObj: fontObjs, fontsName: fonts};
     //return (!fontObjs[0]) ? false : fontObjs
 }

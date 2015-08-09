@@ -7,8 +7,8 @@ try
 }
 catch (e)
 {
-    instanceId = 'wixdemo';
-    compId = 11;
+    instanceId = 'wixdemo2';
+    compId = 30;
 }
 ejs = false;
 //console.info('instanceId');
@@ -11923,8 +11923,8 @@ var
     lastDisplayedIndex        = 0,
     lastLoadedIndex           = 0,
     currentViewVariantIndexes = null,
-    fontsToAddOnScroll        = 3,
-    initiallyLoadedFonts      = 3,
+    fontsToAddOnScroll        = 50,
+    initiallyLoadedFonts      = 50,
     //fontsToAddOnScroll        = 200,
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,
@@ -11978,10 +11978,12 @@ var newWidgets = {
         func: 'changeDropdownFont'
     },
 
+/*
     'fontsizewidget': {
         css : 'font-size',
         func: 'updateInput'
     },
+*/
 
     'letterspacingwidget': {
         css : 'letter-spacing',
@@ -12007,7 +12009,12 @@ var newWidgets = {
     'fontBgColor' : {
         css:'background-color',
         func:'updateFontColor'
+    },
+    'fontsize' : {
+        css : 'font-size',
+        func : 'updateFontSizeLabel'
     }
+
 };
 
 Object.defineProperty(Array.prototype, 'addToSet', {

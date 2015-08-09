@@ -1123,14 +1123,15 @@ li.toolbarComp
     box-shadow : none;
 }
 
-.ui.search.dropdown .menu .header
+#fontfamilydropdown .menu .header
 {
     color : red;
 }
 
-.ui.search.dropdown .menu
+#fontfamilydropdown .menu
 {
     max-height : 275px !important;
+    overflow-x : hidden;
 }
 
 #fontweightdropdown.icon.dropdown:after
@@ -1426,6 +1427,7 @@ button.btn-upgrade
     max-height : 480px;
 
 }
+
 .redactor-editor span
 {
     /*vertical-align: middle;*/
@@ -1587,5 +1589,55 @@ header#top-header.loading
     /*-webkit-margin-start  : 0px;*/
     /*-webkit-margin-end    : 0px;*/
     /*line-height           : 0;*/
-    /*margin: 0;*/
+    margin: 0;
+}
+
+.font-size-button
+{
+
+}
+
+#font-size-label {
+    display: inline-block;
+    margin-left: 5px;
+    background-color: #EFEFEF;
+    padding: 8px 6px;
+    position: relative;
+    top: -1px;
+    border-radius: 2px;
+    font-family: 'Helvetica Neue', Helvetica, Arial;
+    font-size: 12px;
+    width: 18px;
+}
+.redactor-toolbar li a.font-size-button.redactor-btn-image
+{
+    width         : 49px;
+    border        : 1px solid #BDBDBD;
+    border-radius : 5px;
+    height        : 6px;
+    line-height   : 0px;
+    padding       : 5px 7px 13px 6px;
+    position      : relative;
+    top           : 5px;
+    /* background-color: #F5F5F5; */
+}
+
+.redactor-toolbar li a.font-size-button.redactor-btn-image.dropact #font-size-label,
+.redactor-toolbar li a.font-size-button.redactor-btn-image:hover #font-size-label
+{
+    color : #1F1F1F;
+
+}
+
+.redactor-toolbar li a.font-size-button.redactor-btn-image:hover,
+.redactor-toolbar li a.font-size-button.redactor-btn-image.dropact
+{
+    background-color : #1F78D8;
+    color            : white;
+}
+
+.re-fontsize:before
+{
+    position : relative;
+    top      : 1px;
 }

@@ -6602,12 +6602,14 @@
 					}
 
 					this.savedSel = this.$editor.html();
+
 				},
 				getMarker: function(num)
 				{
 					if (typeof num == 'undefined') num = 1;
 
-					return $('<span id="selection-marker-' + num + '" class="redactor-selection-marker"  data-verified="redactor">' + this.opts.invisibleSpace + '</span>')[0];
+                    var $marker = $('<span id="selection-marker-' + num + '" class="redactor-selection-marker"  data-verified="redactor">' + this.opts.invisibleSpace + '</span>')[0];
+                    return $marker;
 				},
 				getMarkerAsHtml: function(num)
 				{

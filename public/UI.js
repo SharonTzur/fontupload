@@ -95,6 +95,7 @@ function refreshUI()
     var fontElement = document.getElementById('font-' + widgetSettings.family);
     $(fontElement).addClass('font-selected');
     refreshCatToggleButtons();
+
 }
 
 function onSearchKeyUp()
