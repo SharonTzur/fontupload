@@ -1535,7 +1535,7 @@ header#top-header.loading
 
 .redactor-toolbar li a.font-spacing-button.redactor-btn-image
 {
-    top : -17px;
+    /*top : -17px;*/
 }
 
 .redactor-toolbar li a.font-size-button.redactor-btn-image.dropact #font-size-label,
