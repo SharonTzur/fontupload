@@ -5,7 +5,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
     RedactorPlugins.fontsize = function ()
     {
         return {
-            $fontSizeLabel: null,
+            $label: null,
             size          : null,
             init          : function ()
             {
@@ -26,15 +26,31 @@ if (!RedactorPlugins) var RedactorPlugins = {};
                 dropdown.remove = {title: 'Remove Font Size', func: that.fontsize.reset};
                 var button = this.button.add('fontsize', 'Change Font Size');
 
-                this.$fontSizeLabel = $('<div id="font-size-label">14</div>');
+                this.$label = $('<div id="font-size-label">14</div>');
+
+                var arrowContainer = $('<div class="toolBarArrows toolbarComp"></div>'),
+                    upArrow        = $('<a href="#" class="re-icon re-increasefontsize redactor-btn-image toolbarArrow upArrow" rel="increasefontsize"></a>'),
+                    downArrow      = $('<a href="#" class="re-icon re-decreasefontsize redactor-btn-image toolbarArrow downArrow" rel="decreasefontsize"></a>');
+
+                upArrow.click({isUp: true}, this.fontsize.incSize);
+                downArrow.click({isUp: false}, this.fontsize.incSize);
+
+                arrowContainer.append(upArrow, downArrow);
+
+                var wrapper = $('<div class="button-wrapper font-size"></div>');
                 button.addClass('font-size-button');
-                button.prepend(this.$fontSizeLabel);
+
                 this.button.addDropdown(button, dropdown);
+                var buttonEl = $('.re-icon.font-size-button');
+                buttonEl.wrap(wrapper);
+                var $buttonWrapper = $('.button-wrapper.font-size');
+                button.append(this.$label);
+                $buttonWrapper.append(arrowContainer);
 
             },
             set           : function (size)
             {
-                removeMarkers();
+                //removeMarkers();
                 this.size = size;
                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;');
             },
@@ -46,8 +62,36 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 
             updateFontSizeLabel: function (value)
             {
-                this.$fontSizeLabel.empty().text(value.split('px')[0]);
+
+                var size;
+                if (value.split)
+                {
+                    size = value.split('px')[0];
+                }
+                else
+                {
+                    size = value;
+                }
+                this.size = size;
+                this.$label.empty().text(size);
+            },
+
+            incSize: function (e)
+            {
+                var size = +this.size;
+                if (e.data.isUp)
+                {
+                    this.fontsize.set(++size);
+                    this.fontsize.updateFontSizeLabel(size)
+                }
+                else
+                {
+                    this.fontsize.set(--size);
+                    this.fontsize.updateFontSizeLabel(size)
+                }
+
             }
+
 
         };
     };

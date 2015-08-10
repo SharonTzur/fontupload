@@ -623,7 +623,7 @@
 
 					this.selection.restore();
 					this.code.sync();
-
+                        removeMarkers();
 				},
 				set: function(tag)
 				{

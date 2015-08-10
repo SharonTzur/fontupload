@@ -6,17 +6,28 @@ var $redactor,
         {
             $('#redactor').redactor(
                 {
-                    plugins       : ['fullscreen', 'advanced', 'textdirection', 'undo',
+                    plugins       : [
+                        'fullscreen',
+                        'advanced',
+                        'textdirection',
+                        'undo',
                         'fontsize',
+                        'fontspacing',
                         //'fontsizewidget',
-                        'letterspacingwidget', 'fontfacedropdown', 'fontWeightDropdown', 'fontItalic','fontBold' ,'fontColor', 'fontBgColor'],
+                        //'letterspacingwidget',
+                        'fontfacedropdown',
+                        'fontWeightDropdown',
+                        'fontItalic',
+                        'fontBold',
+                        'fontColor',
+                        'fontBgColor'],
 
                     changeCallback: function ()
                     {
 
                         var font = $('.redactor-toolbar #fontfamilydropdown .text').text();
                         var size = $redactor.fontsize.size;
-                        var letterSpacing = $redactor.letterspacingwidget.input.val();
+                        var letterSpacing = $redactor.fontspacing.size;
 
                         if (!$redactor.$editor.text())
                         {

@@ -8,7 +8,7 @@ try
 catch (e)
 {
     instanceId = 'wixdemo2';
-    compId = 30;
+    compId = 34;
 }
 ejs = false;
 //console.info('instanceId');
@@ -11923,8 +11923,8 @@ var
     lastDisplayedIndex        = 0,
     lastLoadedIndex           = 0,
     currentViewVariantIndexes = null,
-    fontsToAddOnScroll        = 50,
-    initiallyLoadedFonts      = 50,
+    fontsToAddOnScroll        = 1,
+    initiallyLoadedFonts      = 1,
     //fontsToAddOnScroll        = 200,
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,
@@ -11985,10 +11985,12 @@ var newWidgets = {
     },
 */
 
+/*
     'letterspacingwidget': {
         css : 'letter-spacing',
         func: 'updateSpacing'
     },
+*/
 
     'fontWeightDropdown': {
         css : 'font-weight',
@@ -12013,6 +12015,10 @@ var newWidgets = {
     'fontsize' : {
         css : 'font-size',
         func : 'updateFontSizeLabel'
+    },
+    'fontspacing' : {
+        css : 'letter-spacing',
+        func : 'updateFontSpacingLabel'
     }
 
 };
