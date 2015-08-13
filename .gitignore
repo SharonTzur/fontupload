@@ -1,12 +1,10 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
-
-# IntelliJ project files
 .idea
 credentials.json
 WixKey.js
 *.iml
 out
 gen
-
+node_modules
+.bin
+uploads/*.ttf
+uploads/*.otf

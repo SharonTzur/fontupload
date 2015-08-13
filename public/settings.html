@@ -1,63 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript" src="lib/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/webfont.js"></script>
+	<script type="text/javascript" src="//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
+
 	<script>
-		function asyncLoader()
+
+		$(document).ready(function ()
 		{
-			var onjQueryLoaded = function ()
+			fontContainer = $('[data-tab="selectFont"] .fontContainer');
+			viewPortHeight = $(fontContainer).outerHeight();
+			Filters.init();
+			try
 			{
-
-				$(document).ready(function ()
-				{
-					fontContainer = $('[data-tab="selectFont"] .fontContainer');
-					viewPortHeight = $(fontContainer).outerHeight();
-					Filters.init();
-					try
-					{
-						Wix.UI.initialize({});
-					}
-					catch (ex)
-					{
-						console.warn(ex.message);
-					}
-					initSemanticUI();
-					loadSettings();
-					buildAllFontsArray();
-					upload.init();
-				})
-
-			};
-			var onWebFontLoaderLoaded = function ()
-			{
-				WebFont.load({
-					google: {
-						families: ["Exo:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"]
-					}
-				});
-			};
-
-			var queue = [
-				{src: 'lib/jquery.min.js', callback: onjQueryLoaded},
-				{src: 'lib/webfont.js', callback: onWebFontLoaderLoaded}
-			];
-			for (var i = 0; i < queue.length; i++)
-			{
-				var script = document.createElement('script');
-				script.src = queue[i].src;
-				script.type = 'text/javascript';
-				script.async = 'true';
-				if (queue[i].callback)
-				{
-					script.addEventListener('load', queue[i].callback, false);
-				}
-				var firstScript = document.getElementsByTagName('script')[0];
-				firstScript.parentNode.insertBefore(script, firstScript);
+				Wix.UI.initialize({});
 			}
-		}
-		asyncLoader();
+			catch (ex)
+			{
+				console.warn(ex.message);
+			}
+			initSemanticUI();
+			loadSettings();
+			buildAllFontsArray();
+			upload.init();
+
+			WebFont.load({
+				google: {
+					families: ["Exo:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i"]
+				}
+			});
+		});
+
+		//			var queue = [
+		//				{src: 'lib/jquery.min.js', callback: onjQueryLoaded},
+		//				{src: 'lib/webfont.js', callback: onWebFontLoaderLoaded}
+		//			];
+		//			for (var i = 0; i < queue.length; i++)
+		//			{
+		//				var script = document.createElement('script');
+		//				script.src = queue[i].src;
+		//				script.type = 'text/javascript';
+		//				script.async = 'true';
+		//				if (queue[i].callback)
+		//				{
+		//					script.addEventListener('load', queue[i].callback, false);
+		//				}
+		//				var firstScript = document.getElementsByTagName('script')[0];
+		//				firstScript.parentNode.insertBefore(script, firstScript);
+		//			}
+		//		}
+		//		asyncLoader();
 	</script>
 	<!--Wix SDK-->
-	<script type="text/javascript" src="//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
 	<script src="toolbar.js"></script>
 
 
