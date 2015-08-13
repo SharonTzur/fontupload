@@ -367,7 +367,6 @@
 			LEFT: 37,
 			LEFT_WIN: 91
 		},
-
 		// Initialization
 		init: function(el, options)
 		{
@@ -4258,7 +4257,7 @@
 					// blur
 					this.blurClickedElement = true;
 
-					// Stop formatting pre and headers
+					// Stop formatting pre and he   aders
 					if (this.utils.isCurrentOrParent('PRE') || this.utils.isCurrentOrParentHeader()) return;
 
 					var tags = ['b', 'bold', 'i', 'italic', 'underline', 'strikethrough', 'deleted', 'superscript', 'subscript'];

@@ -380,6 +380,9 @@ function onFontVariantSelected()
         .html('Selected  <i class="check icon"></i>');
 
     me.addClass('font-variant-selected').find('.variantSelectButton').text('selected');
+    $redactor.selection.selectAll();
+    $redactor.fontfacedropdown.reset();
+
     $redactor.inline.format('span', 'style', 'font-family:\'' + family + '\';' + 'font-weight:' + weight + ';' + 'font-style:' + style + ';');
     $redactor.observe.checkWidgets($redactor.$editor.children());
     refreshWidget();
@@ -431,7 +434,27 @@ function onFontSelected(e)
         if (widgetSettings.font.variants.indexOf(widgetSettings.weight) == -1)
             widgetSettings.weight = '400';
     }
-    $redactor.inline.format('span', 'style', 'font-family:\'' + widgetSettings.family + '\';' + 'font-weight' + widgetSettings.weight + ';' + 'font-style' + style + ';');
+    $redactor.selection.selectAll();
+    $redactor.inline.removeStyleRule('font-family');
+
+    var elems = $redactor.selection.getInlines().concat($redactor.selection.getBlocks());
+
+    for (var i = 0; i < elems.length; i++)
+    {
+        var $el = $(elems[i]);
+        $redactor.selection.selectElement($el);
+        $redactor.inline.removeStyleRule('font-family');
+        if ($el.prop("tagName") == 'p')
+        {
+            $el.css('font-family', '');
+        }
+    }
+
+    $redactor.fontfacedropdown.reset();
+    $redactor.$editor.children().css('font-family', '"' + widgetSettings.font.family + '"');
+    $redactor.$editor.children().css('font-weight', '"' + widgetSettings.font.weight + '"');
+    $redactor.$editor.children().css('font-style', '"' + style + '"');
+
     $redactor.observe.checkWidgets($redactor.$editor.children());
     refreshWidget();
 
@@ -560,7 +583,7 @@ function checkCodeForFonts($codeRecieved, loadedFonts)
     //indexes = (!indexes[0]) ? false : indexes;
 
     var dropdownMenu = $('#fontfamilydropdown .menu'),
-        q        = $redactor.fontfacedropdown,
+        q            = $redactor.fontfacedropdown,
         recentFontsHeader;
 
     if (!dropdownMenu.find('.recent-fonts-header').length)

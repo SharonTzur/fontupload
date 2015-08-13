@@ -158,6 +158,7 @@ header .logo
 {
     margin-top : 20px;
 }
+
 .fontdiv
 {
     margin-bottom : 5px;
@@ -184,6 +185,11 @@ header .logo
     margin                 : auto;
 
 }
+
+.fontContainer > .fontdiv:first-child {
+    margin-top: 20px;
+}
+
 
 .fontdiv .ui.ribbon.label:hover
 {
@@ -309,7 +315,7 @@ header .logo
 
 .label
 {
-    width         : 131px;
+    width         : 211px;
     /*border        : 1px solid #BDBDBD;*/
     border-radius : 5px;
     height        : 6px;
@@ -579,7 +585,7 @@ input[type=text].uilib-input.x-large
 
 .sliderCheckbox
 {
-    top : 6px !important;
+    /*top : 6px !important;*/
 
 }
 
@@ -695,7 +701,7 @@ i.icon.dropdown.xl:before
 
 .fontsFilterPane .equal.height.row
 {
-    padding       : 0 0 18px 0 !important;
+    padding: 0 0 28px 0 !important;
     border-bottom : 1px solid #EEEEEE;
 }
 
@@ -822,7 +828,7 @@ li .toolbarComp a.toolbarArrow
     background-repeat : no-repeat;
     padding           : 0;
     width             : 11px;
-    height            : 13px;
+    height            : 11px;
 
 }
 
@@ -834,14 +840,12 @@ li .toolbarComp a.toolbarArrow.downArrow
 
 li .toolbarComp
 {
-    margin         : 3px 0px 0 7px !important;
-    padding        : 0px 0 0 2px !important;
-    position       : relative;
-    width          : 12px;
-    background     : white;
-    border-radius  : 3px;
-    vertical-align : initial;
-    height         : 25px;
+    margin        : 3px 0px 0 2px !important;
+    padding       : 0px 0 0 2px !important;
+    position      : relative;
+    width         : 12px;
+    border-radius : 3px;
+    height        : 25px;
 
 }
 
@@ -1510,7 +1514,7 @@ header#top-header.loading
     background-color : #F8F8F8;
     padding          : 4px 3px 3px 4px;
     position         : absolute;
-    top              : 4px;
+    top              : 2px;
     border-radius    : 3px;
     font-family      : 'Helvetica Neue', Helvetica, Arial;
     font-size        : 12px;
@@ -1523,10 +1527,10 @@ header#top-header.loading
 .redactor-toolbar li a.font-spacing-button.redactor-btn-image
 {
     position      : relative;
-    top           : -2px;
+    top           : -6px;
     display       : inline-block;
     width         : 36px;
-    height        : 6px;
+    height        : 2px;
     /* border: 1px solid red; */
     padding       : 19px 14px 1px 7px;
     left          : 0px;
@@ -1559,7 +1563,7 @@ header#top-header.loading
 .re-fontsize:before
 {
     position : absolute;
-    top      : 6px;
+    top      : 5px;
     left     : 6px;
 }
 
@@ -1579,9 +1583,9 @@ header#top-header.loading
 .button-wrapper
 {
     border        : 1px solid #BDBDBD;
-    width         : 79px;
+    width         : 73px;
     padding       : 0px 5px 0px 0px;
-    height        : 26px;
+    height        : 22px;
     border-radius : 3px;
     margin-left   : 10px;
 }

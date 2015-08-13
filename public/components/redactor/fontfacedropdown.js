@@ -272,6 +272,10 @@
                 return $('<div class="item" data-value="' + index + '" style="font-family:' + fontFamily + ' ">' +
                     text +
                     '</div>');
+            },
+            reset         : function ()
+            {
+                this.inline.removeStyleRule('font-family');
             }
 
         };
