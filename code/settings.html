@@ -2,17 +2,29 @@
 <html>
 <head>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- build:js https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -->
+	<script type="text/javascript" src="lib/jquery.min.js"></script>
+	<!-- endbuild -->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+	<!-- build:js https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js -->
+	<script type="text/javascript" src="lib/webfont.min.js"></script>
+	<!-- endbuild -->
 
-	<script src="//sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
+	<!-- build:js //sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js -->
+	<script type="text/javascript" src="lib/wix.min.js"></script>
+	<!-- endbuild -->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<!-- build:js https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js -->
+	<script src="lib/jquery-ui.min.js"></script>
+	<!-- endbuild -->
 
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+	<!-- build:css https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css -->
+	<link rel="stylesheet" href="lib/jquery-ui.min.css"/>
+	<!-- endbuild -->
 
-	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+	<!-- build:js //cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js -->
+	<script src="lib/underscore.min.js"></script>
+	<!-- endbuild -->
 
 	<script>
 		var instanceId,
@@ -47,10 +59,65 @@
 
 	</script>
 
-	<script src="anyfont.min.js"></script>
+	<!-- build:js anyfont.min.js -->
+	<script src="components/semantic/dist/semantic.min.js"></script>
+	<script src="components/semantic/dist/components/popup.min.js"></script>
+	<script src="components/semantic/dist/components/transition.min.js"></script>
+	<script src="components/jquery.nouislider.all.min.js"></script>
+	<script src="lib/jquery.form.min.js"></script>
+
+	<script src="toolbar.js"></script>
+	<script src="utils.js"></script>
+	<script src="UI.js"></script>
+	<script src="DB.js"></script>
+	<script src="fonts.js"></script>
+	<script src="globals.js"></script>
+	<script src="filters.js"></script>
+	<script src="upload.js"></script>
+	<script src="buildView.js"></script>
+
+	<script src="components/redactor/redactor.new.js"></script>
+	<script src="components/redactor/fullscreen.js"></script>
+	<script src="components/redactor/fontsize.js"></script>
+	<script src="components/redactor/fontspacing.js"></script>
+	<script src="components/redactor/fontfacedropdown.js"></script>
+	<script src="components/redactor/fontweightdropdown.js"></script>
+	<script src="components/redactor/italicWidget.js"></script>
+	<script src="components/redactor/boldWidget.js"></script>
+	<script src="components/redactor/fontcolor.js"></script>
+	<script src="components/redactor/fontBgColor.js"></script>
+	<script src="components/redactor/undo.js"></script>
+	<script src="components/redactor/textdirection.js"></script>
+	<script src="lib/ui-lib.min.js"></script>
+	<script src="lib/jquery.fileupload.js"></script>
+	<script src="lib/s3upload.js"></script>
+	<!-- endbuild -->
 
 
-	<link rel="stylesheet" href="anyfont.css">
+	<!-- build:css anyfont.css -->
+	<link rel="stylesheet" href="lib/ui-lib.min.css">
+	<link href="components/jquery.nouislider.min.css" rel="stylesheet">
+	<link href="components/jquery.nouislider.pips.min.css" rel="stylesheet">
+
+	<link href="components/semantic/dist/semantic.min.css" rel="stylesheet">
+
+	<link href="components/semantic/dist/components/accordion.min.css" rel="stylesheet">
+	<!--<link href="components/semantic/dist/components/button.min.css" rel="stylesheet">-->
+	<link href="components/semantic/dist/components/checkbox.min.css" rel="stylesheet">
+	<link href="components/semantic/dist/components/dropdown.min.css" rel="stylesheet">
+	<link href="components/semantic/dist/components/form.min.css" rel="stylesheet">
+	<link href="components/semantic/dist/components/icon.min.css" rel="stylesheet">
+	<link href="components/semantic/dist/components/input.min.css" rel="stylesheet">
+	<link href="components/semantic/dist/components/progress.min.css" rel="stylesheet">
+	<link href="components/semantic/dist/components/popup.min.css" rel="stylesheet">
+	<link href="components/semantic/dist/components/transition.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="components/redactor/redactor.css"/>
+	<link rel="stylesheet" href="components/awesome.css"/>
+	<link rel="stylesheet" href="components/redactor/icomoon.css"/>
+
+	<link rel="stylesheet" type="text/css" href="anyfont.css">
+	<!-- endbuild -->
 
 </head>
 <body wix-ui id="settings">
@@ -272,7 +339,9 @@
 </header>
 </body>
 
-
+<!-- build:remove -->
+<script src="components/jquery.nouislider.all.min.js"></script>
+<!-- endbuild -->
 
 </html>
 

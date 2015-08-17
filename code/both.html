@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>-->
+	<script src="lib/jquery.min.js"></script>
+
+	<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
+
+	<script src="lib/jquery-ui.min.js"></script>
+
+	<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
+	<link rel="stylesheet" href="lib/jquery-ui.min.js">
+
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		iframe
+		{
+			width  : 578px;
+			height : 900px;
+			float  : left;
+		}
+	</style>
+
+	<script>
+		$(document).ready(function ()
+		{
+			$('#refButton').click(function ()
+					{
+						var $holder = $("#holder").find('.resizable');
+						$holder.find("iframe").remove();
+						var iframe = $('<iframe src="' + 'widget.html' + '" ></iframe>');
+						$holder.append(iframe);
+					}
+			);
+
+			$(function () {
+				$(".resizable").resizable({
+					animate: false,
+					animateEasing: 'swing',
+					imateDuration: 500
+				});
+			});
+
+		});
+	</script>
+
+	<link href="widget.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div style="width: 100%">
+	<div style="display: inline-block">
+		<iframe id="settingsiframe" style="" src="settings.html"></iframe>
+	</div>
+	<div id='holder' style="display: inline-block;">
+		<div class="resizable">
+		<iframe id='widgetiframe' src="widget.html"></iframe>
+
+		</div>
+
+	</div>
+	<br> <input type="button" id="refButton" value="Refresh Widget">
+</div>
+</body>
+</html>
