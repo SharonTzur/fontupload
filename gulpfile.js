@@ -34,7 +34,7 @@ var paths = {
         'code/lib/s3upload.js',
         'code/lib/jquery.fileupload.js',
 
-        'code/components/semantic/dist/semantic.min.js',
+        'code/components/semantic/dist/semantic.js',
         'code/components/semantic/dist/components/accordion.min.js',
         'code/components/semantic/dist/components/button.min.js',
         'code/components/semantic/dist/components/checkbox.min.js',

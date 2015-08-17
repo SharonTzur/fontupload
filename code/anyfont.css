@@ -423,7 +423,7 @@ header.box
     font-weight      : 200;
     font-size        : 16px;
     border-radius    : 5px 5px 0 0;
-
+    font-family      : 'exo' !important;
 }
 
 .fontsFilterContainer .ui.active.button:active, .fontsFilterContainer .ui.button:active
@@ -635,7 +635,12 @@ input[type=text].uilib-input.x-large
 
 .ui .dropdown
 {
-    border : none;
+    border : none
+}
+
+.xl.dropdown.icon
+{
+
 }
 
 .ui.accordion .title .dropdown.icon.xl
@@ -986,12 +991,13 @@ li .toolbarComp
 #fontfamilydropdown,
 #fontweightdropdown
 {
-    position    : relative;
-    margin-left : 5px;
-    line-height : 17px !important;
-    width       : 177px;
-    top         : 0px;
-    padding     : 3px 0 0 43px !important;
+    position     : relative;
+    margin-left  : 5px;
+    line-height  : 17px !important;
+    width        : 234px;
+    padding-top  : 3px;
+    top          : 0px;
+    padding-left : 43px !important;
 
 }
 
@@ -1008,7 +1014,7 @@ li .toolbarComp
 #fontweightdropdown
 {
     width : 140px;
-    top   : -9px;
+    top   : -7px;
 
 }
 
@@ -1031,15 +1037,6 @@ li .toolbarComp
     color : red;
 }
 
-#fontfamilydropdown > div:first-child,
-#fontweightdropdown > div:first-child
-{
-    font-size    : 13px !important;
-    height       : 20px !important;
-    line-height  : 21px;
-    padding-left : 10px;
-}
-
 #fontfamilydropdown .menu
 {
     max-height : 275px !important;
@@ -1048,9 +1045,9 @@ li .toolbarComp
 
 #fontweightdropdown.icon.dropdown:after
 {
-    left : 163px;
-    top  : 5px;
-    /* position: relative; */
+    left   : 123px;
+    bottom : 2px;
+
 }
 
 div.icon.dropdown:after
@@ -1058,7 +1055,7 @@ div.icon.dropdown:after
     content     : "\f0d7";
     font-family : Icons;
     position    : absolute;
-    left        : 198px;
+    left        : 218px;
     top         : 4px;
 
 }
@@ -1574,7 +1571,7 @@ header#top-header.loading
 {
     position : absolute;
     top      : 4px;
-    left     : 6px;
+    left     : 5px;
 }
 
 .redactor-toolbar li a:hover
