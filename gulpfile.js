@@ -77,7 +77,11 @@ var paths = {
     styles : [
         'code/lib/ui-lib.min.css',
 
-        'code/components/semantic/dist/semantic.min.css',
+        'code/components/jquery.nouislider.min.css',
+        'code/components/jquery.nouislider.pips.min.css',
+
+        'code/components/semantic/dist/semantic.css',
+
         'code/components/semantic/dist/components/accordion.min.css',
         'code/components/semantic/dist/components/button.min.css',
         'code/components/semantic/dist/components/checkbox.min.css',
@@ -89,13 +93,11 @@ var paths = {
         'code/components/semantic/dist/components/popup.min.css',
         'code/components/semantic/dist/components/transition.min.css',
 
-        'code/anyfont.css',
-
-        'code/components/jquery.nouislider.min.css',
-        'code/components/jquery.nouislider.pips.min.css',
         'code/components/redactor/redactor.css',
         'code/components/awesome.css',
-        'code/components/redactor/icomoon.css'
+        'code/components/redactor/icomoon.css',
+
+        'code/anyfont.css'
     ],
     html   : [
         'both.html',
