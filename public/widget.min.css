@@ -1,0 +1,58 @@
+#textBox {
+  word-wrap: break-word;
+  width: calc(100% - 90px);
+}
+
+#widgetBody {
+  margin: 0;
+}
+
+#ribbon-container.textRibbon {
+  background-image: url("img/AnyFont-Ribbon-Right.png");
+  background-size: contain;
+  background-position-x: 100%;
+}
+
+#widget-container {
+  width: 100%;
+}
+
+#ribbon-container {
+  height: 100%;
+  position: absolute;
+  width: 50%;
+  right: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 90px;
+}
+
+@media all and (max-height :100px) {
+  #ribbon-container.textRibbon {
+    background-image: url("img/AnyFont-Ribbon-Straight.png");
+    max-width: 84px;
+  }
+}
+
+@media all and (max-width :450px) {
+  #ribbon-container.textRibbon {
+    background-image: url("img/AnyFont-Ribbon-Straight.png");
+    max-width: 84px;
+  }
+}
+
+.ui-resizable-helper {
+  border: 1px dotted gray;
+}
+
+.resizable {
+  display: block;
+  border: 2px solid gray;
+  overflow: hidden;
+  position: relative;
+}
+
+.textBox p {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
