@@ -101,6 +101,7 @@ var paths = {
     html   : [
         'both.html',
         'widget.html',
+        'seo.html',
         'settings.html'
     ],
 
