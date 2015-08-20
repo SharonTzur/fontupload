@@ -413,13 +413,21 @@ function onFontSelected(e)
     me.siblings('.lowerButtons.fontSelectButton')
         .addClass('active')
         .html('Selected <i class="check icon"></i>');
-    widgetSettings.family = $(this).parent().attr('data-family');
+    widgetSettings.family = $(this).parent().attr('data-family') || $(this).attr('data-family');
     widgetSettings.font = $.grep(allFonts, function (obj)
     {
         return obj.family == widgetSettings.family;
     })[0];
 
-    widgetSettings.variant = $(this).data('variant').toString();
+    if ($(this).data('variant'))
+    {
+        widgetSettings.variant = $(this).data('variant').toString();
+    }
+    else if (widgetSettings.font && Array.isArray(widgetSettings.font.variants))
+    {
+        widgetSettings.variant = widgetSettings.font.variants[0];
+
+    }
 
     loadAllFontVariants(widgetSettings.font, null, null, null, null, idx);
 
@@ -434,6 +442,7 @@ function onFontSelected(e)
         if (widgetSettings.font.variants.indexOf(widgetSettings.weight) == -1)
             widgetSettings.weight = '400';
     }
+
     $redactor.selection.selectAll();
     $redactor.inline.removeStyleRule('font-family');
 
@@ -507,7 +516,6 @@ function loadAllFontVariants(fontObj, callback, scope, activeCallback, activeSco
 
 }
 
-
 function onFontListScroll()
 {
     var scroll = fontContainer.scrollTop + viewPortHeight;
@@ -524,7 +532,6 @@ function onFontListScroll()
         $$.queue.add(loadFonts);
     }
 }
-
 
 function buildAllFontsArray()
 {

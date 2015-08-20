@@ -248,7 +248,7 @@ var upload = {
     {
         var q = this;
         q.dropdown = $redactor.fontfacedropdown;
-        q.divider = $('#fontfamilydropdown .menu .divider[data-index="1"]');
+        q.divider = $('#fontfamilydropdown .menu .divider[data-index="0"]');
         q.listOffont = list;
         q.createUploadDivider();
         q.bindFileInput();
@@ -293,7 +293,7 @@ var upload = {
         var index = $(this).attr('data-allfontsidx');
         var $selectedDropdownItem = $(upload.divider.parent().children('[data-value="' + index + '"]')[0]);
         $redactor.fontfacedropdown.onDropdownClick(index, $selectedDropdownItem.html(), $selectedDropdownItem);
-
+        $.proxy(onFontSelected, this)({target:this})
     },
 
     createUploadedItem: function (i, fontFamily, text, opacity)
@@ -364,7 +364,6 @@ var upload = {
         var d = this.dropdown.createDivder();
         this.divider.before(d);
         this.divider = d;
-
     },
 
     loadUploadedFont: function (url, font, idx, callback)

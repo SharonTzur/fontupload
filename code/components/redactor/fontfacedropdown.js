@@ -144,7 +144,7 @@
                 }
             },
 
-            onDropdownClick: function (value, text, $selectedItem)
+            onDropdownClick: function (index, text, $selectedItem)
             {
                 text = $(text).text();
                 upload.removeAllSelction();
@@ -157,16 +157,16 @@
                 {
                     text = "'" + text + "'";
                 }
-                loadAllFontVariants(fontObj, null, null, null, value);
+                loadAllFontVariants(fontObj, null, null, null, index);
 
                 this.inline.removeStyleRule('font-family');
                 $redactor.inline.format('span', 'style', 'font-family:' + text + ';');
 
                 //removeMarkers();
-                q.changeDropdownFont(text, value, $selectedItem);
+                q.changeDropdownFont(text, index, $selectedItem);
             },
 
-            changeDropdownFont: function (font, value, $selectedItem)
+            changeDropdownFont: function (font, index, $selectedItem)
             {
                 if (font)
                 {
@@ -176,7 +176,7 @@
                 q.current = font;
                 upload.removeAllSelction();
                 var menu = $('#fontfamilydropdown .menu');
-                var indexinAllFonts = (value) ? value : getAllFontsIdxByFamily(font);
+                var indexinAllFonts = (index) ? index : getAllFontsIdxByFamily(font);
                 if (indexinAllFonts >= upload.oldAllFonts)
                     upload.selectedItem(upload.fontContainer.children('[data-allfontsidx="' + indexinAllFonts + '"]'));
                 menu.find('.selected').removeClass('selected');
@@ -193,7 +193,7 @@
                     if (selectedDivs.map(function (i, el)
                         {
                             return $(el).attr('data-value')
-                        }).get().indexOf(value + '') == -1)
+                        }).get().indexOf(index + '') == -1)
                     {
                         if (selectedDivs.length == 5)
                         {    // if already exists
@@ -211,7 +211,7 @@
                     }
                     else
                     {
-                        var selectedTomove = $('#fontfamilydropdown .menu div[data-value="' + value + '"].selected-fonts');
+                        var selectedTomove = $('#fontfamilydropdown .menu div[data-value="' + index + '"].selected-fonts');
                         $recentFontsHeader.after(selectedTomove);
                         selectedTomove.addClass('active selected');
                     }
@@ -257,7 +257,7 @@
                 return $(
                     '<div class="header" data-value="header" style="font-family:"exo">' +
                     '<div class="ui primary button">' +
-                    '<i class="refresh icon"></i> Load More Fonts...' +
+                    '<i class="refresh icon"></i> Load More Fonts' +
                     '</div>' +
                     '</div>');
             },

@@ -9,7 +9,7 @@ try
 }
 catch (e)
 {
-    instanceId = 'wixdemo5';
+    instanceId = 'wixdemo7';
     compId = 10;
 }
 
