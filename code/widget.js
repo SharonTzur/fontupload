@@ -29,6 +29,22 @@ function buildAllFontsArray()
     loadFonts();
 }
 
+function loadUploadedFont(url, font, idx, callback)
+{
+    WebFont.load({
+        custom: {
+            families: [font],
+            urls    : [url]
+        },
+        active: function ()
+        {
+            if (idx) fontsCompletelyLoadedIdx.push(idx);
+            if (callback) callback(this.custom.families[0])
+        }
+    });
+}
+
+
 function loadFonts(callback, scope)
 {
     function progressInc(loaded, max)
@@ -109,7 +125,7 @@ function load(data) {
             if (data.uploadedFonts)
                 $.each(data.uploadedFonts, function (i, font) {
                     var fontFamily = font.fileName.split('.')[0];
-                    upload.loadUploadedFont(font.url, fontFamily, null, function () {
+                    loadUploadedFont(font.url, fontFamily, null, function () {
                         loadedFonts.push(fontFamily);
                     });
                 })

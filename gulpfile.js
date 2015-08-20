@@ -8,12 +8,6 @@ var useref = require('gulp-useref');
 var debug = require('gulp-debug');
 var cssBase64 = require('gulp-css-base64');
 
-var
-    watch = require('./code/components/semantic/tasks/watch'),
-    build = require('./code/components/semantic/tasks/build');
-
-gulp.task('watch ui', watch);
-gulp.task('build ui', build);
 
 var bases = {
     code: 'code/',
@@ -61,6 +55,7 @@ var paths = {
 
         'code/lib/ui-lib.min.js',
 
+        'code/instance.js',
         'code/toolbar.js',
         'code/utils.js',
         'code/UI.js',
@@ -74,6 +69,10 @@ var paths = {
         'code/buildView.js'
 
     ],
+    widgetStyles : [
+        'code/widget.css'
+    ],
+
     styles : [
         'code/lib/ui-lib.min.css',
 
@@ -103,10 +102,17 @@ var paths = {
         'both.html',
         'widget.html',
         'settings.html'
+    ],
+
+    widgetJS : [
+        'code/instance.js',
+        'code/utils.js',
+        'code/globals.js',
+        'code/widget.js'
     ]
 };
 
-gulp.task('default', ['clean', 'copyHtml', 'buildJS', 'buildCSS', 'copyImg', 'copySemanticFonts']);
+gulp.task('default', ['clean', 'copyHtml', 'buildJS', 'buildWidgetJS', 'buildCSS', 'buildWidgetCSS', 'copyImg', 'copySemanticFonts']);
 
 gulp.task('clean', function ()
 {
@@ -151,11 +157,29 @@ gulp.task('buildJS', ['clean'], function ()
         .pipe(gulp.dest('public/'))
 });
 
+gulp.task('buildWidgetJS', ['clean'], function ()
+{
+    gulp.src(paths.widgetJS)
+        .pipe(debug())
+        .pipe(concat('widget.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('public/'))
+});
+
 gulp.task('buildCSS', ['clean'], function ()
 {
     return gulp.src(paths.styles)
         .pipe(minifyCss())
         .pipe(debug())
         .pipe(concatCss("anyfont.css"))
+        .pipe(gulp.dest('public/'));
+});
+
+gulp.task('buildWidgetCSS', ['clean'], function ()
+{
+    return gulp.src(paths.widgetStyles)
+        .pipe(minifyCss())
+        .pipe(debug())
+        .pipe(concatCss("widget.css"))
         .pipe(gulp.dest('public/'));
 });

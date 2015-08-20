@@ -1,24 +1,6 @@
 //region General
 
-try
-{
-    instanceId = Wix.Utils.getInstanceId();
-    compId = Wix.Utils.getOrigCompId();
-}
-catch (e)
-{
-    instanceId = 'wixdemo4';
-    compId = 10;
-}
 ejs = false;
-//console.info('instanceId');
-//console.info(instanceId);
-//
-//console.info('compId');
-//console.info(compId);
-
-
-//endregion General
 
 //region JSON
 
