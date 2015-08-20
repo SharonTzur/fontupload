@@ -4,7 +4,8 @@
 var ribbon = null;
 var ribbonContainer = null;
 var textBox = null;
-function showRibbon () {
+function showRibbon()
+{
     ribbon.show();
     ribbonContainer.addClass('textRibbon');
 }
@@ -113,22 +114,28 @@ function loadFonts(callback, scope)
     }
 }
 
-function load(data) {
-    var successFunc = function (data, status, jqXHR) {
+function load(data)
+{
+    var successFunc = function (data, status, jqXHR)
+    {
         {
             ribbonContainer = $('#ribbon-container');
             ribbon = $('#ribbon');
             textBox = $('#textBox');
             if (!data.paid && !data.isTrial)
                 showRibbon();
-            gotCode(data.code);
             if (data.uploadedFonts)
-                $.each(data.uploadedFonts, function (i, font) {
-                    var fontFamily = font.fileName.split('.')[0];
-                    loadUploadedFont(font.url, fontFamily, null, function () {
+            {
+                $.each(data.uploadedFonts, function (i, font)
+                {
+                    var fontFamily = font.family = font.fileName.split('.')[0];
+                    loadUploadedFont(font.url, fontFamily, null, function ()
+                    {
                         loadedFonts.push(fontFamily);
                     });
                 })
+            }
+            gotCode(data.code, data.uploadedFonts);
         }
     };
     if (ejs)
@@ -141,53 +148,64 @@ function load(data) {
                 instanceId: instanceId || Wix.Utils.getIntanceId(),
                 compId    : compId || Wix.Utils.getCompId()
             },
-            success: function (response) {
+            success: function (response)
+            {
                 $('#textBox').html(response.code);
                 successFunc(response)
             }
 
         });
 }
-function killDups(obj) {
+function killDups(obj)
+{
     if (Array.isArray(obj))
-        obj = obj.filter(function (elem, pos) {
+        obj = obj.filter(function (elem, pos)
+        {
             return obj.indexOf(elem) == pos;
         });
     else
-        for (var prop in obj) {
-            obj[prop] = obj[prop].filter(function (elem, pos) {
+        for (var prop in obj)
+        {
+            obj[prop] = obj[prop].filter(function (elem, pos)
+            {
                 return obj[prop].indexOf(elem) == pos;
             });
         }
 }
 
-function gotCode(code, uploadedFonts) {
+function gotCode(code, uploadedFonts)
+{
 
     textBox.html(code);
     var fontObjArray = checkCodeForFonts($(code));
     killDups(fontObjArray);
     killDups(loadedFonts);
 //
-    if (!arraysEqual(loadedFonts, fontObjArray.fontsName)) {
+    if (!arraysEqual(loadedFonts, fontObjArray.fontsName))
+    {
 
 //                loadedFonts = loadedFonts.concat(fontObjArray.fontsName);
-        for (var i = 0; i < fontObjArray.fontsObj.length; i++) {
+        for (var i = 0; i < fontObjArray.fontsObj.length; i++)
+        {
             if (fontObjArray.fontsObj[i])
-                loadAllFontVariants(fontObjArray.fontsObj[i], null, null, function (family) {
+                loadAllFontVariants(fontObjArray.fontsObj[i], null, null, function (family)
+                {
                     loadedFonts.push(family)
                 }, null, fontObjArray.idx[i]);
-            else {
+            else
+            {
                 var font = getObj(uploadedFonts, fontObjArray.fontsName[i])[0];
-                upload.loadUploadedFont(font.url, font.family, null, function (family) {
+                loadUploadedFont(font.url, font.family, null, function (family)
+                {
                     loadedFonts.push(family);
                 });
             }
         }
     }
-
 }
 
-Wix.addEventListener(Wix.Events.SETTINGS_UPDATED, function (newSettings) {
+Wix.addEventListener(Wix.Events.SETTINGS_UPDATED, function (newSettings)
+{
     console.log('Widget: New settings received: ' + JSON.stringify(newSettings));
     gotCode(newSettings.settings.code, newSettings.settings.uploadedFonts);
 });

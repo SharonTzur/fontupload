@@ -446,7 +446,11 @@ function onFontSelected(e)
     $redactor.selection.selectAll();
     $redactor.inline.removeStyleRule('font-family');
 
-    var elems = $redactor.selection.getInlines().concat($redactor.selection.getBlocks());
+    var elems = [];
+    if ($redactor.selection.getInlines())
+    {
+        elems = $redactor.selection.getInlines().concat($redactor.selection.getBlocks());
+    }
 
     for (var i = 0; i < elems.length; i++)
     {

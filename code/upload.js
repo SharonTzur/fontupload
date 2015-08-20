@@ -447,17 +447,3 @@ function wasUploaded(name)
     return toreturn.length
 
 }
-
-/*
- {
- ETag: ""
- ad5b23cb1be33e5dda68bc8954c9b257
- "", VersionId
- :
- "wd.z9_lLFXTYxWBi764Wp4fkJHuujomu", Location
- :
- "https://anyfont.s3.amazonaws.com/IndieFlower.css"
- ETag: ""ad5b23cb1be33e5dda68bc8954c9b257""
- Location: "https://anyfont.s3.amazonaws.com/IndieFlower.css"
- VersionId: "cZs6ITpWRZUFY9Sj_iSf2Uh.RkuLmXtO"
- }*/
