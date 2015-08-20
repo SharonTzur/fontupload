@@ -11905,8 +11905,6 @@ var
     lastDisplayedIndex        = 0,
     lastLoadedIndex           = 0,
     currentViewVariantIndexes = null,
-    fontsToAddOnScroll        = 1,
-    initiallyLoadedFonts      = 1,
     //fontsToAddOnScroll        = 200,
     //initiallyLoadedFonts      = 200,
     $redactor                 = null,

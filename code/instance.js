@@ -9,6 +9,9 @@ try
 }
 catch (e)
 {
-    instanceId = 'wixdemo4';
+    instanceId = 'wixdemo5';
     compId = 10;
 }
+
+var fontsToAddOnScroll        = 30,
+    initiallyLoadedFonts      = 30;
