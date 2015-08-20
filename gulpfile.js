@@ -180,6 +180,6 @@ gulp.task('buildWidgetCSS', ['clean'], function ()
     return gulp.src(paths.widgetStyles)
         .pipe(minifyCss())
         .pipe(debug())
-        .pipe(concatCss("widget.css"))
+        .pipe(concatCss("widget.min.css"))
         .pipe(gulp.dest('public/'));
 });
