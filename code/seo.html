@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		(function ()
+		{
+			var wf = document.createElement('script');
+/*
+
+			wf.src = ('') +
+					'lib/webfont.js';
+
+*/
+			 wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+			 '://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+			wf.type = 'text/javascript';
+			wf.async = 'true';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(wf, s);
+		})();
+	</script>
+
+
+	<!-- build:js //sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js -->
+	<script type="text/javascript" src="lib/wix.min.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -->
+	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js widget.min.js -->
+	<script src="instance.js"></script>
+	<script src="utils.js"></script>
+	<script src="globals.js"></script>
+	<script src="widget.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:css widget.min.css -->
+	<link rel="stylesheet" type="text/css" href="widget.css">
+	<!-- endbuild -->
+
+	<script>
+
+		var loadedFonts = [];
+		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
+
+		var instanceId,
+				compId,
+				ejs;
+
+		$(document).ready(function ()
+		{
+			buildAllFontsArray();
+			load();
+		});
+	</script>
+
+</head>
+<body id="widgetBody">
+<div id="widget-container" class="widget-container">
+	<div id="ribbon-container"></div>
+	<div class='textBox' id='textBox'></div>
+</div>
+</body>
+</html>
