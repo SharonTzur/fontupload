@@ -41,6 +41,8 @@ r.route(app, ['upload', 'load', 'save', 'test', 'webhook',
     ['settings', 'widgetAndSettings'],
     ['widget', 'widgetAndSettings']]);
 
+
+
 app.set('views', 'public');
 app.set('view engine', 'ejs');
 
@@ -59,6 +61,10 @@ var server = app.listen(app.get('port'), function () {
 
 app.use('/uploads', express.static('./uploads/'));
 app.use(express.static('./public/'));
+app.use('/demo', function (req,res)
+{
+    res.sendFile( __dirname +  '/public/demo.html');
+} );
 
 
 var mongodb = mongoose.connection;
