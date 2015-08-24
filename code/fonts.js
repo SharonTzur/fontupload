@@ -435,7 +435,7 @@ function onFontSelected(e)
 
     if (Filters.filterOptions.isVariantMode)
     {
-        widgetSettings.weight = $(this).data('variant').split('.')[0];
+        widgetSettings.weight = $(this).data('variant');
         if ($(this).data('variant').indexOf('i') != -1)
             style = 'italic'
     }
