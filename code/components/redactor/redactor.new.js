@@ -1217,6 +1217,8 @@
                     this.selection.restore();
 
                     setTimeout($.proxy(this.observe.load, this), 50);
+                    refreshWidget();
+
                 },
                 redo   : function ()
                 {
@@ -1228,6 +1230,7 @@
                     this.selection.restore();
 
                     setTimeout($.proxy(this.observe.load, this), 50);
+                    refreshWidget();
                 }
             };
         },

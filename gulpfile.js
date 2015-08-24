@@ -104,7 +104,8 @@ var paths = {
         'widget.html',
         'seo.html',
         'settings.html',
-        'index.html'
+        'index.html',
+        'demo.html'
     ],
 
     widgetJS : [
