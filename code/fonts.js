@@ -385,7 +385,30 @@ function onFontVariantSelected()
     $redactor.selection.selectAll();
     $redactor.fontfacedropdown.reset();
 
-    $redactor.inline.format('span', 'style', 'font-family:\'' + family + '\';' + 'font-weight:' + weight + ';' + 'font-style:' + style + ';');
+
+    var elems = [];
+    if ($redactor.selection.getInlines())
+    {
+        elems = $redactor.selection.getInlines().concat($redactor.selection.getBlocks());
+    }
+
+    for (var i = 0; i < elems.length; i++)
+    {
+        var $el = $(elems[i]);
+        $redactor.selection.selectElement($el);
+        $redactor.inline.removeStyleRule('font-family');
+        $redactor.inline.removeStyleRule('font-weight');
+        $redactor.inline.removeStyleRule('font-style');
+
+        if ($el.prop("tagName") == 'p')
+        {
+            $el.css('font-family', '');
+        }
+    }
+
+    $redactor.fontfacedropdown.reset();
+    $redactor.$editor.children().css('font-family', '"' + widgetSettings.font.family + '"').css('font-weight', '"' + $(this).data('weight') + '"').css('font-style', '"' + style + '"');
+    //$redactor.inline.format('span', 'style', 'font-family:\'' + family + '\';' + 'font-weight:' + weight + ';' + 'font-style:' + style + ';');
     $redactor.observe.checkWidgets($redactor.$editor.children());
     refreshWidget();
 }
