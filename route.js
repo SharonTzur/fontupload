@@ -11,3 +11,8 @@ module.exports = {
       })
   }
 };
+
+app.use('/demo', function (req,res)
+{
+    res.sendFile( __dirname +  '/public/demo.html');
+} );
