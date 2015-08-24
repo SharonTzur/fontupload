@@ -50,7 +50,9 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             },
             set           : function (size)
             {
-                //removeMarkers();
+
+                //$redactor.$editor.attr('contenteditable', 'true').removeClass('unselectable');
+
                 this.fontspacing.size = size;
                 this.inline.format('span', 'style', 'letter-spacing: ' + size + 'px;');
             },

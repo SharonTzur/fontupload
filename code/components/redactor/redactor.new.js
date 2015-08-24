@@ -1559,6 +1559,10 @@
                 {
                     $button.on('touchstart click', $.proxy(function (e)
                     {
+                        //anyfont
+                        $redactor.$editor.attr('contenteditable', 'true').removeClass('unselectable');
+                        //anyfont
+
                         if ($button.hasClass('redactor-button-disabled')) return false;
 
                         var type = 'func';
@@ -4634,19 +4638,26 @@
                         }
                     }
 
-                    $.each(nodes, $.proxy(function (i, s)
+
+                    //anyfont
+                    if (nodes)
+                    //anyfont
+
                     {
-                        var $s = $(s);
-                        if ($.inArray(s.tagName.toLowerCase(), this.opts.inlineTags) != -1 && !$s.hasClass('redactor-selection-marker'))
+                        $.each(nodes, $.proxy(function (i, s)
                         {
-                            $s.css(name, '');
-                            this.utils.removeEmptyAttr($s, 'style');
-                            if ($s[0].attributes.length === 0)
+                            var $s = $(s);
+                            if ($.inArray(s.tagName.toLowerCase(), this.opts.inlineTags) != -1 && !$s.hasClass('redactor-selection-marker'))
                             {
-                                $s.replaceWith($s.contents());
+                                $s.css(name, '');
+                                this.utils.removeEmptyAttr($s, 'style');
+                                if ($s[0].attributes.length === 0)
+                                {
+                                    $s.replaceWith($s.contents());
+                                }
                             }
-                        }
-                    }, this));
+                        }, this));
+                    }
 
                     this.selection.restore();
                     this.code.sync();

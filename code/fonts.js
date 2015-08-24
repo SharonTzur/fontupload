@@ -247,6 +247,7 @@ function onLoadMoreClicked()
 
     }.bind(this)), 10);
 }
+
 function loadFonts(callback, scope)
 {
     function progressInc(loaded, max)
@@ -353,6 +354,7 @@ function loadFontArray(strings, activeCallback, fontactiveCallback, fontinactive
         }
     });
 }
+
 function onFontVariantSelected()
 {
     upload.removeAllSelction();
@@ -518,23 +520,6 @@ function loadAllFontVariants(fontObj, callback, scope, activeCallback, activeSco
     }
 
 
-}
-
-function onFontListScroll()
-{
-    var scroll = fontContainer.scrollTop + viewPortHeight;
-    //var currentPage = Math.floor(scroll / viewPortHeight);
-    //console.debug('page:' + currentPage);
-    var remainingFonts = currentViewFonts.length - currentViewDisplayed;
-
-    var percentage = (scroll / fontContainer.scrollHeight);
-
-    if (remainingFonts > 0 && percentage > 0.9)
-    {
-        //loadedPages.push(currentPage);
-        displayFontsInBrowser();
-        $$.queue.add(loadFonts);
-    }
 }
 
 function buildAllFontsArray()

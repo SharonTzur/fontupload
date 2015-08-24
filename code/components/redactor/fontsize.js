@@ -50,6 +50,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
             },
             set           : function (size)
             {
+                //$redactor.$editor.attr('contenteditable', 'true').removeClass('unselectable');
                 this.fontsize.size = size;
                 this.inline.format('span', 'style', 'font-size: ' + size + 'px;');
             },

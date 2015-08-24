@@ -4,7 +4,7 @@
 var func = {
 
     instance           : null,
-    defaultCode        : '<P style="font-family:Exo">Double-Click me to edit this text &amp; set font styling</P>',
+    defaultCode        : '<SPAN style="font-family:Exo">Double-Click me to edit this text &amp; set font styling</SPAN>',
 
     init: function (mongoose) {
         var Schema = mongoose.Schema;

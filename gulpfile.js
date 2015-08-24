@@ -7,6 +7,7 @@ var clean = require('gulp-clean');
 var useref = require('gulp-useref');
 var debug = require('gulp-debug');
 var cssBase64 = require('gulp-css-base64');
+var sourcemaps = require('gulp-sourcemaps');
 
 
 var bases = {
@@ -152,9 +153,13 @@ gulp.task('copySemanticFonts', ['clean'], function ()
 gulp.task('buildJS', ['clean'], function ()
 {
     gulp.src(paths.scripts)
+
+
         .pipe(debug())
+        .pipe(sourcemaps.init())
         .pipe(concat('anyfont.min.js'))
         .pipe(uglify())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/'))
 });
 

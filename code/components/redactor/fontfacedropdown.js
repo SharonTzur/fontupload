@@ -112,7 +112,6 @@
 
             },
 
-
             loadMore: function (e)
             {
                 {
@@ -159,10 +158,11 @@
                 }
                 loadAllFontVariants(fontObj, null, null, null, index);
 
-                this.inline.removeStyleRule('font-family');
+                //$redactor.$editor.attr('contenteditable', 'true').removeClass('unselectable');
+
+                //this.inline.removeStyleRule('font-family');
                 $redactor.inline.format('span', 'style', 'font-family:' + text + ';');
 
-                //removeMarkers();
                 q.changeDropdownFont(text, index, $selectedItem);
             },
 
