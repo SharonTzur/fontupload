@@ -103,7 +103,8 @@ var paths = {
         'both.html',
         'widget.html',
         'seo.html',
-        'settings.html'
+        'settings.html',
+        'index.html'
     ],
 
     widgetJS : [
