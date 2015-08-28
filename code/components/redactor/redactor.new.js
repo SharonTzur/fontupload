@@ -93,12 +93,45 @@
     // Functionality
     $.Redactor = Redactor;
     $.Redactor.VERSION = '10.2.2';
-    $.Redactor.modules = ['alignment', 'autosave', 'block', 'buffer', 'build', 'button',
-        'caret', 'clean', 'code', 'core', 'dropdown', 'file', 'focus',
-        'image', 'indent', 'inline', 'insert', 'keydown', 'keyup',
-        'lang', 'line', 'link', 'linkify', 'list', 'modal', 'observe', 'paragraphize',
-        'paste', 'placeholder', 'progress', 'selection', 'shortcuts',
-        'tabifier', 'tidy', 'toolbar', 'upload', 'utils'];
+    $.Redactor.modules = [
+        'alignment',
+        'autosave',
+        'block',
+        'buffer',
+        'build',
+        'button',
+        'caret',
+        'clean',
+        'code',
+        'core',
+        'dropdown',
+        'file',
+        'focus',
+        'image',
+        'indent',
+        'inline',
+        'insert',
+        'keydown',
+        'keyup',
+        'lang',
+        'line',
+        //'link',
+        'linkify',
+        'list',
+        'modal',
+        'observe',
+        'paragraphize',
+        'paste',
+        'placeholder',
+        'progress',
+        'selection',
+        'shortcuts',
+        'tabifier',
+        'tidy',
+        'toolbar',
+        'upload',
+        'utils'
+    ];
 
     $.Redactor.opts = {
 
@@ -179,8 +212,22 @@
         toolbarOverflow      : false,
 
         source : true,
-        buttons: ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist',
-            'outdent', 'indent', 'image', 'file', 'link', 'alignment', 'horizontalrule'], // + 'underline'
+        buttons: [
+            //'html',
+            //'formatting',
+            'bold',
+            'italic',
+            //'deleted',
+            'unorderedlist',
+            'orderedlist',
+            'outdent',
+            'indent',
+            'image',
+            'file',
+            //'link',
+            'alignment',
+            //'horizontalrule'
+        ], // + 'underline'
 
         buttonsHide        : [],
         buttonsHideOnMobile: [],

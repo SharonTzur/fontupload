@@ -7,9 +7,9 @@ var $redactor,
                 $('#redactor').redactor(
                     {
                         plugins: [
-                            'fullscreen',
+                            //'fullscreen',
                             'advanced',
-                            'textdirection',
+                            //'textdirection',
                             'undo',
                             //'fontsizewidget',
                             //'letterspacingwidget',
