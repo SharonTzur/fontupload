@@ -10,8 +10,8 @@ try
 catch (e)
 {
     instanceId = 'wixdemo8';
-    compId = 14;
+    compId = 17;
 }
 
-var fontsToAddOnScroll        = 10,
-    initiallyLoadedFonts      = 10;
+var fontsToAddOnScroll        = 1,
+    initiallyLoadedFonts      = 1;

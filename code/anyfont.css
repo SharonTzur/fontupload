@@ -40,8 +40,7 @@ h3
     font-size    : 14px;
     font-weight  : normal;
     font-family  : 'Helvetica Neue', 'Helvetica', 'Arial';
-    position     : absolute;
-
+    /*position     : absolute;*/
 }
 
 #textInput .button
@@ -53,9 +52,8 @@ h3
 #upgrade-button
 {
     position : absolute;
-    top      : -6px;
-    right    : -25px;
-
+    bottom   : 6px;
+    right    : 10px;
 }
 
 [wix-ctrl]
@@ -70,7 +68,7 @@ header .logo
     padding : 10px 16px 0 7px;
 }
 
-.intro.box
+.intro .box
 {
     padding : 10px;
     height  : 127px;
@@ -415,6 +413,8 @@ header .logo
 header.box
 {
     padding-top : 11px;
+    position    : relative;
+    padding     : 10px 10px 10px 10px;
 }
 
 #font-container-header
@@ -1487,6 +1487,10 @@ header#top-header.loading
 {
     font-weight : bold;
     display     : none;
+    margin-top  : 10px;
+    position    : absolute;
+    bottom      : 12px;
+
 }
 
 #last-item a
@@ -1609,11 +1613,12 @@ header#top-header.loading
     letter-spacing : 0.8px;
 }
 
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.unselectable
+{
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    user-select           : none;
 }

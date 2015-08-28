@@ -122,7 +122,6 @@ var $redactor,
                     }
                 );
             }
-
             initRedactor();
         }
 

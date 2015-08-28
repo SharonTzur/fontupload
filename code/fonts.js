@@ -365,7 +365,7 @@ function onFontVariantSelected()
 
     widgetSettings.font = $.grep(allFonts, function (obj)
     {
-        return obj.family == widgetSettings.family;
+        return obj.family == family;
     })[0];
 
     $('.variantSelectButton').text('select');
@@ -385,12 +385,12 @@ function onFontVariantSelected()
     $redactor.selection.selectAll();
     $redactor.fontfacedropdown.reset();
 
-
     var elems = [];
     if ($redactor.selection.getInlines())
     {
         elems = $redactor.selection.getInlines().concat($redactor.selection.getBlocks());
     }
+    $redactor.$editor.attr('contenteditable', 'true').removeClass('unselectable');
 
     for (var i = 0; i < elems.length; i++)
     {
@@ -407,8 +407,14 @@ function onFontVariantSelected()
     }
 
     $redactor.fontfacedropdown.reset();
-    $redactor.$editor.children().css('font-family', '"' + widgetSettings.font.family + '"').css('font-weight', '"' + $(this).data('weight') + '"').css('font-style', '"' + style + '"');
-    //$redactor.inline.format('span', 'style', 'font-family:\'' + family + '\';' + 'font-weight:' + weight + ';' + 'font-style:' + style + ';');
+    var editor = $redactor.$editor;
+
+    editor.css({
+        'font-family': "'" + widgetSettings.font.family + "'",
+        'font-weight': "'" + weight + "'",
+        'font-style': "'" + style + "'"
+    });
+
     $redactor.observe.checkWidgets($redactor.$editor.children());
     refreshWidget();
 }
@@ -489,11 +495,12 @@ function onFontSelected(e)
     }
 
     $redactor.fontfacedropdown.reset();
-    $redactor.$editor.children().css('font-family', '"' + widgetSettings.font.family + '"');
-    $redactor.$editor.children().css('font-weight', '"' + widgetSettings.font.weight + '"');
-    $redactor.$editor.children().css('font-style', '"' + style + '"');
+    var children = $redactor.$editor.children();
+    children.css('font-family', '"' + widgetSettings.font.family + '"');
+    children.css('font-weight', '"' + widgetSettings.font.weight + '"');
+    children.css('font-style', '"' + style + '"');
 
-    $redactor.observe.checkWidgets($redactor.$editor.children());
+    $redactor.observe.checkWidgets(children);
     refreshWidget();
 
 }
