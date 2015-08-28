@@ -77,8 +77,6 @@ var upload = {
                     // Automatically upload the file once it is added to the queue
                     if (wasUploaded(name))
                     {
-                        //console.log('was already uploaded');
-                        //alert(name + 'was uploaded');
                         Wix.UI.create({ctrl: 'Popup',
                             options: {
                                 modal:false,
@@ -92,7 +90,15 @@ var upload = {
                     }
                     if (supportedFont.indexOf(ext) == -1)
                     {
-                        alert(name + 'is not supported');
+                        var popup = Wix.UI.create({ctrl: 'Popup',
+                            options: {
+                                modal:false,
+                                content : name + ' is not supported',
+                                buttonSet: 'ok',
+                                fixed:true,
+                                title:'Font Extention not Supported'
+                            }});
+                        popup.getCtrl().open();
                         restInput();
                     }
                     else
@@ -110,7 +116,6 @@ var upload = {
                         uploadedItems[name].el.slideDown();
                         var jqXHR = data.submit().done(function (e, data)
                         {
-                            //alert('upload ok');
                             var popup = Wix.UI.create({ctrl: 'Popup',
                                 options: {
                                     modal:false,
