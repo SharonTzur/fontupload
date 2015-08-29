@@ -18,7 +18,13 @@ router.get('/', function (req, res)
     //console.log ('>appId : ', appId);
     //console.log ('>globals.wix : ', JSON.stringify(globals.wix));
     //console.log(globals.wix[appId].user + ': ');
-    var secret = (globals.wix[appId] && globals.wix[appId].secret) ? globals.wix[appId].secret : globals.WIX_APP_SECRETX;
+    //var secret = (globals.wix[appId] && globals.wix[appId].secret) ? globals.wix[appId].secret : globals.WIX_APP_SECRETX;
+
+    console.log('globals.wix');
+    console.log(globals.wix);
+
+    var secret = globals.WIX_APP_SECRETX;
+
     if (instance && utils.verifyInstance(instance, secret, req, res))
     {
         utils.load(req, function (data)
