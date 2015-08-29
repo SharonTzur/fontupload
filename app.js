@@ -37,13 +37,13 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 //    routers
 r.route(app, ['upload', 'load', 'save', 'test', 'webhook',
-    ['seo', 'widgetAndSettings'],
+    ['seo', 'widgetEJS'],
     ['settings', 'widgetAndSettings'],
-    ['widget', 'widgetAndSettings']]);
+    ['widget', 'widgetEJS']]);
 
 
 
-app.set('views', 'public');
+app.set('views', 'code');
 app.set('view engine', 'ejs');
 
 
@@ -54,13 +54,16 @@ var server = app.listen(app.get('port'), function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('Example app listening at http://%s:%s', host, port);
+    console.log('AnyFont Server listening at http://%s:%s', host, port);
     globals.init(mongoose);
 
 });
 
 app.use('/uploads', express.static('./uploads/'));
+
 app.use(express.static('./public/'));
+app.use(express.static('./code/'));
+
 app.use('/demo', function (req,res)
 {
     res.sendFile( __dirname +  '/public/demo.html');

@@ -39363,7 +39363,6 @@ h3 {
   font-size: 14px;
   font-weight: 400;
   font-family: 'Helvetica Neue',Helvetica,Arial;
-  position: absolute;
 }
 
 #textInput .button {
@@ -39372,8 +39371,8 @@ h3 {
 
 #upgrade-button {
   position: absolute;
-  top: -6px;
-  right: -25px;
+  bottom: 6px;
+  right: 10px;
 }
 
 header .logo {
@@ -39382,7 +39381,7 @@ header .logo {
   padding: 10px 16px 0 7px;
 }
 
-.intro.box {
+.intro .box {
   padding: 10px;
   height: 127px;
 }
@@ -39593,7 +39592,8 @@ header .logo {
 }
 
 header.box {
-  padding-top: 11px;
+  position: relative;
+  padding: 10px;
 }
 
 #font-container-header {
@@ -40394,6 +40394,9 @@ header#top-header.loading {
 
 #last-item {
   font-weight: 700;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 12px;
 }
 
 #last-item a {

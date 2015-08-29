@@ -135,9 +135,10 @@ function load(data)
                     });
                 })
             }
-            gotCode(data.code, data.uploadedFonts);
+            gotCode(data.code || code, data.uploadedFonts);
         }
     };
+
     if (ejs)
         successFunc(data);
     else

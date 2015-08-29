@@ -29,7 +29,7 @@ var func = {
         });
         this.instance = mongoose.model('instance', instanceSchema);
 
-        console.log('initialized');
+        console.log('db initialized');
     }
 };
 

@@ -1,59 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--Wix-->
-    <script type="text/javascript" src="http://sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js"></script>
-    <!--jQuery -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!--Utils-->
-    <script src="utils.js"></script>
-    <script src="fonts.js"></script>
-    <script src="upload.js"></script>
-    <script src="globals.js"></script>
-    <!--CSS -->
-    <link rel="stylesheet" type="text/css" href="widget.css">
-    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
-    <script src="widget.js"></script>
-    <script>
-
-        //        var SERVER_URL = 'http://84.109.234.163:3020';
-        var loadedFonts = [];
+	<!-- build:js https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js -->
+	<script type="text/javascript" src="lib/webfont.min.js"></script>
+	<!-- endbuild -->
 
 
-        //		var instanceId = 'Local-InstnaceId-rotem931',
-        //		    compId     = 'Local-compId3-rotem931';
-        //        var instanceId = Wix.Utils.getInstanceId(),
-        //                compId = Wix.Utils.getCompId();
-        var instanceId = '<%= instanceId %>',
-                compId = '<%= compId %>',
-                paid = '<%= paid %>',
-                code = '<%= code %>',
-                SERVER_URL = '<%= server %>',
-                ejs = true;
+	<!-- build:js //sslstatic.wix.com/services/js-sdk/1.24.0/js/Wix.js -->
+	<script type="text/javascript" src="lib/wix.min.js"></script>
+	<!-- endbuild -->
 
-        console.info('instanceId');
-        console.info(instanceId);
+	<!-- build:js https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js -->
+	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+	<!-- endbuild -->
 
-        console.info('compId');
-        console.info(compId);
+	<!-- build:js widget.min.js -->
+	<script src="instance.js"></script>
+	<script src="utils.js"></script>
+	<script src="globals.js"></script>
+	<script src="widget.js"></script>
+	<!-- endbuild -->
 
-        $(document).ready(function ()
-        {
+	<!-- build:css widget.min.css -->
+	<link rel="stylesheet" type="text/css" href="widget.css">
+	<!-- endbuild -->
 
-            buildAllFontsArray();
-            var data = JSON.parse('<%- data %>');
-            data.code = code;
-            data.paid = paid == 'true';
-            load(data);
-        });
-    </script>
+	<script>
+
+		var loadedFonts = [];
+		var SERVER_URL = (location.hostname == 'localhost' ? 'http://' + location.hostname + ':8080' : 'http://' + location.hostname);
+
+		var instanceId,
+				compId,
+				code = <%- code %>,
+				data = <%- data -%>,
+				ejs = true;  //EJS
+
+		$(document).ready(function ()
+		{
+			buildAllFontsArray();
+			load(data);
+		});
+	</script>
 
 </head>
 <body id="widgetBody">
 <div id="widget-container" class="widget-container">
-    <div id="ribbon-container"></div>
-    <div class='textBox' id='textBox'><%- code %></div>
-    <!--<div id="ribbon" style="display: none;"></div>-->
+	<div id="ribbon-container"></div>
+	<div class='textBox' id='textBox'></div>
 </div>
 </body>
 </html>
